@@ -294,7 +294,7 @@ To showcase its main functionalities, we present a brief, illustrative use-case 
 \label{fig:fitting1}
 \end{figure*}
 
-An Iris session begins with populating a SED. A user loads a local ASCII file of PLANCK data, a WISE dataset from TOPCAT~\citep{2005ASPC..347...29T} through a SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED Service portal. She also uses the built-in Italian Space Agency Science Data Center\footnote{http://www.asdc.asi.it/} (ASDC) query tool to find optical/UV data for PKS 1127-14, and adds it to the SED (see Figure~\ref{fig:load_data}).
+An Iris session begins with populating a SED. A user loads a local ASCII file of PLANCK data, a WISE dataset from TOPCAT~\citep{2005ASPC..347...29T} through a SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED Service portal. She also uses the built-in Italian Space Agency Science Data Center\footnote{\url{http://www.asdc.asi.it/}} (ASDC) query tool to find optical/UV data for PKS 1127-14, and adds it to the SED (see Figure~\ref{fig:load_data}).
 
 Data is converted to a single set of units on the fly, and displayed in the SED Viewer. The user can switch the spectral and flux axes between a variety of commonly-used SED units, e.g. one can switch from $\mathrm{Jy}$ vs. ${\mu}\mathrm{m}$ to $\mathrm{Jy}\mathrm{Hz}$ vs. $\mathrm{Hz}$. The Metadata Browser -- an interactive table of the SED data -- allows the user to interactively inspect and filter out data points by hand or with Boolean expressions.
 
@@ -319,7 +319,7 @@ When the user is satisfied with her fitting results, she saves an XML-style file
 
 %As stated in Section \ref{sec:overview}, Iris can read data from a variety of sources in different formats. Figure \ref{fig:load_data} shows an example session of loading data into Iris. The user loads a local ASCII file of PLANCK data with a built-in file reader. In a TOPCAT~\citep{2005ASPC..347...29T} session, the user completes a cone search of WISE photometry for PKS 1127-14, then broadcasts the data to Iris through SAMP. 
 
-%The user queries NED for photometric data through the NED SED Service portal to see published data for PKS 1127-14. The user sees that she has no optical/UV data in the SED by inspecting her data in the SED Viewer, the interactive data display. She uses the built-in Italian Space Agency Science Data Center\footnote{http://www.asdc.asi.it/} (ASDC) query tool to find optical/UV data for PKS 1127-14, and adds it to the SED (see Figure~\ref{fig:load_data}). 
+%The user queries NED for photometric data through the NED SED Service portal to see published data for PKS 1127-14. The user sees that she has no optical/UV data in the SED by inspecting her data in the SED Viewer, the interactive data display. She uses the built-in Italian Space Agency Science Data Center\footnote{\url{http://www.asdc.asi.it/}} (ASDC) query tool to find optical/UV data for PKS 1127-14, and adds it to the SED (see Figure~\ref{fig:load_data}). 
 
 
 
@@ -327,7 +327,7 @@ When the user is satisfied with her fitting results, she saves an XML-style file
 
 %%The user loads PLANCK data from a local ASCII file, and broadcasts WISE data from a TOPCAT~\citep{2005ASPC..347...29T} cone search via SAMP. As both datasets are non VO-compliant, Iris opens file reader GUIs in which the user provides the mapping for the spectral, flux and flux uncertainties. %The file importers provide helpful hints for the user when filling in the forms.
 
-%%Wanting to see other published data on PKS 1127-14, the user queries the NED database for photometric data through the NED SED Service portal. The VO-compliant data is automatically added to the SED Builder and Viewer, the interactive plotting display. The user then opens the ASDC\footnote{http://www.asdc.asi.it/} query tool to grab data taken with SWIFT and GALEX (see Figure~\ref{fig:load_data}), and imports the data directly to the SED.
+%%Wanting to see other published data on PKS 1127-14, the user queries the NED database for photometric data through the NED SED Service portal. The VO-compliant data is automatically added to the SED Builder and Viewer, the interactive plotting display. The user then opens the ASDC\footnote{\url{http://www.asdc.asi.it/}} query tool to grab data taken with SWIFT and GALEX (see Figure~\ref{fig:load_data}), and imports the data directly to the SED.
 
 %\subsection{Inspecting the SED}
 %\label{subsec:inspect-sed}
@@ -614,7 +614,7 @@ This allows users to save a standardized version of the file that can be easily 
 \subsection{NED SED Service}
 \label{subsec:ned}
 
-Iris is packaged with a portal to the NED SED Service\footnote{http://ned.ipac.caltech.edu} that, given a target name, retrieves all photometric data in NED associated to the source with that target name, storing it as a SED Segment.
+Iris is packaged with a portal to the NED SED Service\footnote{\url{http://ned.ipac.caltech.edu}} that, given a target name, retrieves all photometric data in NED associated to the source with that target name, storing it as a SED Segment.
 
 In the context of the VAO development of Iris, the NASA/IPAC Extragalactic Database (NED) adapted its long standing photometry and spectral energy distribution (SED) service to conform as closely as practicable to the relevant IVOA recommendations in order to seamlessly deliver photometric data from the collection into Iris. The objective for NED was to provide a working reference service for the development of Iris as well as to serve as a working prototype for new data protocols for spectro-photometric data being developed by the IVOA.
 
@@ -627,7 +627,7 @@ The NED SED Service returns data and information from the NED photometry collect
 
 HTTP requests and responses conform to the IVOA Simple Spectral Access Protocol Version 1.04 (SSAP;~\citep{2012arXiv1203.5725T}), with VOTable responses. Iris employs the Data Retrieval query in its NED SED Service client, and stores the response as a Segment. Photometric points with spectral line-based values and upper- and lower- limit values are excluded from the response.
 
-Since it implements a standard protocol interface, the NED SED service is also available through generic VO applications like TOPCAT and the VAO Data Discovery Tool\footnote{http://vao.stsci.edu/portal/Mashup/Clients/Portal/DataDiscovery.html}.
+Since it implements a standard protocol interface, the NED SED service is also available through generic VO applications like TOPCAT and the VAO Data Discovery Tool\footnote{\url{http://vao.stsci.edu/portal/Mashup/Clients/Portal/DataDiscovery.html}}.
 
 \subsection{SED Viewer}
 \label{subsec:specview}
@@ -660,7 +660,7 @@ SAMP is used as the interface protocol: this decision makes the design of the in
 \end{center}
 \end{figure*}
 
-The design of this interface is represented schematically in figure \ref{fig:sherpasamp}.
+The design of this interface is represented schematically in Figure \ref{fig:sherpasamp}.
 
 When Iris is launched the \verb|sherpa-samp| process is also started in the background: this process implements a SAMP client that waits for a SAMP hub to be available and attaches to it, registering to a number of custom \verb|mtypes|. The \verb|mtypes| work as remote procedures identifiers, and SAMP messages provide the remote methods with data that needs to be processed. Sherpa is used to crunch the data and the response from Sherpa is again packaged into a SAMP message response, so that it can be shown to the user.
 
@@ -680,7 +680,7 @@ Redshifting an SED in Iris refers to cosmological redshift. Because the apparent
 f_{z_{f}}(\lambda) = f_{z_{i}}(\lambda) \frac{\sum_{k=1}^N (f_{z_{i}}(\lambda_{k+1})+f_{z_{i}}(\lambda_{k}))}{\sum_{k=1}^N (f_{z_{f}}(\lambda_{k+1})+f_{z_{f}}(\lambda_{k}))},
 \end{equation}
 
-where $f_{z_i}$ is the observed flux at the initial (observed) redshift $z_i$, and $f_{z_f}$ is the flux at the final (target) redshift $z_f$. In \verb|sherpa-samp|, we extend the astLib\footnote{http://astlib.sourceforge.net/} \textit{astSED} class that implements Equation~\ref{eq:redshift}.
+where $f_{z_i}$ is the observed flux at the initial (observed) redshift $z_i$, and $f_{z_f}$ is the flux at the final (target) redshift $z_f$. In \verb|sherpa-samp|, we extend the astLib\footnote{\url{http://astlib.sourceforge.net/}} \textit{astSED} class that implements Equation~\ref{eq:redshift}.
 
 From the user's perspective, she supplies the initial and final redshift of the SED and clicks ``Create New SED''.
 
@@ -688,7 +688,7 @@ From the user's perspective, she supplies the initial and final redshift of the 
 Iris provides 1D interpolation along the spectral axis. There are three interpolation options: linear, linear spline, and nearest neighbor. Interpolation may be carried out on a linear or logarithmic scale. Users may choose the number of bins, the spectral range over which to interpolate, and may choose to smooth the resultant SED via a boxcar method.
 
 \subsubsection{Integration}
-The Integration tool was developed to make estimating integrated fluxes of a SED quick and painless. Iris provides two methods of integration: (i) through a user-defined passband, and (ii) through a photometric filter. The first option lets the user specify the spectral range in wavelength, frequency, or energy units (Angstroms, Hz, and keV, respectively) to integrate under. The second estimates the integrated flux measured through any of the photometric filters provided by the Spanish Virtual Observatory's (SVO's) Filter Profile Service\footnote{http://svo2.cab.inta-csic.es/theory/fps/index.php} \citep{2013arXiv1312.3249S}. We chose the SVO's Filter Profile Service because of its extensive collection (over 1000 filters at IR, optical and UV instruments) and of its VO-compliancy. The user chooses from a list of filters that can be searched by double-clicking on an instrument name, or by searching for a string in the browser. The user sees the min, max and effective wavelengths of the filters before applying the filter to the SED.
+The Integration tool was developed to make estimating integrated fluxes of a SED quick and painless. Iris provides two methods of integration: (i) through a user-defined passband, and (ii) through a photometric filter. The first option lets the user specify the spectral range in wavelength, frequency, or energy units (Angstroms, Hz, and keV, respectively) to integrate under. The second estimates the integrated flux measured through any of the photometric filters provided by the Spanish Virtual Observatory's (SVO's) Filter Profile Service\footnote{\url{http://svo2.cab.inta-csic.es/theory/fps/index.php}} \citep{2013arXiv1312.3249S}. We chose the SVO's Filter Profile Service because of its extensive collection (over 1000 filters at IR, optical and UV instruments) and of its VO-compliancy. The user chooses from a list of filters that can be searched by double-clicking on an instrument name, or by searching for a string in the browser. The user sees the min, max and effective wavelengths of the filters before applying the filter to the SED.
 %How does it work in the background??
 Both methods return the effective wavelength of the passband in Angstroms and the calculated flux in Janskys. The user can export the data to a new SED or save the results to a simple ASCII formatted file.
 
@@ -870,7 +870,17 @@ Iris is available as an Open Source project, and can be downloaded as a binary o
 
 
 \section*{Acknowledgments}
-Support for the development of Iris was providedby the Virtual Astronomical Observatory contract AST0834235. Support for Sherpa isprovided by the National Aeronautics and Space Administration through the ChandraX-ray Center, which is operated by the Smithsonian Astrophysical Observatory forand on behalf of the National Aeronautics and Space Administration contract NAS8-03060. Support for Specview is provided by the Space Telescope Science Institute,operated by the Association of Universities for Research in Astronomy, Inc., underNational Aeronautics and Space Administration contract NAS5-26555. This researchhas made use of the NASA/IPAC Extragalactic Database (NED) which is operated bythe Jet Propulsion Laboratory, California Institute of Technology, under contract withthe National Aeronautics and Space Administration.
+Support for the development of Iris was provided
+by the Virtual Astronomical Observatory contract AST0834235. Support for Sherpa is
+provided by the National Aeronautics and Space Administration through the Chandra
+X-ray Center, which is operated by the Smithsonian Astrophysical Observatory for
+and on behalf of the National Aeronautics and Space Administration contract NAS8-
+03060. Support for Specview is provided by the Space Telescope Science Institute,
+operated by the Association of Universities for Research in Astronomy, Inc., under
+National Aeronautics and Space Administration contract NAS5-26555. This research
+has made use of the NASA/IPAC Extragalactic Database (NED) which is operated by
+the Jet Propulsion Laboratory, California Institute of Technology, under contract with
+the National Aeronautics and Space Administration.
 
 \bibliography{aciris.bib}
 
