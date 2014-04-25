@@ -375,7 +375,7 @@ Protocol~\citep{2011arXiv1110.0528T}.
 
 But more importantly, Iris provides standardized views of the integrated
 datasets to its clients, whether they are built-in components, third party
-plugin-ins, or external applications.
+plug-ins, or external applications.
 
 %Iris is meant to be an open box SED analysis tool. If Iris is missing certain
 %functionality, the user may develop a plugin for that functionality and add it
@@ -484,7 +484,12 @@ the Components field. Below that is the Model Expression, in which the
 components are linearly combined. Note that components are referenced by the
 \textit{c\#} suffix of the component name.} \label{fig:fitting1} \end{figure*}
 
-An Iris session begins with populating a SED. A user loads a local ASCII file of
+The Iris main window represents a desktop where the windows opened by each of
+the Iris components are rendered. Components can be launched by clicking on
+their button on the desktop or by the correspondent menu item.
+
+An Iris session begins with populating a SED, clicking on the SED Builder icon on the
+desktop. A user loads a local ASCII file of
 PLANCK data, a WISE dataset from TOPCAT~\citep{2005ASPC..347...29T} through a
 SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED
 Service portal. She also uses the built-in Italian Space Agency Science Data
@@ -729,7 +734,7 @@ for an example). Sherpa uses a grid-search method to find the best-fit template.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
+\includegraphics[width=1.0\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
 Iris Stack} With its architecture Iris allows developers to create components
 using higher and higher abstractions on top of web services, desktop
 applications, and Virtual Observatory standards and protocols. The technical
@@ -768,7 +773,7 @@ modeling code and upload templates libraries to Iris.
 
 The color code in Figure \ref{fig:stack} adds a different dimension to this
 diagram and taps into a different characteristic of the Iris architecture:
-extensibility. In particular, white letters in blue boxes denote extensible
+extensibility. In particular, purple letters in blue boxes denote extensible
 components of the architecture, i.e. component that offer hooks into the Iris
 architecture to users and developers. The orange boxes, on the other hand,
 express components that were not even part of the Iris design, but that can be
@@ -802,7 +807,7 @@ provided in some of the following sections.
 \section{The Iris Architecture} \label{sec:architecture}
 
 \begin{figure*} \begin{center}
-\includegraphics[width=0.6\textwidth]{figures/IrisDiagrams.001.png}
+\includegraphics[width=0.7\textwidth]{figures/IrisDiagrams.001.png}
 \caption{\textbf{The Iris loosely coupled, extensible architecture} Information
 freely flows among built-in and third-party components provided as plug-ins. A
 SED Manager gives components access to the state of the SEDs in the user's
