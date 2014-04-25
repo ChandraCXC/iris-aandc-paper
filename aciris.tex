@@ -274,7 +274,7 @@ the user.
 
 %With Iris, users may populate SEDs with data from files, built-in portals to
 %data archives, and other Virtual Observatory (VO) applications. 
-%%Iris is lenient on the data format, so while it natively supports VO-compliant files (properly annotated VOTABLE and FITS files), Iris can ingest ASCII, CSV, and other table-like formats with some user input. 
+%%Iris is lenient on the data format, so while it natively supports VO-compliant files (properly annotated VOTable and FITS files), Iris can ingest ASCII, CSV, and other table-like formats with some user input. 
 %The application also provides interactive data visualization and editing tools,
 %and a SED fitting tool for fine-tuned modeling. Users may choose from a suite
 %of provided astrophysical models, or load their own Python functions and
@@ -291,17 +291,17 @@ by team members at the National Optical Astronomy Observatory and Space
 Telescope Science Institute.
 
 In this paper we present the Iris application, its design, and how its
-architecture makes Iris extensible through the use of plug-ins. In section
+architecture makes Iris extensible through the use of plug-ins. In Section
 \ref{sec:overview} we briefly explore the landscape of SED applications and
 analysis tools that Iris joined, and provide an example use-case of Iris. We
 explore how astronomers can include their own models or templates as Python
-functions in section \ref{sec:usermodels}. An introduction to the Iris' general
-architecture (the Iris \emph{stack}) is illustrated in section \ref{sec:stack}.
-A more detailed overview of the Iris extensible framework design (section
+functions in Section \ref{sec:usermodels}. An introduction to the Iris' general
+architecture (the Iris \emph{stack}) is illustrated in Section \ref{sec:stack}.
+A more detailed overview of the Iris extensible framework design (Section
 \ref{sec:architecture}) is followed by a detailed description of the more
-advanced Iris functionalities (section \ref{sec:components}). Finally, we
+advanced Iris functionalities (Section \ref{sec:components}). Finally, we
 describe the Iris software development kit, including a ``How-to'' on extending
-Iris with plug-ins (section \ref{sec:plugins}).
+Iris with plug-ins (Section \ref{sec:plugins}).
 
 Sections \ref{sec:architecture} and \ref{sec:plugins} are targeted to software
 developers.
@@ -370,7 +370,7 @@ intervention.
 
 Much effort has been put in making Iris lenient on the data format: natively
 supporting VO-compliant files (properly annotated
-VOTABLE~\citep{2011arXiv1110.0524O} and FITS files), Iris can ingest ASCII, CSV,
+VOTable~\citep{2011arXiv1110.0524O} and FITS files), Iris can ingest ASCII, CSV,
 and other table-like formats with some extra user input. Users may also
 seamlessly transfer data from other VO applications or data archive services
 through SAMP, the Simple Application Messaging
@@ -778,7 +778,7 @@ architecture to users and developers. The orange boxes, on the other hand,
 express components that were not even part of the Iris design, but that can be
 loaded in Iris as plug-ins, possibly providing an interface to access
 non-standard services. Some of these plug-ins, along with a description of the
-design of the Iris Software Development Kit, will be introduced in section
+design of the Iris Software Development Kit, will be introduced in Section
 \ref{sec:plugins}.
 
 The Iris development team also faced some extra challenges: our team was
@@ -1282,9 +1282,9 @@ objects, thus effectively standardizing them so that they can be used by other
 components in the Iris environment, or reused by other VO applications. In other
 terms, one can achieve interoperability using the Iris infrastructure starting
 from a non-interoperable service, file, or tool. Iris actually has some built-in
-Custom-to-Standard adapters, like the sherpa-samp layer described in section
+Custom-to-Standard adapters, like the sherpa-samp layer described in Section
 \ref{sec:components}, or the ASDC plug-in interface that queries a
-quasi-standard service, described in section \ref{sec:asdc}.  \end{description}
+quasi-standard service, described in Section \ref{sec:asdc}.  \end{description}
 
 \subsection{Anatomy of a Plug-in} A single Jar file can archive several
 plug-ins, and each plug-in can bundle several Iris Components.
@@ -1419,7 +1419,7 @@ gets listed in the SED Builder and visualized in the SED Viewer, even though it
 does not interact directly with any of them: they all interact only with the SED
 Manager and they get notified of changes by the events that are fired when
 Models are changed.  \item[The Iris SDK] As it will be explored in some detail
-in section \ref{sec:writeplugin}, a plug-in developer can pretty much focus on
+in Section \ref{sec:writeplugin}, a plug-in developer can pretty much focus on
 the implementation of her components' business logic, without worrying too much
 about the boiler plate code required to configure such components. By using the
 abstract classes that the Iris framework provides, one can leverage the existing
