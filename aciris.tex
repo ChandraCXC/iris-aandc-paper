@@ -313,20 +313,19 @@ repository\footnote{\url{https://github.com/ChandraCXC/iris}}.
 
 Fitting spectral energy distributions allows astronomers to estimate fundamental
 physical properties like stellar mass, star formation rates, dust content and
-overall environments of astronomical objects (e.g. \citep{1998AJ....115.1329S},
-\citep{2001ApJS..137..139S}, \citep{2007ApJS..169..328R}, and many others). With
+overall environments of astronomical objects (e.g. \citet{1998AJ....115.1329S},
+\citet{2001ApJS..137..139S}, \citet{2007ApJS..169..328R}, and many others). With
 deeper wide-field surveys and increasing numbers of datasets over the years,
 astronomers have been able to use multi-wavelength SEDs more frequently for
 their research. As such, many robust SED analysis codes have been created to
 help astronomers model, fit, and derive physical quantities from SEDs
 \citep{2011Ap&SS.331....1W,2013ARA&A..51..393C}. These widely-used codes
-implement a diverse set of methods, for instance: inversion (\texttt{PAHFIT}
-\citep{2007ApJ...656..770S}, \texttt{STAR\-LIGHT} \cite{2004MNRAS.355..273C}),
-principal component analysis \citep{2009MNRAS.394.1496B},
-$\mathrm{\chi}^{2}$-minimization codes (\texttt{Le Phare}
-\citep{1999MNRAS.310..540A}, \texttt{hyperz} \citep{2000A&A...363..476B}), and
-Bayesian inference (\texttt{GalMC} \citep{2011ApJ...737...47A}; \texttt{VOSA}
-\citep{2008A&A...492..277B}; \texttt{BPZ} \citep{2000ApJ...536..571B}).
+implement a diverse set of methods, for instance: inversion (e.g. 
+\texttt{PAHFIT}~[\citealp{2007ApJ...656..770S}] and 
+\texttt{STAR\-LIGHT}~[\citealp{2004MNRAS.355..273C}]),
+principal component analysis~\citep[e.g.][]{2009MNRAS.394.1496B},
+$\mathrm{\chi}^{2}$-minimization codes (e.g. \texttt{Le Phare}~[\citealp{1999MNRAS.310..540A}] and \texttt{hyperz}~[\citealp{2000A&A...363..476B}]), and Bayesian inference (e.g. \texttt{GalMC}~[\citealp{2011ApJ...737...47A}], 
+\texttt{VOSA}~[\citealp{2008A&A...492..277B}], and  \texttt{BPZ}~[\citealp{2000ApJ...536..571B}]).
 
 Most distributed fitting packages are tailored for specific data sets or
 spectral ranges (e.g. \texttt{PAHFIT}, \texttt{STAR\-LIGHT}), providing robust
@@ -515,8 +514,8 @@ session. In the fitting tool, the user can build a model expression as an
 arbitrary combination of model components. Choosing from a list of astrophysical
 and mathematical models built-in in Iris, she fits PKS 1127-14 with a linear
 combination of four models: two logarithmic parabolas to model the radio
-synchrotron and inverse Compton radiation, and two blackbodies to approximate
-the models for the hot dust component and accretion disk of the blazar. The fit
+synchrotron and inverse Compton radiation~\citep{2006A&A...448..861M,2009A&A...501..879T}, and two blackbodies to approximate
+the models for the hot dust component and accretion disk of the blazar~\citep{2002ApJ...575..667D}. The fit
 is performed using Nelder-Mead optimization and least square statistics. The user
 has fine control over the parameters, including setting initial values, the
 range of the values, freezing and thawing parameters, and linking model
@@ -1036,7 +1035,7 @@ from outside resources like local files, URLs, other VO-enabled applications,
 and from plug-ins.
 
 Iris natively supports IVOA-compliant FITS and VOTable formats (described in
-\cite{2012arXiv1204.3055M}). Files in these formats will automatically be added
+\citet{2012arXiv1204.3055M}). Files in these formats will automatically be added
 to the user's workspace. The Builder can convert ASCII Tables, CSV,
 Tab-Separated-Tables, IPAC tables, and non-IVOA-compliant VOTable and FITS files
 into the native format with user input. We provide two importing forms: (i) the
@@ -1101,7 +1100,7 @@ available photometric data in an IVOA Spectrum Data Model compatible VOTable.
 \end{description}
 
 HTTP requests and responses conform to the IVOA Simple Spectral Access Protocol
-Version 1.04 (SSAP;~\citep{2012arXiv1203.5725T}), with VOTable responses. Iris
+Version 1.04 ~\citep[SSAP;][]{2012arXiv1203.5725T}), with VOTable responses. Iris
 employs the Data Retrieval query in its NED SED Service client, and stores the
 response as a Segment. Photometric points with spectral line-based values and
 upper- and lower- limit values are excluded from the response.
