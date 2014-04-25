@@ -378,7 +378,7 @@ Protocol~\citep{2011arXiv1110.0528T}.
 
 But more importantly, Iris provides standardized views of the integrated
 datasets to its clients, whether they are built-in components, third party
-plugin-ins, or external applications.
+plug-ins, or external applications.
 
 %Iris is meant to be an open box SED analysis tool. If Iris is missing certain
 %functionality, the user may develop a plugin for that functionality and add it
@@ -487,9 +487,12 @@ the Components field. Below that is the Model Expression, in which the
 components are linearly combined. Note that components are referenced by the
 \textit{c\#} suffix of the component name.} \label{fig:fitting1} \end{figure*}
 
-An Iris session begins with populating a SED. A user loads a local ASCII file of
-PLANCK data, a WISE dataset from TOPCAT ascl:1101.010~\citep{2005ASPC..347...29T} through a
-SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED
+The Iris application represents a desktop in which each Iris component is rendered in a window. Components are launched by clicking on the desktop icons or their correspondent menu items.
+
+An Iris session begins with populating a SED, clicking on the SED Builder icon on the
+desktop. A user loads a local ASCII file of
+PLANCK data, a WISE dataset from TOPCAT ascl:1101.010~\citep{2005ASPC..347...29T} 
+through a SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED
 Service portal. She also uses the built-in Italian Space Agency Science Data
 Center\footnote{\url{http://www.asdc.asi.it/}} (ASDC) query tool to find
 optical/UV data for PKS 1127-14, and adds it to the SED (see
@@ -732,7 +735,7 @@ for an example). Sherpa uses a grid-search method to find the best-fit template.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
+\includegraphics[width=1.0\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
 Iris Stack} With its architecture Iris allows developers to create components
 using higher and higher abstractions on top of web services, desktop
 applications, and Virtual Observatory standards and protocols. The technical
@@ -771,7 +774,7 @@ modeling code and upload templates libraries to Iris.
 
 The color code in Figure \ref{fig:stack} adds a different dimension to this
 diagram and taps into a different characteristic of the Iris architecture:
-extensibility. In particular, white letters in blue boxes denote extensible
+extensibility. In particular, purple letters in blue boxes denote extensible
 components of the architecture, i.e. component that offer hooks into the Iris
 architecture to users and developers. The orange boxes, on the other hand,
 express components that were not even part of the Iris design, but that can be
@@ -805,7 +808,7 @@ provided in some of the following sections.
 \section{The Iris Architecture} \label{sec:architecture}
 
 \begin{figure*} \begin{center}
-\includegraphics[width=0.6\textwidth]{figures/IrisDiagrams.001.png}
+\includegraphics[width=0.7\textwidth]{figures/IrisDiagrams.001.png}
 \caption{\textbf{The Iris loosely coupled, extensible architecture} Information
 freely flows among built-in and third-party components provided as plug-ins. A
 SED Manager gives components access to the state of the SEDs in the user's
@@ -1044,7 +1047,7 @@ and from plug-ins.
 Iris natively supports IVOA-compliant FITS and VOTable formats (described in
 \citet{2012arXiv1204.3055M}). Files in these formats will automatically be added
 to the user's workspace. The Builder can convert ASCII Tables, CSV,
-Tab-Separated-Tables, IPAC tables, and non-IVOA-compliant VOTable and FITS files
+Tab Separated Tables, IPAC tables, and non IVOA-com\-pli\-ant VOTable and FITS files
 into the native format with user input. We provide two importing forms: (i) the
 SED importer, which handles spectrum-style files (i.e. those with columns for
 the spectral coordinate, flux/energy, and flux/energy uncertainties), and (ii)
@@ -1545,8 +1548,8 @@ flexible and robust tools for their analysis, with a stress on interoperability
 and extensibility.
 
 To summarize, Iris provides: built-in capabilities for building, viewing, and
-analyzing broad-band spectro-photometric SEDs; a Python framework for fitting
-user-provided models and templates; interoperability with Virtual Observatory
+analyzing broad-band spec\-tro-pho\-to\-met\-ric SEDs; a Python framework for fitting
+user-pro\-vid\-ed models and templates; interoperability with Virtual Observatory
 tools through the Simple Messaging Application Protocol (SAMP).
 
 The Iris layered architecture takes advantage of the Virtual Observatory
