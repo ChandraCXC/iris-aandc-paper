@@ -242,11 +242,14 @@ desktop application for building, viewing and modeling broadband
 spectro-photometric SEDs. While implementing IVOA standards and protocols, the
 Iris development team took advantage of existing astronomy
 software~\citep{2012ASPC..461..893D,2013AAS...22124038L}, namely
-Specview\footnote{ascl.net/1210.016} for the visualization and fitting user
-interfaces, the NASA/IPAC Extragalactic Database (NED) SED Service for data
-acquisition, and Sherpa\footnote{ascl.net/1107.005} for the modeling and fitting
+Specview~\citep{2002ASPC..281..120B} for the visualization and fitting user
+interfaces, the NASA/IPAC Extragalactic Database (NED) SED Service~\footnote{\url{http://vo.ned.ipac.caltech.edu/SED_Service/}} for data
+acquisition, and Sherpa~\citep{2001SPIE.4477...76F} for the modeling and fitting
 engine. Along with these components, new ones, like the SED Builder, were
-developed specifically for Iris. 
+developed specifically for Iris.
+
+% specview: ascl.net/1210.016
+% sherpa: ascl.net/1107.005
 
 %The team took advantage of several existing astronomy software packages, namely
 %Specview for the visualization and fitting user interfaces, the NASA/IPAC
@@ -1081,7 +1084,7 @@ shared by Iris and by the user's scripts.
 \subsection{NED SED Service} \label{subsec:ned}
 
 Iris is packaged with a portal to the NED SED
-Service\footnote{\url{http://ned.ipac.caltech.edu}} that, given a target name,
+Service that, given a target name,
 retrieves all photometric data in NED associated to the source with that target
 name, storing it as a SED Segment.
 
@@ -1121,7 +1124,7 @@ user interactive feedback to spectral plots in Iris.
 The Viewer also provides most of the low-level graphics user interface (GUI)
 components used by the Fitting Tool component. The reason for this is that most,
 if not all of the GUI code used by both the Viewer and the Fitting Tool, were
-developed on top of the Specview~\citep{2002ASPC..281..120B} code base.
+developed on top of the Specview~ascl:1210.016 \citep{2002ASPC..281..120B} code base.
 
 Specview was developed in the late 90's, initially as an experiment to evaluate
 Java graphics capabilities in the context of interactive spectral plotting. Over
@@ -1162,7 +1165,7 @@ interacted with in the GUI itself. The expression uses Python-like syntax, and
 Python operators are available throughout. That way, SEDs can be modified after
 being read by the SED Builder, and before being further processed or measured.
 
-\subsection{Sherpa: Model Fitting} \label{subsec:sherpa} Sherpa is the CIAO
+\subsection{Sherpa: Model Fitting} \label{subsec:sherpa} Sherpa~ascl:1107.005 is the CIAO
 modeling and fitting application. It enables the user to construct complex
 models from simple definitions and fit those models to 1D (spectra) and 2D
 (images) data, using a variety of statistics and optimization methods.
