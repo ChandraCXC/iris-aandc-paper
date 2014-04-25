@@ -475,7 +475,7 @@ linear combination overlaid on the SED data as a red curve. The blue line shows
 the spectral range over which the data was fit. Below the main plot are
 residuals of the fitted curve, in dex units. \textit{Top-right:} The fitting
 options and results. Here, the user chooses between Nelder-Mead,
-Levenberg-Markwardt, and Monte-Carlo (Differential Evolution)
+Levenberg-Markwardt, and Monte-Carlo \citep[Differential Evolution, ][]{Storn:1997:DEN:596061.596146}
 optimization and various least square and
 $\mathrm{\chi}^{2}$ statistics. The fit statistics are reported here after the
 fit has been performed. \textit{Bottom-right:} The Fitting Tool window. The
@@ -727,6 +727,19 @@ for an example). Sherpa uses a grid-search method to find the best-fit template.
 -0.50   5000  1 /data/sed_temp_index-0.50.dat
 \end{lstlisting}
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
+Iris Stack} With its architecture Iris allows developers to create components
+using higher and higher abstractions on top of web services, desktop
+applications, and Virtual Observatory standards and protocols. The technical
+specifications lie on the bottom, a middle layer provides abstractions useful to
+developers, and the user is only exposed to the science features. Users can also
+plug their code in as Python functions. The result is aimed to be both user- and
+developer- friendly.}
+\label{fig:stack}
+\end{center}
+\end{figure}
 
 \section{The Iris Stack} \label{sec:stack}
 
@@ -744,15 +757,6 @@ have some knowledge of astronomical SEDs. On the other hand, a developer would
 find words like framework, service, and manager quite familiar, while it takes a
 VO-savvy person to decode the acronyms at the bottom of the diagram.
 
-\begin{figure} \begin{center}
-\includegraphics[width=\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
-Iris Stack} With its architecture Iris allows developers to create components
-using higher and higher abstractions on top of web services, desktop
-applications, and Virtual Observatory standards and protocols. The technical
-specifications lie on the bottom, a middle layer provides abstractions useful to
-developers, and the user is only exposed to the science features. Users can also
-plug their code in as Python functions. The result is aimed to be both user- and
-developer- friendly.} \label{fig:stack} \end{center} \end{figure}
 
 This architecture enables different entry points for the different audiences of the
 application: core developers work at all levels of the stack, but need to lay
@@ -764,9 +768,9 @@ modeling code and upload templates libraries to Iris.
 
 The color code in Figure \ref{fig:stack} adds a different dimension to this
 diagram and taps into a different characteristic of the Iris architecture:
-extensibility. In particular, blue boxes with purple letters denote extensible
+extensibility. In particular, white letters in blue boxes denote extensible
 components of the architecture, i.e. component that offer hooks into the Iris
-architecture to users and developers. The orange labels, on the other hand,
+architecture to users and developers. The orange boxes, on the other hand,
 express components that were not even part of the Iris design, but that can be
 loaded in Iris as plug-ins, possibly providing an interface to access
 non-standard services. Some of these plug-ins, along with a description of the
@@ -1557,7 +1561,15 @@ Iris is available as an Open Source project, and can be downloaded as a binary
 or source distribution for Linux and Mac OS X.
 
 
-\section*{Acknowledgments} Support for the development of Iris was provided by
+\section*{Acknowledgments}
+The Authors would like to acknowledge Giuseppina Fabbiano and Jonathan McDowell
+for their support and feedback in all the phases of the work.
+
+We also thank the Italian Space Agency Science Data Center for the contribution
+of the ASDC Data plugin. In particular Paolo Giommi, Roberto Primavera, and
+Milvia Capalbi.
+
+Support for the development of Iris was provided by
 the Virtual Astronomical Observatory contract AST0834235. Support for Sherpa is
 provided by the National Aeronautics and Space Administration through the
 Chandra X-ray Center, which is operated by the Smithsonian Astrophysical
