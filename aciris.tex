@@ -75,7 +75,7 @@
 %%
 %% \biboptions{comma,round}
 
-\biboptions{comma,round, sort}
+\biboptions{comma,round}
 
 \usepackage{graphicx}
 \usepackage[space]{grffile}
@@ -86,6 +86,8 @@
 \usepackage{fancyref}
 \usepackage{hyperref}
 \usepackage{caption}
+\usepackage{microtype}
+%\usepackage{courier}
 \hypersetup{colorlinks=false,pdfborder={0 0 0},}
 
 \newcommand{\truncateit}[1]{\truncate{0.8\textwidth}{#1}}
@@ -185,7 +187,7 @@ Tucson, AZ 85719}
 
 \begin{abstract}
 Iris is an extensible application that provides astronomers with a user-friendly
-user interface capable of ingesting broad-band data from many different sources
+interface capable of ingesting broad-band data from many different sources
 in order to build, explore, and model spectral energy distributions (SEDs). Iris
 takes advantage of the standards defined by the International Virtual
 Observatory Alliance, but hides the technicalities of such standards by
@@ -218,7 +220,7 @@ can plug their code into an integrated SED analysis environment.  \end{abstract}
 
 \label{sec:introduction} \section{Introduction} The International Virtual
 Observatory Alliance~\citep[IVOA;][]{2004SPIE.5493..137Q} provides a set of
-standards and protocols that enable interoperability among astronomy-centered
+standards and protocols that enable interoperability among astronomy-center\-ed
 services and applications. In order to design effective applications, one wants
 to leverage IVOA standards and protocols without exposing the complexity and
 technicality of their specifications to the users. Also, while application
@@ -232,18 +234,18 @@ wide set of use cases, while being highly extensible.
 %Iris, the Virtual Astronomical Observatory~\citep[VAO;][]{2012SPIE.8449E..0HB}
 %spectral energy distribution (SED) analysis tool, is such an IVOA-enabled
 %application. Iris was developed to provide the astronomical community a desktop
-%application for building, viewing and modeling broadband spectro-photometric
+%application for building, viewing and modeling broadband spectrophotometric
 %SEDs, while implementing IVOA standards and protocols and taking advantage of
 %existing astronomy software~\citep{2012ASPC..461..893D,2013AAS...22124038L}. 
 
 Iris, the Virtual Astronomical Observatory~\citep[VAO;][]{2012SPIE.8449E..0HB}
 spectral energy distribution (SED) analysis tool, is such an IVOA-enabled
 desktop application for building, viewing and modeling broadband
-spectro-photometric SEDs. While implementing IVOA standards and protocols, the
+spectrophotometric SEDs. While implementing IVOA standards and protocols, the
 Iris development team took advantage of existing astronomy
 software~\citep{2012ASPC..461..893D,2013AAS...22124038L}, namely
 Specview~\citep{2002ASPC..281..120B} for the visualization and fitting user
-interfaces, the NASA/IPAC Extragalactic Database (NED) SED Service~\footnote{\url{http://vo.ned.ipac.caltech.edu/SED_Service/}} for data
+interfaces, the NASA/IPAC Extragalactic Database (NED) SED Service\footnote{\url{http://vo.ned.ipac.caltech.edu/SED_Service/}} for data
 acquisition, and Sherpa~\citep{2001SPIE.4477...76F} for the modeling and fitting
 engine. Along with these components, new ones, like the SED Builder, were
 developed specifically for Iris.
@@ -258,9 +260,9 @@ developed specifically for Iris.
 %which handles SED data I/O and management with IVOA standards. 
 
 With Iris users may populate SEDs with data from files, built-in portals to data
-archives, and other Virtual Observatory (VO) applications; they can
+archives, and other Virtual Observatory (VO) applications. Users can
 interactively visualize and edit SEDs, and fit SEDs with fine-tuned modeling
-features. Users may choose from a suite of provided astrophysical models, or
+features. For SED fitting, users may choose from a suite of provided astrophysical models, or
 load their own Python functions and template libraries. All front-end features
 of Iris completely hide the underlying technical VO standards and protocols from
 the user.
@@ -285,17 +287,15 @@ the user.
 
 Iris was developed inside the framework of the VAO science applications: the
 different components were contributed by developers from the Smithsonian
-Astrophysical Observatory, the Space Telescope Science Institute, and the NASA
-Infrared Processing and Analysis Center. Quality Assurance and testing were lead
-by team members at the National Optical Astronomy Observatory and Space
-Telescope Science Institute.
+Astrophysical Observatory (SAO), the Space Telescope Science Institute (STSci), and the NASA
+Infrared Processing and Analysis Center (IPAC). Quality assurance and testing were led
+by team members at the National Optical Astronomy Observatory and STSci.
 
-In this paper we present the Iris application, its design, and how its
-architecture makes Iris extensible through the use of plug-ins. In Section
+In this paper we present the Iris application, design, and exensible architecture. In Section
 \ref{sec:overview} we briefly explore the landscape of SED applications and
 analysis tools that Iris joined, and provide an example use-case of Iris. We
 explore how astronomers can include their own models or templates as Python
-functions in Section \ref{sec:usermodels}. An introduction to the Iris' general
+functions in Section \ref{sec:usermodels}. An introduction to Iris' general
 architecture (the Iris \emph{stack}) is illustrated in Section \ref{sec:stack}.
 A more detailed overview of the Iris extensible framework design (Section
 \ref{sec:architecture}) is followed by a detailed description of the more
@@ -307,31 +307,34 @@ Sections \ref{sec:architecture} and \ref{sec:plugins} are targeted to software
 developers.
 
 The paper refers to version 2.0.1 of Iris. Iris can be downloaded as a binary
-archive for Mac OS X and
+archive for OS X and
 Linux\footnote{\url{http://cxc.cfa.harvard.edu/iris/latest/download/}}, and the
 source code is hosted on GitHub as a public
 repository\footnote{\url{https://github.com/ChandraCXC/iris}}.
 
 \section{SED Analysis with Iris} \label{sec:overview}
 
-Fitting spectral energy distributions allows astronomers to estimate fundamental
-physical properties like stellar mass, star formation rates, dust content and
-overall environments of astronomical objects (e.g. \citet{1998AJ....115.1329S},
+Fitting spectral energy distributions enables astron\-omers to estimate fundamental
+physical properties like stellar mass, star formation rates, dust content, and
+overall environments of astronomical objects (e.g., \citet{1998AJ....115.1329S},
 \citet{2001ApJS..137..139S}, \citet{2007ApJS..169..328R}, and many others). With
 deeper wide-field surveys and increasing numbers of datasets over the years,
 astronomers have been able to use multi-wavelength SEDs more frequently for
 their research. As such, many robust SED analysis codes have been created to
-help astronomers model, fit, and derive physical quantities from SEDs
+help astronomers mod\-el, fit, and derive physical quantities from SEDs
 \citep{2011Ap&SS.331....1W,2013ARA&A..51..393C}. These widely-used codes
-implement a diverse set of methods, for instance: inversion (e.g. 
-\texttt{PAHFIT}~[\citealp{2007ApJ...656..770S}] and 
-\texttt{STAR\-LIGHT}~[\citealp{2004MNRAS.355..273C}]),
-principal component analysis~\citep[e.g.][]{2009MNRAS.394.1496B},
-$\mathrm{\chi}^{2}$-minimization codes (e.g. \texttt{Le Phare}~[\citealp{1999MNRAS.310..540A}] and \texttt{hyperz}~[\citealp{2000A&A...363..476B}]), and Bayesian inference (e.g. \texttt{GalMC}~[\citealp{2011ApJ...737...47A}], 
-\texttt{VOSA}~[\citealp{2008A&A...492..277B}], and  \texttt{BPZ}~[\citealp{2000ApJ...536..571B}]).
+implement a diverse set of methods, for instance: inversion (e.g., 
+\texttt{STARLIGHT}~[\citealp{2004MNRAS.355..273C}] and
+\texttt{PAHFIT}~[\citealp{2007ApJ...656..770S}]),
+principal component analysis~\citep[e.g.,][]{2009MNRAS.394.1496B},
+$\mathrm{\chi}^{2}$-minimization codes (e.g., \texttt{Le Phare}~[\citealp{1999MNRAS.310..540A}] and 
+\texttt{hyperz}~[\citealp{2000A&A...363..476B}]), and Bayesian inference 
+(e.g., \texttt{BPZ}~[\citealp{2000ApJ...536..571B}], 
+\texttt{VOSA}~[\citealp{2008A&A...492..277B}], and 
+\texttt{GalMC}~[\citealp{2011ApJ...737...47A}]).
 
 Most distributed fitting packages are tailored for specific data sets or
-spectral ranges (e.g. \texttt{PAHFIT}, \texttt{STAR\-LIGHT}), providing robust
+spectral ranges (such as \texttt{PAHFIT} and \texttt{STAR\-LIGHT}), providing robust
 fitting methods and results. They require the data to be in a specific format
 with specific units in order for the tool to work properly. When fitting a
 broadband SED that spans over decades in the spectrum, the astronomer will
@@ -346,18 +349,18 @@ with each additional dataset.
 
 While SED analysis tools often have different input formats from each other,
 they effectively require the same information to run. Whether datasets are
-stored in a FITS file, a tab separated ASCII table, or a VOTable coming from a
-VO Data Discovery application, they are all serializations of the same, global,
+stored in a FITS file, a tab separated ASCII table, or a VOTable~\citep{2011arXiv1110.0524O} coming from a
+VO data discovery application, they are all serializations of the same, global,
 abstract, scientific model of spectral and photometric measurements for
 astronomical sources.
 
-By employing a standardized definition of such model, Iris can can streamline
-the process of building SEDs for analysis: in other terms, one of the goals of
-Iris it to make SED building a painless and straightforward process, letting the
+By employing a standardized definition of such models, Iris can streamline
+the process of building SEDs for analysis. In other terms, one of the goals of
+Iris is to make SED building a painless and straightforward process, letting the
 scientist focus on the sophisticated and original parts of the scientific
 work-flow: data analysis, hypothesis testing, and knowledge extraction.
 
-Following VO efforts to seamlessly combine data services and applications, Iris
+Following VO efforts to combine data services and applications seamlessly, Iris
 offers an interface for building large broadband SEDs from different sources in
 various data formats, while providing robust fitting methods and interactive
 visualization capabilities using existing astronomical software.
@@ -368,9 +371,9 @@ of their datasets: the improved interoperability enables more tools, inside or
 outside Iris, to load and interpret such datasets with minimal user
 intervention.
 
-Much effort has been put in making Iris lenient on the data format: natively
+Much effort has been put into making Iris lenient on the data format: natively
 supporting VO-compliant files (properly annotated
-VOTable~\citep{2011arXiv1110.0524O} and FITS files), Iris can ingest ASCII, CSV,
+VOTable and FITS files), Iris can ingest ASCII, CSV,
 and other table-like formats with some extra user input. Users may also
 seamlessly transfer data from other VO applications or data archive services
 through SAMP, the Simple Application Messaging
@@ -386,12 +389,11 @@ plug-ins, or external applications.
 %custom analysis, which in theory could be one of the fitting packages discussed
 %above. %We explore this possibility in detail in Section \ref{sec:plugins}
 
-To showcase its main functionalities, we present a brief, illustrative use-case
-of Iris usage: in the next sections we outline the analysis of the broadband SED
-of the flat spectrum radio quasar (FRSQ) object PKS 1127-14, and save the
-results to file. This is only a brief overview of a possible user thread, and
-more information about the individual Iris components introduced in this section
-are then described in more detail in the remainder of the paper.
+In the following section, we present a brief, illustrative use-case
+of Iris to showcase its main functionalities. We outline the analysis of the broadband SED
+of the flat spectrum radio quasar (FSRQ) object PKS 1127-14, and save the
+results to file. Details on the individual Iris components introduced in the next section 
+are discussed throughout the remainder of the paper.
 
 % However, most SED analysis tools require similar data and pre-processing
 % steps, like gathering and converting the data to compliant formats for the
@@ -498,9 +500,9 @@ Figure~\ref{fig:load_data}).
 
 Data is converted to a single set of units on the fly, and displayed in the SED
 Viewer. The user can switch the spectral and flux axes between a variety of
-commonly-used SED units, e.g. one can switch from $\mathrm{Jy}$ vs.
+commonly-used SED units, e.g., one can switch from $\mathrm{Jy}$ vs.
 ${\mu}\mathrm{m}$ to $\mathrm{Jy}\mathrm{Hz}$ vs. $\mathrm{Hz}$. The Metadata
-Browser -- an interactive table of the SED data -- allows the user to
+Browser --- an interactive table of the SED data --- allows the user to
 interactively inspect and filter out data points by hand or with Boolean
 expressions.
 
@@ -525,7 +527,7 @@ has fine control over the parameters, including setting initial values, the
 range of the values, freezing and thawing parameters, and linking model
 parameters to other parameters in the model expression. The spectral range to
 which each model component must be applied is also used to make control the fit:
-finally, confidence interval are computed for the overall model parameters.
+finally, confidence intervals are computed for the overall model parameters.
 
 Figure~\ref{fig:fitting1} shows the final model for PKS 1127-14 overlaid on the
 input data and, in the lower panel, the fit residuals.
@@ -582,7 +584,7 @@ the details about each model component, with the best-fit parameter values.
 %user saves the filtered, restframe SED to a VO-compliant FITS file, which can
 %be re-read with Iris and other FITS-compliant tools.  SEDs are saved in
 %VO-compliant FITS or VOTable formats which can be re-read into Iris or other
-%programs (e.g. TOPCAT; IDL or Python interpreters).
+%programs (e.g., TOPCAT; IDL or Python interpreters).
 
 %\subsection{Fitting the SED}
 
@@ -615,7 +617,7 @@ the details about each model component, with the best-fit parameter values.
 %radio synchrotron and inverse Compton radiation and two blackbodies
 %(\texttt{blackbody}s) for the hot dust and accretion disk. The models are added
 %to the Components field, where the model parameter values are displayed.
-%Double-clicking a component allows you to edit the parameters, e.g. freeze and
+%Double-clicking a component allows you to edit the parameters, e.g., freeze and
 %thaw parameters, reset their initial values, and set their minimum and maximum
 %values.
 
@@ -637,12 +639,13 @@ the details about each model component, with the best-fit parameter values.
 \section{User Models and Templates} \label{sec:usermodels}
 
 Keeping with our requirements of developing an extensible SED analysis tool, we
-provide a user-end interface for adding custom models, templates, and template
+provide a user interface for adding custom models, templates, and template
 libraries for the fitting engine to use in a Custom Fit Models Manager.
 
 Sherpa, Iris' fitting engine, provides command line functions for users to add
-their own models and templates to a Sherpa session. We wrap a GUI around such
-functions for streamlined integration and user-friendliness.
+their own models and templates to a Sherpa session. We wrap a graphical user 
+interface (GUI) around such functions for streamlined integration and 
+user-friendliness.
 %We wrap a GUI around Sherpa's \texttt{sherpa.astro.ui.utils} functions
 %\texttt{load\_user\_model}, \texttt{load\_table\_model},
 %\texttt{load\_template\_model}, and \texttt{add\_user\_pars} for streamlined
@@ -650,7 +653,7 @@ functions for streamlined integration and user-friendliness.
 The user provides the full path to the directory where the models and templates
 exist, as well as information about the parameters. Installing a model saves a
 copy of the model files in the user's home directory (in
-\~{}/.vao/iris/components), allowing the user to apply the models in future
+\texttt{\~{}/.vao/iris/}components), allowing the user to apply the models in future
 sessions.
 
 %; in this way, both users familiar or unacquainted with Sherpa will
@@ -708,7 +711,7 @@ def modified_blackbody(p, x):
 $x$ and $y$ coordinates. Iris accepts two-columned ASCII files as table models,
 following the convention where the first column is the spectral values (in
 Angstroms) and the second contains the fluxes (in
-$\mathrm{photons}/\mathrm{s}/\mathrm{cm}^{2}/{\AA}$). The fit returns the
+$\mathrm{photons}/\mathrm{s}/\mathrm{cm}^{2}/\mathrm{\AA}$). The fit returns the
 normalization constant (or amplitude) of the model.
 
 \subsection{Template Libraries} The template model is essentially a list of
@@ -731,6 +734,8 @@ for an example). Sherpa uses a grid-search method to find the best-fit template.
 -0.50   5000  1 /data/sed_temp_index-0.50.dat
 \end{lstlisting}
 
+\section{The Iris Stack} \label{sec:stack}
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=1.0\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
@@ -745,25 +750,23 @@ developer- friendly.}
 \end{center}
 \end{figure}
 
-\section{The Iris Stack} \label{sec:stack}
-
-The Iris stack (Figure \ref{fig:stack}) shows how one can put the cold and
+The Iris stack (Figure \ref{fig:stack}) shows how one can put the 
 technical IVOA specifications to work for scientists through higher and higher
-layers of abstraction: the technical details of the Virtual Observatory
-standards and protocols lie in the bottommost layers, the internals of the Iris
-building blocks lie in the middle layers, while the topmost layers express
+layers of abstraction: the details of the Virtual Observatory
+standards and protocols lie in the lowest layer, the internals of the Iris
+building blocks lie in the middle layer, while the top layer expresses
 high-level user-oriented functionalities.
 
 A reader without any knowledge of programming, let alone of the VO
-specifications, should understand the labels used in the topmost layers of the
-diagram and their components (e.g. the Fitting Tool, Redshift), as long as they
+specifications, should understand the labels used in the top layer of the
+diagram and their components (e.g., \textit{Fitting Tool} and \textit{Redshifting}), as long as they
 have some knowledge of astronomical SEDs. On the other hand, a developer would
 find words like framework, service, and manager quite familiar, while it takes a
 VO-savvy person to decode the acronyms at the bottom of the diagram.
 
 
 This architecture enables different entry points for the different audiences of the
-application: core developers work at all levels of the stack, but need to lay
+application. Core developers work at all levels of the stack, but need to lay
 out the foundations on top of the standard specifications; third party
 developers use the middle-level abstractions offered by the Iris framework,
 while end users can limit their interaction to familiar astronomical concepts
@@ -772,36 +775,34 @@ modeling code and upload templates libraries to Iris.
 
 The color code in Figure \ref{fig:stack} adds a different dimension to this
 diagram and taps into a different characteristic of the Iris architecture:
-extensibility. In particular, purple letters in blue boxes denote extensible
-components of the architecture, i.e. component that offer hooks into the Iris
+extensibility. In particular, scarlet letters denote extensible
+components of the architecture, i.e., component that offer hooks into the Iris
 architecture to users and developers. The orange boxes, on the other hand,
-express components that were not even part of the Iris design, but that can be
+express components that are not a part of the Iris design, but that can be
 loaded in Iris as plug-ins, possibly providing an interface to access
 non-standard services. Some of these plug-ins, along with a description of the
 design of the Iris Software Development Kit, will be introduced in Section
 \ref{sec:plugins}.
 
-The Iris development team also faced some extra challenges: our team was
+The Iris development team also faced some extra challenges: our team is
 distributed in nature, with developers and managers working from different
 institutions with different tools and practices \citep{2012SPIE.8449E..0IE}.
-Moreover, willing to reuse existing software instead of reinventing the
+Moreover, wanting to reuse existing software instead of reinventing the
 proverbial wheel, we had to integrate different existing software components in
 a seamless way.
 
 In summary, the Iris framework was designed to address several different
 requirements: (i) functional requirements gathered by the Iris team's lead
 scientists; (ii) functional requirements unknown at development-time; (iii) the
-distributed nature of the Iris development team; and (iv) the willingness to
-bring existing tools and services together in a single application.
+distributed nature of the Iris development team; and (iv) interoperability between 
+several existing tools and services.
 
 The Iris stack offers a non-technical view of the Iris architecture and design.
-While it shows effectively how we tried to abstract end users and developers
-from the VO specifications and from the specifics of the Iris internals, it does
+While the stack shows effectively how we tried to abstract end users and developers
+from the VO specifications and from the specifics of the Iris internals, the stack does
 not express the technical solutions that we employed to achieve such extensible
 architecture and to meet the aforementioned requirements. More detail is
 provided in some of the following sections.
-
-
 
 \section{The Iris Architecture} \label{sec:architecture}
 
@@ -827,39 +828,39 @@ and a container (the Iris application) can bind components together on the fly.
 Components can subscribe to events and react to them.} \label{fig:ioc}
 \end{center} \end{figure*}
 
-As mentioned before, Iris was designed to put together existing and newly
-developed software components in a rich, extensible application. Also, Iris was
-developed by a distributed team.
+%As mentioned before, Iris was designed to put together existing and newly
+%developed software components in a rich, extensible application. Also, Iris was
+%developed by a distributed team.
 
-In order to minimize the risk deriving from such constraints, we backed Iris
-with a loosely coupled architecture through a design pattern called Inversion of
-Control \citep*{ioc}.
+In order to minimize the risk derived from the requirements listed in the previous 
+section, we backed Iris with a loosely coupled architecture through a design 
+pattern called Inversion of Control \citep*{ioc}. 
 
-But it was not just a matter of risk management: this design pattern also
-supports the implementation of \emph{liquid} requirements, i.e. a finite set of
+But it was not just a matter of risk management. This design pattern  
+supports the implementation of \emph{liquid} requirements, i.e., a finite set of
 predetermined requirements plus an indefinite set of custom requirements to be
 implemented by users, at least in some simple cases or, for more advanced
 features, by third party developers.
 
 The architecture supporting the implementation of such requirements has
 different components that can be mapped to the Model-View-Controller (MVC)
-design pattern:
+design pattern.
 \begin{description}
 \item[SEDLib] This basic I/O library provides
-classes the Model components of MVC. Unsurprisingly, SEDLib does so by
-implementing a Data Model specification defined by the IVOA. Such specification
+classes for the Model components of MVC. Unsurprisingly, SEDLib does so by
+implementing a Data Model specification defined by the IVOA. The Data Model
 defines both the logical breakdown of spectral datasets, and the serialization
-in some standard file formats. So, on one end, SEDlib can perform the basic
+in some standard file formats. So, on the one hand, SEDlib can perform the basic
 read/write operations on spectrophotometric files, while on the other the library
 provides the data structures that client components can use and exchange.
 \item[SEDManager] The MVC Controller role is played in Iris by the SEDManager,
-that is itself defined as an Interface. The manager works as a data storage for
+which itself is defined as an Interface. The manager works as a data storage for
 SEDLib instances that the different Iris components can share.
 \item[Components] The actual Iris functionality is implemented by the Iris
 Components. They can be seen as the Views in the MVC pattern (or, more
 generally, they can provide any number of Views), since they present the data
 stored in the Controller to the user, query the Controller itself, and act upon
-the Models, i.e. the SED objects provided by SEDLib. 
+the Models, i.e., the SED objects provided by SEDLib. 
 \item[Events] Views can be
 notified of changes in the Models by Events, if they implement the relative
 Listener interface and have been registered to the Events Queue. Events usually
@@ -875,7 +876,7 @@ specific Events.
 
 Components are thus agents that cooperate by attaching themselves to a common
 \emph{bus} where the SEDManager provides the memory, and Events guarantee the
-flow of information. (see Figure~\ref{fig:architecture})
+flow of information (see Figure~\ref{fig:architecture}).
 
 \subsection{Inversion of Control}
 
@@ -883,10 +884,11 @@ We achieve loose coupling by an extensive use of Java Interfaces: components,
 events, and event listeners, for example, are all defined by interfaces whose
 implementation can, to some extent, be freely interchangeable.
 
-Moreover, Inversion of Control (Figure~\ref{fig:ioc}) is employed to decouple
-the implementation of components from the run time context: methods in the
+Moreover, Inversion of Control is employed to decouple
+the implementation of components from the run time context (see Figure~\ref{fig:ioc}). 
+Methods in the
 Interface are callbacks, and some of these callbacks get Interface-typed
-arguments that provide them context instances during the application execution.
+arguments that provide them context instances during application execution.
 For this reason, this pattern is also sometimes referred to as \emph{Dependency
 Injection}\footnote{There is, to be precise, a subtle but significant difference
 between Dependency Injection and Inversion of Control, the first effectively
@@ -896,7 +898,6 @@ Consider, for example, Iris Components: they are the main providers of Iris
 functionality, and they can correspond to buttons and menu items on the Iris
 desktop, loggers, data handlers, etc. They must implement the IrisComponent
 interface, listed in Listing \ref{lst:component}.
-
 
 \begin{lstlisting}[style=java,
 	caption={This snippet of code represents the main interface that all components in Iris have to implement, and how dependencies get injected into the components at run-time.}, 		
@@ -910,9 +911,7 @@ public interface IrisComponent {
 
   /**
    * This method is invoked to initialize the component. If the component has to launch windows, frames or
-   * background services, this is the right method to do so. Otherwise the component will be
-called only if a callback
-   * is invoked.
+   * background services, this is the right method to do so. Otherwise the component will be called only if a callback is invoked.
    * 
    * @param app A reference to the running application
    * @param workspace A reference to the application's workspace
@@ -920,8 +919,7 @@ called only if a callback
   void init(IrisApplication app, IWorkspace workspace);
 
   /**
-   * Return the name of this component. This name might be listed in a widget along with the
-other registered components.
+   * Return the name of this component. This name might be listed in a widget along with the other registered components.
    * @return The component's name as a String. 
    */
   String getName();
@@ -968,15 +966,15 @@ other registered components.
 \end{lstlisting}
 
 At startup the Iris application reads the list of Components to be initiated,
-and calls their \verb|init| call-back, that is in turn passed useful information
+and calls their \texttt{init} call-back, which in turn is passed useful information
 like a reference to the SEDManager, or hooks to the application environment.
 
-The advantages of this architecture are both functional and non functional: it
-helped our heterogeneous developing team to work in a loosely coupled way,
-reducing the overall project risk, but it also provides the extensible framework
+The advantages of this architecture are both functional and non functional. The architecture
+helped our heterogeneous development team to work in a loosely coupled way,
+reducing the overall project risk, and also provided the extensible framework
 we were seeking in the first place. As a matter of fact, plug-ins that can be
 loaded at run time implement the same interfaces that the built-in components
-do, and they are instantiated exactly the same way. The only difference is in
+do, and they are instantiated in exactly the same way. The only difference is in
 the timing: built-in Components get instantiated when the application itself is
 initialized, while plug-ins can be instantiated and discarded at any time during
 the application execution.
