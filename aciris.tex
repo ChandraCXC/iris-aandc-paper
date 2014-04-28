@@ -86,8 +86,8 @@
 \usepackage{fancyref}
 \usepackage{hyperref}
 \usepackage{caption}
-\usepackage{microtype}
-%\usepackage{courier}
+%\usepackage{microtype}
+\usepackage{courier}
 \hypersetup{colorlinks=false,pdfborder={0 0 0},}
 
 \newcommand{\truncateit}[1]{\truncate{0.8\textwidth}{#1}}
@@ -324,17 +324,18 @@ their research. As such, many robust SED analysis codes have been created to
 help astronomers mod\-el, fit, and derive physical quantities from SEDs
 \citep{2011Ap&SS.331....1W,2013ARA&A..51..393C}. These widely-used codes
 implement a diverse set of methods, for instance: inversion (e.g., 
-\texttt{STARLIGHT}~[\citealp{2004MNRAS.355..273C}] and
-\texttt{PAHFIT}~[\citealp{2007ApJ...656..770S}]),
+\verb|STARLIGHT|~[\citealp{2004MNRAS.355..273C}] and
+\verb|PAHFIT|~[\citealp{2007ApJ...656..770S}]),
 principal component analysis~\citep[e.g.,][]{2009MNRAS.394.1496B},
-$\mathrm{\chi}^{2}$-minimization codes (e.g., \texttt{Le Phare}~[\citealp{1999MNRAS.310..540A}] and 
-\texttt{hyperz}~[\citealp{2000A&A...363..476B}]), and Bayesian inference 
-(e.g., \texttt{BPZ}~[\citealp{2000ApJ...536..571B}], 
-\texttt{VOSA}~[\citealp{2008A&A...492..277B}], and 
-\texttt{GalMC}~[\citealp{2011ApJ...737...47A}]).
+$\mathrm{\chi}^{2}$-minimization codes 
+(e.g., \verb|Le Phare|~[\citealp{1999MNRAS.310..540A}] and 
+\verb|hyperz|~[\citealp{2000A&A...363..476B}]), and Bayesian inference 
+(e.g., \verb|BPZ|~[\citealp{2000ApJ...536..571B}], 
+\verb|VOSA|~[\citealp{2008A&A...492..277B}], and 
+\verb|GalMC|~[\citealp{2011ApJ...737...47A}]).
 
 Most distributed fitting packages are tailored for specific data sets or
-spectral ranges (such as \texttt{PAHFIT} and \texttt{STAR\-LIGHT}), providing robust
+spectral ranges (such as \verb|PAHFIT| and \verb|STAR\-LIGHT|), providing robust
 fitting methods and results. They require the data to be in a specific format
 with specific units in order for the tool to work properly. When fitting a
 broadband SED that spans over decades in the spectrum, the astronomer will
@@ -458,7 +459,7 @@ are discussed throughout the remainder of the paper.
 \begin{figure*} \centering
 \includegraphics[height=0.3\textheight]{figures/built-in-visuals-loading1.png}
 \caption{\textbf{Building the SED of blazar PKS 1127-14 in Iris}
-\textit{Top-left:} Data from the NED SED Service, a local file, and from TOPCAT
+\textit{Top-left:} Data from the NED SED Service, a local file, and from \texttt{TOPCAT}
 are managed in the SED Builder. \textit{Bottom-left:} The various data Segments
 plotted in $\mathrm{\nu F \left( \nu \right)}$ units inside the SED Viewer.
 Squares show data with flux uncertainties, whereas the pink diamonds denote
@@ -491,7 +492,7 @@ components are linearly combined. Note that components are referenced by the
 
 An Iris session begins with populating a SED by clicking on the SED Builder icon on the
 Iris desktop. A user loads a local ASCII file of
-PLANCK data, a WISE dataset from TOPCAT ascl:1101.010~\citep{2005ASPC..347...29T} 
+PLANCK data, a WISE dataset from \verb|TOPCAT|~\citep[; ascl:1101.010]{2005ASPC..347...29T} 
 through a SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED
 Service portal. She also uses the built-in Italian Space Agency Science Data
 Center\footnote{\url{http://www.asdc.asi.it/}} (ASDC) query tool to find
@@ -836,7 +837,7 @@ In order to minimize the risk derived from the requirements listed in the previo
 section, we backed Iris with a loosely coupled architecture through a design 
 pattern called Inversion of Control \citep*{ioc}. 
 
-But it was not just a matter of risk management. This design pattern  
+But it was not just a matter of risk management. Inversion of Control  
 supports the implementation of \emph{liquid} requirements, i.e., a finite set of
 predetermined requirements plus an indefinite set of custom requirements to be
 implemented by users, at least in some simple cases or, for more advanced
@@ -1027,10 +1028,9 @@ users can add, edit, remove, and save a subset of Segments selected from a SED.
 \includegraphics[width=\columnwidth]{figures/IrisDiagrams.002.png}
 \caption{\textit{\textbf{\label{fig:data_sources} Available Data
 Sources}}\textit{}\textbf{}\textit{} Users may import data from the built-in
-clients to the NED SED Service and the Italian Space Agency Science Data Center
-(ASDC). Data may also be uploaded from a local file, a URL, a SAMP message from
-a VO-enabled program (like TOPCAT, CDS Photometry Viewer, or the Data Discovery
-Tool), or through a custom file filter plug-in at run time.} \end{center}
+clients to the NED SED Service and the ASDC. Data may also be uploaded from 
+a local file, a URL, a SAMP message from a VO-enabled tool, 
+or through a custom file filter plug-in at run time.} \end{center}
 \end{figure}
 
 As described in Section~\ref{sec:overview}, Iris accepts data from a variety of
@@ -1085,11 +1085,10 @@ Service that, given a target name,
 retrieves all photometric data in NED associated to the source with that target
 name, adding it to an existing SED.
 
-In the context of the VAO development of Iris, we adapted the NASA/IPAC Extragalactic
-Database (NED) long standing photometry and spectral energy
-distribution (SED) service to conform as closely as practicable to the relevant
-IVOA recommendations in order to seamlessly deliver photometric data from the
-collection into Iris. The objective for NED was to provide a working reference
+In the context of the VAO development of Iris, we adapted the NED long standing photometry and spectral energy
+distribution service to conform as closely as practicable to the relevant
+IVOA recommendations in order to deliver photometric data from the
+collection into Iris seamlessly. The objective for NED was to provide a working reference
 service for the development of Iris as well as to serve as a working prototype
 for new data protocols for spectro-photometric data being developed by the IVOA.
 
@@ -1116,7 +1115,7 @@ response as a Segment. Photometric points with spectral line-based values and
 upper- and lower-limit values are excluded from the response.
 
 Implementing a standard protocol interface, the NED SED service is also
-available through generic VO applications like TOPCAT and the VAO Data Discovery
+available through generic VO applications like \texttt{TOPCAT} and the VAO Data Discovery
 Tool\footnote{\url{http://vao.stsci.edu/portal/Mashup/Clients/Portal/DataDiscovery.html}}.
 
 \subsection{SED Viewer} \label{subsec:specview}
@@ -1137,7 +1136,7 @@ tool with not only sophisticated visualization, but also data analysis
 capabilities. The ability to ingest spectral data from a variety of sources was
 also gradually incorporated into the tool, culminating with a Virtual
 Observatory interface capable of accessing services that comply with the
-Simple Spectrum Access Protocol (SAMP) standard.
+SSAP standard.
 
 Specview however kept the emphasis on spectral data that is very different from
 the broad-band SED concept to which Iris is dedicated. Being initially conceived
@@ -1230,13 +1229,11 @@ they wish to analyze, and inputs the required information for a calculation.
 \subsubsection{Redshifting} Redshifting SEDs in Iris refers to cosmological
 redshift. Because the apparent magnitude of a source is dimmer at high redshifts
 than low redshift, we correct the flux so that the area under the shifted SED
-equals that of the un-shifted SED:
-
+equals that of the un-shifted SED using
 \begin{equation} \label{eq:redshift} f_{z_{f}}(\lambda) = f_{z_{i}}(\lambda)
 \frac{\sum_{k=1}^N
 (f_{z_{i}}(\lambda_{k+1})+f_{z_{i}}(\lambda_{k}))}{\sum_{k=1}^N
 (f_{z_{f}}(\lambda_{k+1})+f_{z_{f}}(\lambda_{k}))}, \end{equation}
-
 where $f_{z_i}$ is the observed flux at the initial (observed) redshift $z_i$,
 and $f_{z_f}$ is the flux at the final (target) redshift $z_f$. In
 \verb|sherpa-samp|, we extend the
@@ -1466,7 +1463,7 @@ the natively supported files. In this case, the custom filter would parse the
 file and map the metadata to the IVOA Data Model fields.
 
 \subsubsection{Persistence} Components can also get a handle to the
-configuration directory, usually a hidden folder in the user's home directory,
+configuration directory (usually a hidden folder in the user's home directory)
 if they need to persist information like user's preferences, local databases, or
 work sessions.
 
