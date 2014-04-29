@@ -205,13 +205,14 @@ can plug their code into an integrated SED analysis environment.  \end{abstract}
 
 
 
-%\begin{keyword}
+\begin{keyword}
 %% keywords here, in the form: keyword \sep keyword
+
 
 %% MSC codes here, in the form: \MSC code \sep code
 %% or \MSC[2008] code \sep code (2000 is the default)
 
-%\end{keyword}
+\end{keyword}
 
 \end{frontmatter}
 
@@ -324,7 +325,7 @@ their research. As such, many robust SED analysis codes have been created to
 help astronomers mod\-el, fit, and derive physical quantities from SEDs
 \citep{2011Ap&SS.331....1W,2013ARA&A..51..393C}. These widely-used codes
 implement a diverse set of methods, for instance: inversion (e.g., 
-\verb|STARLIGHT|~[\citealp{2004MNRAS.355..273C}] and
+\texttt{Starlight}~[\citealp{2004MNRAS.355..273C}] and
 \verb|PAHFIT|~[\citealp{2007ApJ...656..770S}]),
 principal component analysis~\citep[e.g.,][]{2009MNRAS.394.1496B},
 $\mathrm{\chi}^{2}$-minimization codes 
@@ -469,7 +470,7 @@ pink squares in the radio are the data from PLANCK; and the red, yellow, blue,
 and green squares in the near-IR are the for WISE bands. \textit{Right:} An ASDC
 Data Query form for PKS 1127-14. The user searches for data between specified
 dates and available instruments (Swift and GALEX in this case). The data has
-been added to the open SED \texttt{PKS1127-14}.} \label{fig:load_data}
+been added to the open SED PKS 1127-14.} \label{fig:load_data}
 \end{figure*}
 
 \begin{figure*} \centering
@@ -492,7 +493,7 @@ components are linearly combined. Note that components are referenced by the
 
 An Iris session begins with populating a SED by clicking on the SED Builder icon on the
 Iris desktop. A user loads a local ASCII file of
-PLANCK data, a WISE dataset from \verb|TOPCAT|~\citep[; ascl:1101.010]{2005ASPC..347...29T} 
+PLANCK data, a WISE dataset from \verb|TOPCAT|~ascl:1101.010~\citep{2005ASPC..347...29T} 
 through a SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED
 Service portal. She also uses the built-in Italian Space Agency Science Data
 Center\footnote{\url{http://www.asdc.asi.it/}} (ASDC) query tool to find
@@ -667,28 +668,23 @@ the spectral axis, $x$, in units of Angstroms. For example, a model file for a
 modified black body \(B_{\nu}(T) \left(\nu/\nu_{0}\right)^{\beta}\) could be
 defined as in Listing \ref{lst:user_model_example}.
 
-User models can be arbitrarily combined with other custom or preset model
-functions when using the Iris fitting tool.
-
 \begin{lstlisting}[style=python,
 	caption={Example of a user-defined model that
 can be dynamically loaded into Iris. The code implements a modified blackbody
 and can be combined in Iris with other built-in and custom components.},
 	label=lst:user_model_example]
-
 import numpy as np
 
 def modified_blackbody(p, x):
-  """
-  Modified blackbody of the form: A * B_lambda(T) * (c / (lambda / lambda_0))**beta
+  """ Modified blackbody of the form: A * B_lambda(T) * (c / (lambda / lambda_0))**beta
 
-  Parameters ---------- p : [lambda_0, A, temp, beta]
-
-  p[0] 'lambda_0' : reference wavelength
-  p[1] 'A' : amplitude of model at reference wavelength
-  p[2] 'temp' : temperature of blackbody
-  p[3] 'beta' : dust emissivity index
-
+  Parameters
+  ----------
+  p : [lambda_0, A, T, beta]
+    p[0] 'lambda_0' : reference wavelength
+    p[1] 'A' : amplitude of model at reference wavelength
+    p[2] 'T' : temperature of blackbody
+    p[3] 'beta' : dust emissivity index
   x : array spectral values, in Angstroms
   """
 
@@ -707,6 +703,8 @@ def modified_blackbody(p, x):
   return B_lambda * powerlaw
 \end{lstlisting}
 
+User models can be arbitrarily combined with other custom or preset model
+functions when using the Iris fitting tool.
 
 \subsection{Table Models} A table model is a single template, having just the
 $x$ and $y$ coordinates. Iris accepts two-columned ASCII files as table models,
@@ -726,7 +724,6 @@ for an example). Sherpa uses a grid-search method to find the best-fit template.
 \begin{lstlisting}[style=code,
 	caption=Example of template library definition file,
 	label=lst:templateconfig]
-
 # INDEX REFER MODELFLAG FILENAME
 0.0     5000  1	/data/sed_temp_index-0.00.dat
 -0.10   5000  1 /data/sed_temp_index-0.10.dat
@@ -736,20 +733,6 @@ for an example). Sherpa uses a grid-search method to find the best-fit template.
 \end{lstlisting}
 
 \section{The Iris Stack} \label{sec:stack}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=1.0\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
-Iris Stack} With its architecture Iris allows developers to create components
-using higher and higher abstractions on top of web services, desktop
-applications, and Virtual Observatory standards and protocols. The technical
-specifications lie on the bottom, a middle layer provides abstractions useful to
-developers, and the user is only exposed to the science features. Users can also
-plug their code in as Python functions. The result is aimed to be both user- and
-developer- friendly.}
-\label{fig:stack}
-\end{center}
-\end{figure}
 
 The Iris stack (Figure \ref{fig:stack}) shows how one can put the 
 technical IVOA specifications to work for scientists through higher and higher
@@ -765,6 +748,19 @@ have some knowledge of astronomical SEDs. On the other hand, a developer would
 find words like framework, service, and manager quite familiar, while it takes a
 VO-savvy person to decode the acronyms at the bottom of the diagram.
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=1.0\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
+Iris Stack} With its architecture Iris allows developers to create components
+using higher and higher abstractions on top of web services, desktop
+applications, and Virtual Observatory standards and protocols. The technical
+specifications lie on the bottom, a middle layer provides abstractions useful to
+developers, and the user is only exposed to the science features. Users can also
+plug their code in as Python functions. The result is aimed to be both user- and
+developer- friendly.}
+\label{fig:stack}
+\end{center}
+\end{figure}
 
 This architecture enables different entry points for the different audiences of the
 application. Core developers work at all levels of the stack, but need to lay
@@ -777,7 +773,7 @@ modeling code and upload templates libraries to Iris.
 The color code in Figure \ref{fig:stack} adds a different dimension to this
 diagram and taps into a different characteristic of the Iris architecture:
 extensibility. In particular, scarlet letters denote extensible
-components of the architecture, i.e., component that offer hooks into the Iris
+components of the architecture, i.e., components that offer hooks into the Iris
 architecture to users and developers. The orange boxes, on the other hand,
 express components that are not a part of the Iris design, but that can be
 loaded in Iris as plug-ins, possibly providing an interface to access
@@ -1168,7 +1164,7 @@ Python operators are available throughout. That way, SEDs can be modified after
 being read by the SED Builder, and before being further processed or measured.
 
 \subsection{Sherpa: Model Fitting} \label{subsec:sherpa} Sherpa~ascl:1107.005 is the
-CIAO ascl:1311.006 \citep{2006SPIE.6270E..60F}
+CIAO~ascl:1311.006 \citep{2006SPIE.6270E..60F}
 modeling and fitting application. Sherpa enables the user to construct complex
 models from simple definitions and fit those models to 1D (spectra) and 2D
 (images) data, using a variety of statistics and optimization methods.
@@ -1237,7 +1233,7 @@ equals that of the un-shifted SED using
 where $f_{z_i}$ is the observed flux at the initial (observed) redshift $z_i$,
 and $f_{z_f}$ is the flux at the final (target) redshift $z_f$. In
 \verb|sherpa-samp|, we extend the
-astLib\footnote{\url{http://astlib.sourceforge.net/}} \textit{astSED} class that
+astLib\footnote{\url{http://astlib.sourceforge.net/}} \texttt{astSED} class that
 implements Equation~\ref{eq:redshift}.
 
 From the user's perspective, she supplies the initial and final redshift of the
@@ -1322,7 +1318,8 @@ right CLI engine. For instance, the line
 ./Iris builder config.txt
 \end{lstlisting}
 instructs Iris to dispatch the \verb|config.txt| argument to the SED Builder's
-CLI engine.
+CLI engine. Components bundled with plug-ins can provide such an engine by implementing the
+\verb|ICommandLineInterface| Java Interface as shown in Listing \ref{lst:cli}.
 
 
 \begin{lstlisting}[style=java,
@@ -1354,10 +1351,6 @@ public interface ICommandLineInterface {
    void call(String[] args);
 }
 \end{lstlisting}
-
-
-Components bundled with plug-ins can provide such an engine by implementing the
-ICommandLineInterface Java Interface (see Listing \ref{lst:cli}).
 
 \subsubsection{SAMP Handlers} A possible extension that plug-ins can offer to
 the users is SAMP handlers. When Iris receives a SAMP message that matches the
