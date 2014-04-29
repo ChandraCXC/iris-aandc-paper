@@ -207,11 +207,10 @@ can plug their code into an integrated SED analysis environment.  \end{abstract}
 
 \begin{keyword}
 %% keywords here, in the form: keyword \sep keyword
-
-
+data abstraction \sep method: data analysis \sep object-oriented programming \sep software frameworks \sep spectral energy distribution \sep virtual observatory tools
+%\sep J.2 [Physical Sciences and Engineering]: Astronomy \sep D.1.5 [Programming Techniques]: Object Oriented Programming \sep D.2.11 [Software Engineering]: Software Architectures---Data Abstraction \sep D.2.11 [Software Engineering]: Reusable Software---Reusable Libraries
 %% MSC codes here, in the form: \MSC code \sep code
 %% or \MSC[2008] code \sep code (2000 is the default)
-
 \end{keyword}
 
 \end{frontmatter}
@@ -288,11 +287,11 @@ the user.
 
 Iris was developed inside the framework of the VAO science applications: the
 different components were contributed by developers from the Smithsonian
-Astrophysical Observatory (SAO), the Space Telescope Science Institute (STScI), and the NASA
+Astrophysical Observatory, the Space Telescope Science Institute (STScI), and the NASA
 Infrared Processing and Analysis Center (IPAC). Quality assurance and testing were led
 by team members at the National Optical Astronomy Observatory and STScI.
 
-In this paper we present the Iris application, design, and exensible architecture. In Section
+In this paper we present the Iris application, design, and extensible architecture. In Section
 \ref{sec:overview} we briefly explore the landscape of SED applications and
 analysis tools that Iris joined, and provide an example use-case of Iris. We
 explore how astronomers can include their own models or templates as Python
@@ -302,9 +301,7 @@ A more detailed overview of the Iris extensible framework design (Section
 \ref{sec:architecture}) is followed by a detailed description of the more
 advanced Iris functionalities (Section \ref{sec:components}). Finally, we
 describe the Iris software development kit, including a ``How-to'' on extending
-Iris with plug-ins (Section \ref{sec:plugins}).
-
-Sections \ref{sec:architecture} and \ref{sec:plugins} are targeted to software
+Iris with plug-ins (Section \ref{sec:plugins}). Sections \ref{sec:architecture} and \ref{sec:plugins} are targeted to software
 developers.
 
 The paper refers to version 2.0.1 of Iris. Iris can be downloaded as a binary
@@ -329,7 +326,7 @@ STARLIGHT~[\citealp{2004MNRAS.355..273C}] and
 PAHFIT~[\citealp{2007ApJ...656..770S}]),
 principal component analysis~\citep[e.g.,][]{2009MNRAS.394.1496B},
 $\mathrm{\chi}^{2}$-minimization codes 
-(e.g., Le PHARE~[\citealp{1999MNRAS.310..540A}] and 
+(e.g., Le PHARE~[\citealp{1999MNRAS.310..540A,2006A&A...457..841I}] and 
 HyperZ~[\citealp{2000A&A...363..476B}]), and Bayesian inference 
 (e.g., BPZ~[\citealp{2000ApJ...536..571B}], 
 VOSA~[\citealp{2008A&A...492..277B}], and 
@@ -351,7 +348,7 @@ with each additional dataset.
 
 While SED analysis tools often have different input formats from each other,
 they effectively require the same information to run. Whether datasets are
-stored in a FITS file, a tab separated ASCII table, or a VOTable~\citep{2011arXiv1110.0524O} coming from a
+stored in a FITS file, a tab-separated ASCII table, or a VOTable~\citep{2011arXiv1110.0524O} coming from a
 VO data discovery application, they are all serializations of the same, global,
 abstract, scientific model of spectral and photometric measurements for
 astronomical sources.
@@ -387,7 +384,7 @@ plug-ins, or external applications.
 
 %Iris is meant to be an open box SED analysis tool. If Iris is missing certain
 %functionality, the user may develop a plugin for that functionality and add it
-%to Iris. Thus, a user can employ Iris' SED building capabilites while running
+%to Iris. Thus, a user can employ Iris' SED building capabilities while running
 %custom analysis, which in theory could be one of the fitting packages discussed
 %above. %We explore this possibility in detail in Section \ref{sec:plugins}
 
@@ -482,7 +479,7 @@ linear combination overlaid on the SED data as a red curve. The blue line shows
 the spectral range over which the data was fit. Below the main plot are
 residuals of the fitted curve, in dex units. \textit{Top-right:} The fitting
 options and results. Here, the user chooses between Nelder-Mead,
-Levenberg-Markwardt, and Monte-Carlo \citep[Differential Evolution, ][]{Storn:1997:DEN:596061.596146}
+Levenberg-Marquardt, and Monte-Carlo \citep[Differential Evolution, ][]{Storn:1997:DEN:596061.596146}
 optimization and various least square and
 $\mathrm{\chi}^{2}$ statistics. The fit statistics are reported here after the
 fit has been performed. \textit{Bottom-right:} The Fitting Tool window. The
@@ -577,23 +574,23 @@ the details about each model component, with the best-fit parameter values.
 %She switches the spectral and flux units from $\mathrm{Jy}$ vs.
 %${\mu}\mathrm{m}$ to $\mathrm{Jy}\mathrm{Hz}$ vs. $\mathrm{Hz}$ (Iris takes
 %care of all unit conversions once the data is read in). The user then shifts
-%the SED from its observed redshift of $z=1.18$ to restframe. Before starting a
+%the SED from its observed redshift of $z=1.18$ to rest-frame. Before starting a
 %fitting session, she wants to remove from the SED data without flux-uncertainty
 %measurements. For this, the user opens the Metadata Browser -- an interactive
 %table of the SED data -- and uses a Boolean filter to dynamically select points
 %that have uncertainty measurements. From these selected points, the user
 %creates a new SED object that is managed separately from the original SED. The
-%user saves the filtered, restframe SED to a VO-compliant FITS file, which can
+%user saves the filtered, rest-frame SED to a VO-compliant FITS file, which can
 %be re-read with Iris and other FITS-compliant tools.  SEDs are saved in
 %VO-compliant FITS or VOTable formats which can be re-read into Iris or other
 %programs (e.g., TOPCAT; IDL or Python interpreters).
 
 %\subsection{Fitting the SED}
 
-%%Blazar SEDs are dominated by two peaks. It has been shown that the low-energy peak, due to radio synchrotron radiation, and the higher-energy bump, due to inverse Compton radiation, can be modeled by log-parabolic distributions \citep{2006A&A...448..861M,2009A&A...501..879T}. Also present in blazars are an accretion disk and a hot dusty torus surrounding the super-massive black hole, both of which can be modeled by blackbody distributions \citep{2002ApJ...575..667D}. The user wants to model the SED pf PKS 1127-14 with a linear combination of these four models.
+%%Blazar SEDs are dominated by two peaks. It has been shown that the low-energy peak, due to radio synchrotron radiation, and the higher-energy bump, due to inverse Compton radiation, can be modeled by log-parabolic distributions \citep{2006A&A...448..861M,2009A&A...501..879T}. Also present in blazars are an accretion disk and a hot dusty torus surrounding the super-massive black hole, both of which can be modeled by blackbody distributions \citep{2002ApJ...575..667D}. The user wants to model the SED of PKS 1127-14 with a linear combination of these four models.
 
 %The user wants to model the PKS 1127-14 SED with a linear combination of four
-%models: two logarithmic parabolas to model the radio synchrotron andinverse
+%models: two logarithmic parabolas to model the radio synchrotron and inverse
 %Compton radiation, and two black bodies to approximate the models for the hot
 %dust component and accretion disk of the blazar; both models are built-in with
 %Iris. 
@@ -847,7 +844,7 @@ design pattern.
 classes for the Model components of MVC. Unsurprisingly, SEDLib does so by
 implementing a Data Model specification defined by the IVOA. The Data Model
 defines both the logical breakdown of spectral datasets, and the serialization
-in some standard file formats. So, on the one hand, SEDlib can perform the basic
+in some standard file formats. So, on the one hand, SEDLib can perform the basic
 read/write operations on spectrophotometric files, while on the other the library
 provides the data structures that client components can use and exchange.
 \item[SEDManager] The MVC Controller role is played in Iris by the SEDManager,
@@ -1038,7 +1035,7 @@ and from plug-ins.
 Iris natively supports IVOA-compliant FITS and VOTable formats
 \citep{2012arXiv1204.3055M}. Files in these formats will automatically be added
 to the user's workspace. The Builder can convert ASCII Tables, CSV,
-Tab Separated Tables, IPAC tables, and non IVOA-com\-pli\-ant VOTable and FITS files
+TSV, IPAC tables, and non IVOA-com\-pli\-ant VOTable and FITS files
 into the native format with user input. We provide two importing forms: (i) the
 SED importer, which handles spectrum-style files (i.e., those with columns for
 the spectral coordinate, flux/energy, and flux/energy uncertainties), and (ii)
@@ -1086,7 +1083,7 @@ distribution service to conform as closely as practicable to the relevant
 IVOA recommendations in order to deliver photometric data from the
 collection into Iris seamlessly. The objective for NED was to provide a working reference
 service for the development of Iris as well as to serve as a working prototype
-for new data protocols for spectro-photometric data being developed by the IVOA.
+for new data protocols for spectrophotometric data being developed by the IVOA.
 
 The NED SED Service returns data and information from the NED photometry
 collection \citep{2007ASPC..376..153M}. The NED SED Service provides three types
@@ -1370,7 +1367,7 @@ this way plug-in developers can, if needed, create their own nested
 architecture for their plug-in's Components.
 
 \subsubsection{SED attachments} Components can attach arbitrary objects to the
-SEDs managed by the SEDManager. This way can rely on the Iris framework to
+SEDs managed by the SEDManager. This way users can rely on the Iris framework to
 manage the additional information they might want to store about the individual
 SEDs. When SEDs are deleted, the manager takes care of releasing any references
 to the attachments, reducing the risk of memory leaks.
