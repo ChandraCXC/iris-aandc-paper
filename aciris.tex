@@ -325,18 +325,18 @@ their research. As such, many robust SED analysis codes have been created to
 help astronomers mod\-el, fit, and derive physical quantities from SEDs
 \citep{2011Ap&SS.331....1W,2013ARA&A..51..393C}. These widely-used codes
 implement a diverse set of methods, for instance: inversion (e.g., 
-\texttt{Starlight}~[\citealp{2004MNRAS.355..273C}] and
-\verb|PAHFIT|~[\citealp{2007ApJ...656..770S}]),
+STARLIGHT~[\citealp{2004MNRAS.355..273C}] and
+PAHFIT~[\citealp{2007ApJ...656..770S}]),
 principal component analysis~\citep[e.g.,][]{2009MNRAS.394.1496B},
 $\mathrm{\chi}^{2}$-minimization codes 
-(e.g., \verb|Le Phare|~[\citealp{1999MNRAS.310..540A}] and 
-\verb|hyperz|~[\citealp{2000A&A...363..476B}]), and Bayesian inference 
-(e.g., \verb|BPZ|~[\citealp{2000ApJ...536..571B}], 
-\verb|VOSA|~[\citealp{2008A&A...492..277B}], and 
-\verb|GalMC|~[\citealp{2011ApJ...737...47A}]).
+(e.g., Le PHARE~[\citealp{1999MNRAS.310..540A}] and 
+HyperZ~[\citealp{2000A&A...363..476B}]), and Bayesian inference 
+(e.g., BPZ~[\citealp{2000ApJ...536..571B}], 
+VOSA~[\citealp{2008A&A...492..277B}], and 
+GalMC~[\citealp{2011ApJ...737...47A}]).
 
 Most distributed fitting packages are tailored for specific data sets or
-spectral ranges (such as \verb|PAHFIT| and \texttt{STAR\-LIGHT}), providing robust
+spectral ranges (such as PAHFIT and STAR\-LIGHT), providing robust
 fitting methods and results. They require the data to be in a specific format
 with specific units in order for the tool to work properly. When fitting a
 broadband SED that spans over decades in the spectrum, the astronomer will
@@ -460,7 +460,7 @@ are discussed throughout the remainder of the paper.
 \begin{figure*} \centering
 \includegraphics[height=0.3\textheight]{figures/built-in-visuals-loading1.png}
 \caption{\textbf{Building the SED of blazar PKS 1127-14 in Iris}
-\textit{Top-left:} Data from the NED SED Service, a local file, and from \texttt{TOPCAT}
+\textit{Top-left:} Data from the NED SED Service, a local file, and from TOPCAT
 are managed in the SED Builder. \textit{Bottom-left:} The various data Segments
 plotted in $\mathrm{\nu F \left( \nu \right)}$ units inside the SED Viewer.
 Squares show data with flux uncertainties, whereas the pink diamonds denote
@@ -493,7 +493,7 @@ components are linearly combined. Note that components are referenced by the
 
 An Iris session begins with populating a SED by clicking on the SED Builder icon on the
 Iris desktop. A user loads a local ASCII file of
-PLANCK data, a WISE dataset from \verb|TOPCAT|~ascl:1101.010~\citep{2005ASPC..347...29T} 
+PLANCK data, a WISE dataset from TOPCAT~ascl:1101.010~\citep{2005ASPC..347...29T} 
 through a SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED
 Service portal. She also uses the built-in Italian Space Agency Science Data
 Center\footnote{\url{http://www.asdc.asi.it/}} (ASDC) query tool to find
@@ -1111,7 +1111,7 @@ response as a Segment. Photometric points with spectral line-based values and
 upper- and lower-limit values are excluded from the response.
 
 Implementing a standard protocol interface, the NED SED service is also
-available through generic VO applications like \texttt{TOPCAT} and the VAO Data Discovery
+available through generic VO applications like TOPCAT and the VAO Data Discovery
 Tool\footnote{\url{http://vao.stsci.edu/portal/Mashup/Clients/Portal/DataDiscovery.html}}.
 
 \subsection{SED Viewer} \label{subsec:specview}
