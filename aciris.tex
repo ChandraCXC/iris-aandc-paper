@@ -201,8 +201,9 @@ data abstraction \sep method: data analysis \sep object-oriented programming \se
 
 
 \label{sec:introduction} \section{Introduction} 
+\begin{sloppypar}
 The International Virtual
-Observatory Alliance~\citep[IVOA;][]{2004SPIE.5493..137Q} provides a set of
+Observatory Alliance \citep[IVOA;][]{2004SPIE.5493..137Q} provides a set of
 standards and protocols that enable interoperability among astronomy-center\-ed
 services and applications. In order to design effective applications, one wants
 to leverage IVOA standards and protocols without exposing the complexity and
@@ -213,9 +214,10 @@ the application's functionality without being aware of the standards themselves.
 Designing such general purpose applications thus becomes an exercise in
 designing a framework that implements some basic, effective functionality for a
 wide set of use cases, while being highly extensible.
+\end{sloppypar}
 
 Iris, the Virtual Astronomical Observatory~\citep[VAO;][]{2012SPIE.8449E..0HB}
-spectral energy distribution (SED) analysis tool, is such an IVOA-enabled
+spectral energy distribution (SED) an\-alysis tool, is such an IVOA-enabled
 desktop application for building, viewing and modeling broadband
 spectrophotometric SEDs. While implementing IVOA standards and protocols, the
 Iris development team took advantage of existing astronomy
@@ -341,7 +343,7 @@ are discussed throughout the remainder of the paper.
 \subsection{A Use Case} \label{subsec:usecase}
 
 \begin{figure*} \centering
-\includegraphics[height=0.3\textheight]{figures/built-in-visuals-loading1.png}
+\includegraphics[height=2.95in,width=5.3in]{figures/built-in-visuals-loading.jpg}
 \caption{\textbf{Building the SED of blazar PKS 1127-14 in Iris}
 \textit{Top-left:} Data from the NED SED Service, a local file, and from TOPCAT
 are managed in the SED Builder. \textit{Bottom-left:} The various data Segments
@@ -357,7 +359,7 @@ been added to the open SED PKS 1127-14.} \label{fig:load_data}
 \end{figure*}
 
 \begin{figure*} \centering
-\includegraphics[height=0.3\textheight]{figures/fitting-1.png}
+\includegraphics[height=2.95in,width=5.3in]{figures/fitting-1.jpg}
 \caption{\textbf{Fitting Visualization} Visualization of a linear combination of
 log-parabolas and blackbody distributions for FRSQ blazar PKS 1127-145, fit with
 Nelder-Mead optimization and least-square statistics. \textit{Left:} The best fit
@@ -430,6 +432,7 @@ Keeping with our requirements of developing an extensible SED analysis tool, we
 provide a user interface for adding custom models, templates, and template
 libraries for the fitting engine to use in a Custom Fit Models Manager.
 
+\begin{sloppypar}
 Sherpa, Iris' fitting engine, provides command line functions for users to add
 their own models and templates to a Sherpa session. We wrap a graphical user 
 interface (GUI) around such functions for streamlined integration and 
@@ -439,6 +442,7 @@ exist, as well as information about the parameters. Installing a model saves a
 copy of the model files in the user's home directory (in
 \texttt{\~{}/.vao/iris/}components), allowing the user to apply the models in future
 sessions.
+\end{sloppypar}
 
 \subsection{Custom Python Functions} Iris accepts custom models as Python
 functions stored on the user's disk. Any number of functions can be stored in a
@@ -490,16 +494,17 @@ functions when using the Iris fitting tool.
 $x$ and $y$ coordinates. Iris accepts two-columned ASCII files as table models,
 following the convention where the first column is the spectral values (in
 Angstroms) and the second contains the fluxes (in
-$\mathrm{photons}/\mathrm{s}/\mathrm{cm}^{2}/\mathrm{\AA}$). The fit returns the
+$\mathrm{photons}/\mathrm{s}/\mathrm{cm}^{2}/\mbox{\AA}$). The fit returns the
 normalization constant (or amplitude) of the model.
 
+\begin{sloppypar}
 \subsection{Template Libraries} The template model is essentially a list of
 table models with parameters other than the amplitude. Like the
 \texttt{load\_template\_model} function in Sherpa, the user must create an index
 file that lists the parameter values of the templates and the full path to the
 template those parameter values describe (see Listing \ref{lst:templateconfig}
 for an example). Sherpa uses a grid-search method to find the best-fit template.
-
+\end{sloppypar}
 
 \begin{lstlisting}[style=code,
 	caption=Example of template library definition file,
@@ -514,12 +519,14 @@ for an example). Sherpa uses a grid-search method to find the best-fit template.
 
 \section{The Iris Stack} \label{sec:stack}
 
+\begin{sloppypar}
 The Iris stack (Figure \ref{fig:stack}) shows how one can put the 
 technical IVOA specifications to work for scientists through higher and higher
 layers of abstraction: the details of the Virtual Observatory
 standards and protocols lie in the lowest layer, the internals of the Iris
 building blocks lie in the middle layer, while the top layer expresses
 high-level user-oriented functionalities.
+\end{sloppypar}
 
 A reader without any knowledge of programming, let alone of the VO
 specifications, should understand the labels used in the top layer of the
@@ -530,7 +537,7 @@ VO-savvy person to decode the acronyms at the bottom of the diagram.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=1.0\columnwidth]{figures/IrisStack.png} \caption{\textbf{The
+\includegraphics[width=1.0\columnwidth]{figures/IrisStack.jpg} \caption{\textbf{The
 Iris Stack} With its architecture Iris allows developers to create components
 using higher and higher abstractions on top of web services, desktop
 applications, and Virtual Observatory standards and protocols. The technical
@@ -584,7 +591,7 @@ provided in some of the following sections.
 \section{The Iris Architecture} \label{sec:architecture}
 
 \begin{figure*} \begin{center}
-\includegraphics[width=0.7\textwidth]{figures/IrisDiagrams.001.png}
+\includegraphics[width=0.7\textwidth]{figures/IrisDiagrams.001.jpg}
 \caption{\textbf{The Iris loosely coupled, extensible architecture} Information
 freely flows among built-in and third-party components provided as plug-ins. A
 SED Manager gives components access to the state of the SEDs in the user's
@@ -594,7 +601,7 @@ install and uninstall plug-ins on the fly.} \label{fig:architecture}
 \end{center} \end{figure*}
 
 \begin{figure*} \begin{center}
-\includegraphics[width=0.6\textwidth]{figures/IrisDiagrams.003.png}
+\includegraphics[width=0.6\textwidth]{figures/IrisDiagrams.003.jpg}
 \caption{\textbf{Inversion of Control} IoC is a design pattern that promotes
 decoupling of software components so that they can easily be replaced by
 different implementations, with the actual binding often happening at run-time
@@ -615,7 +622,7 @@ predetermined requirements plus an indefinite set of custom requirements to be
 implemented by users, at least in some simple cases or, for more advanced
 features, by third party developers.
 
-The architecture supporting the implementation of such requirements has
+The architecture that supports the implementation of such requirements has
 different components that can be mapped to the Model-View-Controller (MVC)
 design pattern.
 \begin{description}
@@ -629,7 +636,7 @@ provides the data structures that client components can use and exchange.
 \item[SEDManager] The MVC Controller role is played in Iris by the SEDManager,
 which itself is defined as an Interface. The manager works as a data storage for
 SEDLib instances that the different Iris components can share.
-\item[Components] The actual Iris functionality is implemented by the Iris
+\item[Components] The actual Iris functionality is im\-ple\-ment\-ed by the Iris
 Components. They can be seen as the Views in the MVC pattern (or, more
 generally, they can provide any number of Views), since they present the data
 stored in the Controller to the user, query the Controller itself, and act upon
@@ -763,7 +770,7 @@ descriptions of the autonomous software used to build
 Iris: Specview, Sherpa, and the NED SED Service.
 
 \begin{figure*} \begin{center}
-\includegraphics[width=\textwidth]{figures/sed_builder.png}
+\includegraphics[width=0.9\textwidth]{figures/sed_builder.jpg}
 \caption{\textit{\textbf{SED Builder}} An example view of the SED Builder. On
 the left side of the window is a list of SEDs open for analysis; in this case,
 \textit{FilterSed} is selected. The Segments or components that constitute
@@ -799,7 +806,7 @@ users can add, edit, remove, and save a subset of Segments selected from a SED.
 \subsubsection{Importing data}
 
 \begin{figure} \begin{center}
-\includegraphics[width=\columnwidth]{figures/IrisDiagrams.002.png}
+\includegraphics[width=\columnwidth]{figures/IrisDiagrams.002.jpg}
 \caption{\textit{\textbf{\label{fig:data_sources} Available Data
 Sources}}\textit{}\textbf{}\textit{} Users may import data from the built-in
 clients to the NED SED Service and the ASDC. Data may also be uploaded from 
@@ -866,9 +873,11 @@ collection into Iris seamlessly. The objective for NED was to provide a working 
 service for the development of Iris as well as to serve as a working prototype
 for new data protocols for spectrophotometric data being developed by the IVOA.
 
+\begin{sloppypar}
 The NED SED Service returns data and information from the NED photometry
 collection \citep{2007ASPC..376..153M}. The NED SED Service provides three types
 of queries:
+\end{sloppypar}
 
 \begin{description}
 \item[Information Discovery] List objects with
@@ -876,14 +885,14 @@ available photometry (SED) given a sky position (RA and Dec) and angular size.
 Also called a \emph{data discovery} query. 
 \item[Information Availability] For
 a given named object, return the number of photometric data points are
-available, if any.
+a\-vail\-a\-ble, if any.
 \item[Data Retrieval] For a given named object, return the
 available photometric data in an IVOA Spectrum Data Model compatible VOTable.
 \end{description}
 
-HTTP requests and responses conform to the IVOA Simple Spectral Access Protocol
-Version 1.04 ~\citep[SSAP;][]{2012arXiv1203.5725T}, with VOTable responses. The
-NED SED Service client in Iris
+All three query types use HTTP requests and responses which conform to the 
+IVOA Simple Spectral Access Protocol Version 1.04 \citep[SSAP;][]{2012arXiv1203.5725T}; 
+the responses are in VOTable format. The NED SED Service client in Iris
 employs the Data Retrieval query interface, and stores the
 response as a Segment. Photometric points with spectral line-based values and
 upper- and lower-limit values are excluded from the response.
@@ -964,7 +973,7 @@ rather thin and consists only of the code required to inspect the incoming SAMP
 messages and build a call to Sherpa.
 
 \begin{figure*} \begin{center}
-\includegraphics[width=\textwidth]{figures/sherpasamp.png}
+\includegraphics[width=\textwidth]{figures/sherpasamp.jpg}
 \caption{\textbf{Design of the Specview/Sherpa interoperability layer} The
 interface between Sherpa (fitting engine), and Specview (graphical user
 interface) was designed by defining a common data model for representing the
@@ -1090,7 +1099,7 @@ interface to the SED Builder (see Section \ref{sec:components}) that allows
 users to import non-standard files in bulk through scripts, possibly starting
 from templates saved interactively from the SED Builder.
 
-This framework is extensible through a simple dispatching mechanism. Each
+The framework is extensible through a simple dispatching mechanism. Each
 component has a name that is used to dispatch the command line argument to the
 right CLI engine. For instance, the line
 \begin{lstlisting}[style=code]
@@ -1184,20 +1193,22 @@ Moreover, the tool allows users to query for specific observation time ranges, t
 allowing basic time domain analysis of the SEDs.
 
 This component proves several points about the Iris framework and SDK, as listed below.
-\begin{description} \item[Custom-to-Standard adapters] The ASDC web service
+\begin{description} \begin{sloppypar}
+\item[Custom-to-Standard adapters] The ASDC web service
 backing up the implementation of the query tool does not comply with any VO data
 access protocols (at least not yet), as this service was designed as a private interface
 to their database to be consumed by a dedicated client like the one implemented in
 Iris. The data files coming from the service, on the other hand, are compliant
 with the IVOA specifications, so they can be directly read by SEDLib and passed
-to the SEDManager.  \item[Interoperability] Although not
+to the SEDManager.
+  \item[Interoperability] Although not
 designed as part of Iris, the ASDC plug-in integrates seamlessly with the Iris built-in
 components. When the ASDC query tool downloads data from the service, this data
 gets listed in the SED Builder and visualized in the SED Viewer, even though the
 ASDC tool
 does not interact directly with any of them. They all interact only with the SED
 Manager and they get notified of changes by the events that are fired when
-Models are changed.  \item[The Iris SDK] As it will be explored in some detail
+Models are changed.\end{sloppypar}  \item[The Iris SDK] As it will be explored in some detail
 in Section \ref{sec:writeplugin}, a plug-in developer can pretty much focus on
 the implementation of her components' business logic, without worrying too much
 about the boiler plate code required to configure such components. By using the
