@@ -382,7 +382,7 @@ An Iris session begins with populating a SED by clicking on the SED Builder icon
 Iris desktop. A user loads a local ASCII file of
 PLANCK data, a WISE dataset from TOPCAT~ascl:1101.010~\citep{2005ASPC..347...29T} 
 through a SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED
-Service portal. She also uses the built-in Italian Space Agency Science Data
+Service portal. The user also uses the built-in Italian Space Agency Science Data
 Center\footnote{\url{http://www.asdc.asi.it/}} (ASDC) query tool to find
 optical/UV data for PKS 1127-14, and adds it to the SED (see
 Figure~\ref{fig:load_data}).
@@ -402,13 +402,13 @@ through photometric filters or user-defined passbands. In particular, the user
 shifts PKS 1127-14 from its observed redshift at $z=1.18$ to rest frame using
 the Redshift tool before fitting the SED.
 
-She also filters out all the points devoid of errors using the metadata browser
+The user then filters out all the points devoid of errors using the metadata browser
 filtering features.
 
-When the user is done building and editing the SED, she begins the fitting
-session. In the fitting tool, the user can build a model expression as an
+When the user is done building and editing the SED, the user begins the fitting
+session. With the fitting tool, the user can build a model expression as an
 arbitrary combination of model components. Choosing from a list of astrophysical
-and mathematical models built-in in Iris, she fits PKS 1127-14 with a linear
+and mathematical models built-in in Iris, the user fits PKS 1127-14 with a linear
 combination of four models: two logarithmic parabolas to model the radio
 synchrotron and inverse Compton radiation~\citep{2006A&A...448..861M,2009A&A...501..879T}, 
 and two blackbodies to approximate the models for the hot dust component and 
@@ -423,8 +423,8 @@ for the overall model parameters.
 Figure~\ref{fig:fitting1} shows the final model for PKS 1127-14 overlaid on the
 input data and, in the lower panel, the fit residuals.
 
-When the user is satisfied with her fitting results, she saves an XML-style file
-of the model that can be re-read into Iris and fit to other SED data. She also
+When the user is satisfied with the fitting results, the user saves an XML-style file
+of the model that can be re-read into Iris and fit to other SED data. The user also
 saves the fit results to a text file, that shows the parameters of the fit and
 the details about each model component, with the best-fit parameter values.
 
@@ -1026,7 +1026,7 @@ and $f_{z_f}$ is the flux at the final (target) redshift $z_f$. In
 astLib\footnote{\url{http://astlib.sourceforge.net/}} \texttt{astSED} class that
 implements Equation~\ref{eq:redshift}.
 
-From the user's perspective, she supplies the initial and final redshift of the
+From the user's perspective, the user supplies the initial and final redshift of the
 SED and clicks ``Create New SED''.
 
 \subsubsection{Interpolation} Iris provides 1D interpolation along the spectral
@@ -1211,7 +1211,7 @@ does not interact directly with any of them. They all interact only with the SED
 Manager and they get notified of changes by the events that are fired when
 Models are changed.\end{sloppypar}  \item[The Iris SDK] As it will be explored in some detail
 in Section \ref{sec:writeplugin}, a plug-in developer can pretty much focus on
-the implementation of her components' business logic, without worrying too much
+the implementation of the components' business logic, without worrying too much
 about the boiler plate code required to configure such components. By using the
 abstract classes that the Iris framework provides, one can leverage the existing
 components with just a few lines of code and then start adding value to the
