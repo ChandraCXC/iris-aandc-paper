@@ -351,11 +351,11 @@ are managed in the SED Builder. \textit{Bottom-left:} The various data Segments
 plotted in $\mathrm{\nu F \left( \nu \right)}$ units inside the SED Viewer.
 Squares show data with flux uncertainties, whereas the pink diamonds denote
 points without associated uncertainties. Each Segment in the SED Builder is
-plotted in a different color. Black squares are the data taken from NED; the
+plotted in a different color. Black squares are data taken from NED; the
 pink squares in the radio are the data from PLANCK; and the red, yellow, blue,
 and green squares in the near-IR are the four WISE bands. \textit{Right:} An ASDC
 Data Query form for PKS 1127-14. The user searches for data between specified
-dates and available instruments (Swift and GALEX in this case). The data has
+dates and available instruments (Swift and GALEX in this case). The data have
 been added to the open SED PKS 1127-14.} \label{fig:load_data}
 \end{figure*}
 
@@ -365,7 +365,7 @@ been added to the open SED PKS 1127-14.} \label{fig:load_data}
 log-parabolas and blackbody distributions for FRSQ blazar PKS 1127-145, fit with
 Nelder-Mead optimization and least-square statistics. \textit{Left:} The best fit
 linear combination overlaid on the SED data as a red curve. The blue line shows
-the spectral range over which the data was fit. Below the main plot are
+the spectral range over which the data were fit. Below the main plot are
 residuals of the fitted curve, in dex units. \textit{Top-right:} The fitting
 options and results. Here, the user chooses between Nelder-Mead,
 Levenberg-Marquardt, and Monte-Carlo \citep[Differential Evolution, ][]{Storn:1997:DEN:596061.596146}
@@ -388,7 +388,7 @@ optical/UV data for PKS 1127-14, and adds it to the SED (see
 Figure~\ref{fig:load_data}).
 \end{sloppypar}
 
-Data is converted to a single set of units on the fly, and displayed in the SED
+Data are converted to a single set of units on the fly, and displayed in the SED
 Viewer. The user can switch the spectral and flux axes between a variety of
 commonly-used SED units, e.g., one can switch from $\mathrm{Jy}$ vs.
 ${\mu}\mathrm{m}$ to $\mathrm{Jy}\mathrm{Hz}$ vs. $\mathrm{Hz}$. The Metadata
@@ -850,7 +850,7 @@ To facilitate the ingestion of SEDs in VO-unaware applications and user scripts,
 we provide a simpler output format that only saves the minimum amount of
 meaningful information: the spectral coordinate, the flux or energy, and its
 uncertainties. As a result, the resulting SED file has only
-one Segment, with all the data express in a single set of units defined by the user.
+one Segment, with all the data expressed in a single set of units defined by the user.
 
 Whether the output includes all of the metadata or has a simplified \emph{single
 table} format, the result is a compliant file that can be read back into Iris
@@ -921,7 +921,7 @@ also gradually incorporated into the tool, culminating with a Virtual
 Observatory interface capable of accessing services that comply with the
 SSAP standard.
 
-Specview however kept the emphasis on spectral data that is very different from
+Specview however kept the emphasis on spectral data, which is very different from
 the broad-band SED concept to which Iris is dedicated. Being initially conceived
 as a tool to support HST data, the design, and subsequent code implementation,
 were driven by the needs and requirements imposed by high-dispersion, relatively
@@ -954,7 +954,7 @@ being read by the SED Builder, and before being further processed or measured.
 CIAO~ascl:1311.006 \citep{2006SPIE.6270E..60F}
 modeling and fitting application. Sherpa enables the user to construct complex
 models from simple definitions and fit those models to 1D (spectra) and 2D
-(images) data, using a variety of statistics and optimization methods.
+(images) data using a variety of statistics and optimization methods.
 
 Written in Python, with C/\Cpp/Fortran extensions, Sherpa was a robust choice
 for providing Iris with a curve fitting engine.
@@ -988,7 +988,7 @@ When Iris is launched the \verb|sherpa-samp| process is also started in the
 background. This process starts a SAMP client that waits for a SAMP hub to
 attach to, registering to a number of custom
 \verb|mtypes|. The \verb|mtypes| work as remote procedure identifiers, and SAMP
-messages provide the remote methods with data that needs to be processed. Sherpa
+messages provide the remote methods with data that need to be processed. Sherpa
 is used to compute a response that is packaged as a
 SAMP response to be shown to the user.
 
@@ -1005,7 +1005,7 @@ independent of Sherpa.
 
 \subsection{Science Tools} We provide built-in science tools that perform
 calculations commonly used in SED analysis: redshifting, interpolation, and
-integration. The data is setup on the Java-side of Iris, but the actual
+integration. The data are setup on the Java-side of Iris, but the actual
 calculations are performed in \verb|sherpa-samp|.
 
 The open SEDs are listed in the Science Tools frame. The user selects the SED
@@ -1063,7 +1063,7 @@ functionality] A developer may want to add new capabilities in one or
 more new Components. This use case can be broken down in more detailed and
 concrete extensions, described later in this section.  \item[Custom-to-Standard
 adapters] A developer may want to create adapters that query a non-standard
-service, or load a non-standard data set, and then turn the data to SEDLib
+service, or load a non-standard dataset, and then turn the data to SEDLib
 objects, thus effectively standardizing them so that they can be used by other
 components in the Iris environment, or reused by other VO applications. In other
 terms, one can achieve interoperability using the Iris infrastructure starting
@@ -1203,8 +1203,8 @@ with the IVOA specifications, so they can be directly read by SEDLib and passed
 to the SEDManager.
   \item[Interoperability] Although not
 designed as part of Iris, the ASDC plug-in integrates seamlessly with the Iris built-in
-components. When the ASDC query tool downloads data from the service, this data
-gets listed in the SED Builder and visualized in the SED Viewer, even though the
+components. When the ASDC query tool downloads data from the service, the data
+are listed in the SED Builder and visualized in the SED Viewer, even though the
 ASDC tool
 does not interact directly with any of them. They all interact only with the SED
 Manager and they get notified of changes by the events that are fired when
