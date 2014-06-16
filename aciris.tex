@@ -410,14 +410,15 @@ session. In the fitting tool, the user can build a model expression as an
 arbitrary combination of model components. Choosing from a list of astrophysical
 and mathematical models built-in in Iris, she fits PKS 1127-14 with a linear
 combination of four models: two logarithmic parabolas to model the radio
-synchrotron and inverse Compton radiation~\citep{2006A&A...448..861M,2009A&A...501..879T}, and two blackbodies to approximate
-the models for the hot dust component and accretion disk of the blazar~\citep{2002ApJ...575..667D}. The fit
+synchrotron and inverse Compton radiation~\citep{2006A&A...448..861M,2009A&A...501..879T}, 
+and two blackbodies to approximate the models for the hot dust component and 
+accretion disk of the blazar~\citep{2002ApJ...575..667D}. The fit
 is performed using Nelder-Mead optimization and least square statistics. The user
 has fine control over the parameters, including setting initial values, the
 range of the values, freezing and thawing parameters, and linking model
-parameters to other parameters in the model expression. The spectral range to
-which each model component must be applied is also used to make control the fit:
-finally, confidence intervals are computed for the overall model parameters.
+parameters to other parameters in the model expression; the user also controls the 
+spectral ranges over which to fit the models. Finally, confidence intervals are computed 
+for the overall model parameters.
 
 Figure~\ref{fig:fitting1} shows the final model for PKS 1127-14 overlaid on the
 input data and, in the lower panel, the fit residuals.
