@@ -456,8 +456,9 @@ defined as in Listing \ref{lst:user_model_example}.
 
 \begin{lstlisting}[style=python,
 	caption={Example of a user-defined model that
-can be dynamically loaded into Iris. The code implements a modified blackbody
-and can be combined in Iris with other built-in and custom components.},
+can be dynamically loaded into Iris. The code, written as a Python function, 
+implements a modified blackbody and can be combined 
+in Iris with other built-in and custom components.},
 	label=lst:user_model_example]
 import numpy as np
 
@@ -476,8 +477,10 @@ def modified_blackbody(p, x):
 
   # Blackbody function
   efactor = 1.438786e8 / p[2]
-  numerator = p[1] * np.power(p[0], 5.0) * (np.exp(efactor / p[0]) - 1.0)
-  denominator = np.power(x, 5.0) * (np.exp(efactor/ x) - 1.0)
+  numerator = p[1] * np.power(p[0], 5.0) * \
+              (np.exp(efactor / p[0]) - 1.0)
+  denominator = np.power(x, 5.0) * \
+                (np.exp(efactor/ x) - 1.0)
   B_lambda = numerator / denominator
 
   # speed of light in AA/s
@@ -508,7 +511,8 @@ for an example). Sherpa uses a grid-search method to find the best-fit template.
 \end{sloppypar}
 
 \begin{lstlisting}[style=code,
-	caption=Example of template library definition file,
+	caption={Example of template library definition file. Template library definition
+	 files are in ASCII format.},
 	label=lst:templateconfig]
 # INDEX REFER MODELFLAG FILENAME
 0.0     5000  1	/data/sed_temp_index-0.00.dat
@@ -683,7 +687,7 @@ desktop, loggers, data handlers, etc. They must implement the IrisComponent
 interface, listed in Listing \ref{lst:component}.
 
 \begin{lstlisting}[style=java,
-	caption={This snippet of code represents the main interface that all components in Iris have to implement, and how dependencies get injected into the components at run-time.}, 		
+	caption={This snippet of Java code represents the main interface that all components in Iris have to implement, and how dependencies get injected into the components at run-time.}, 		
 	label=lst:component]
 package cfa.vo.iris;
 
@@ -1026,7 +1030,7 @@ and $f_{z_f}$ is the flux at the final (target) redshift $z_f$. In
 astLib\footnote{\url{http://astlib.sourceforge.net/}} \texttt{astSED} class that
 implements Equation~\ref{eq:redshift}.
 
-From the user's perspective, the user supplies the initial and final redshift of the
+From the the user's perspective, the user supplies the initial and final redshift of the
 SED and clicks ``Create New SED''.
 
 \subsubsection{Interpolation} Iris provides 1D interpolation along the spectral
@@ -1112,7 +1116,7 @@ CLI engine. Components bundled with plug-ins can provide such an engine by imple
 
 
 \begin{lstlisting}[style=java,
-	caption={Every Iris component can expose a command line interface. Iris dispatches the command line arguments for the relative component to process.},
+	caption={Every Iris component can expose a command line interface. Iris dispatches the command line arguments for the relative component to process. This code is written in Java.},
 	label=lst:cli]
 package cfa.vo.iris;
 
@@ -1252,7 +1256,7 @@ care of many steps that the Maven-generated project automatically takes care of,
 like the inclusion of your dependencies in your plug-in's jar file.
 
 In order to have a test plug-in up and running you need to create a new project
-from the Maven archetype.
+from the Maven archetype:
 
 \begin{lstlisting}[style=code]
 $ export repo=http://vaotest2.tuc.noao.edu:8080/artifactory/
