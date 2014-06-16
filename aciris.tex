@@ -1048,8 +1048,9 @@ equals that of the un-shifted SED using
 (f_{z_{i}}(\lambda_{k+1})+f_{z_{i}}(\lambda_{k}))}{\sum_{k=1}^N
 (f_{z_{f}}(\lambda_{k+1})+f_{z_{f}}(\lambda_{k}))}, \end{equation}
 where $f_{z_i}$ is the observed flux at the initial (observed) redshift $z_i$,
-and $f_{z_f}$ is the flux at the final (target) redshift $z_f$. In
-\verb|sherpa-samp|, we extend the
+$f_{z_f}$ is the flux at the final (target) redshift $z_f$, ${\lambda}$ is the
+wavelength, $N$ is the number of points in the SED, and $\lambda_{k}$ is the $k^{th}$ 
+point in the SED. In \verb|sherpa-samp|, we extend the
 astLib\footnote{\url{http://astlib.sourceforge.net/}} \texttt{astSED} class that
 implements Equation~\ref{eq:redshift}.
 
