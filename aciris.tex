@@ -380,7 +380,7 @@ components are linearly combined. Note that components are referenced by the
 \begin{sloppypar}
 An Iris session begins with populating a SED by clicking on the SED Builder icon on the
 Iris desktop. A user loads a local ASCII file of
-PLANCK data, a WISE dataset from TOPCAT~ascl:1101.010~\citep{2005ASPC..347...29T} 
+PLANCK data, a WISE dataset from TOPCAT~ascl\footnote{Astronomy Source Code Library}:1101.010~\citep{2005ASPC..347...29T} 
 through a SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED
 Service portal. The user also uses the built-in Italian Space Agency Science Data
 Center\footnote{\url{http://www.asdc.asi.it/}} (ASDC) query tool to find
@@ -458,7 +458,8 @@ defined as in Listing \ref{lst:user_model_example}.
 	caption={Example of a user-defined model that
 can be dynamically loaded into Iris. The code, written as a Python function, 
 implements a modified blackbody and can be combined 
-in Iris with other built-in and custom components.},
+in Iris with other built-in and custom components. Backslashes indicate line 
+continuations.},
 	label=lst:user_model_example]
 import numpy as np
 
@@ -687,7 +688,7 @@ desktop, loggers, data handlers, etc. They must implement the IrisComponent
 interface, listed in Listing \ref{lst:component}.
 
 \begin{lstlisting}[style=java,
-	caption={This snippet of Java code represents the main interface that all components in Iris have to implement, and how dependencies get injected into the components at run-time.}, 		
+	caption={This snippet of Java code represents the main interface that all components in Iris have to implement, and how dependencies get injected into the components at run-time. Backslashes indicate line continuations.}, 		
 	label=lst:component]
 package cfa.vo.iris;
 
@@ -697,8 +698,12 @@ import org.astrogrid.samp.client.MessageHandler;
 public interface IrisComponent {
 
   /**
-   * This method is invoked to initialize the component. If the component has to launch windows, frames or
-   * background services, this is the right method to do so. Otherwise the component will be called only if a callback is invoked.
+   * This method is invoked to initialize the
+   * component. If the component has to
+   * launch windows, frames or background
+   * services, this is the right method to do
+   * so. Otherwise the component will be
+   * called only if a callback is invoked.
    * 
    * @param app A reference to the running application
    * @param workspace A reference to the application's workspace
@@ -706,47 +711,65 @@ public interface IrisComponent {
   void init(IrisApplication app, IWorkspace workspace);
 
   /**
-   * Return the name of this component. This name might be listed in a widget along with the other registered components.
+   * Return the name of this component. This
+   * name might be listed in a widget along
+   * with the other registered components.
    * @return The component's name as a String. 
    */
   String getName();
 
   /**
-   * Get e description for this component. The description might be listed in a widget along with the other * registered components.
+   * Get e description for this component. The
+   * description might be listed in a widget
+   * along with the other * registered
+   * components.
    *
-   * @return The component's description as a String.
+   * @return The component's description as a
+   * String.
    */
   String getDescription();
 
   /**
-   * Get a command line interface object for this component.
+   * Get a command line interface object for
+   * this component.
    * @return A CLI object
    */
   ICommandLineInterface getCli();
 
   /**
-   * Initialize the Command Line Application interface
-   * @param app Reference to the enclosing application
+   * Initialize the Command Line Application
+   * interface
+   * @param app Reference to the enclosing
+   * application
    */
   void initCli(IrisApplication app);
 
   /**
-   * The component can contribute menu items and desktop buttons to the enclosing GUI applications
-   * by providing a list of MenuItems.
+   * The component can contribute menu items
+   * and desktop buttons to the enclosing GUI
+   * applications by providing a list of
+   * MenuItems.
    *
-   * @return A list of the menu items this component will contribute to the application. 
+   * @return A list of the menu items this
+   * component will contribute to the
+   * application. 
    */
   List<IMenuItem> getMenus();
 
   /**
-   * The component can register any number of SAMP message listeners by providing a list of them.
+   * The component can register any number of
+   * SAMP message listeners by providing a
+   * list of them.
    *
-   * @return A list of the SAMP message listeners that have to be registered to the SAMP hub. 
+   * @return A list of the SAMP message
+   * listeners that have to be registered to
+   * the SAMP hub. 
    */
   List<MessageHandler> getSampHandlers();
 
   /**
-   * Callback invoked when the component is shutdown
+   * Callback invoked when the component is
+   * shutdown
    */
    void shutdown();
 }
@@ -1121,23 +1144,30 @@ CLI engine. Components bundled with plug-ins can provide such an engine by imple
 package cfa.vo.iris;
 
 /**
- * A simple interface for providing CLI access in an extensible, pluggable way
+ * A simple interface for providing CLI access in 
+ * an extensible, pluggable way
  * @author olaurino
  */
 public interface ICommandLineInterface {
 
   /**
-   * The name that has to be associated with the implementing component.
-   * When the calling application parses the command line, it will interpret the
-   * first argument as the component to which the command has to be relayed, using this string
+   * The name that has to be associated with the
+   * implementing component.
+   * When the calling application parses the 
+   * command line, it will interpret the first
+   * argument as the component to which the 
+   * command has to be relayed, using this string
    * as a key.
    *
-   * @return The compact name that identifies this CLI
+   * @return The compact name that identifies this
+   * CLI
    */
   String getName();
 
   /**
-   * Callback that gets called when a command line is parsed and associated to the implementing component.
+   * Callback that gets called when a command line 
+   * is parsed and associated to the implementing 
+   * component.
    *
    * @param args The command line arguments.
    */
