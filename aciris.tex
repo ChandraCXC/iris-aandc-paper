@@ -89,6 +89,7 @@
 \usepackage{courier}
 %\usepackage{float}
 \hypersetup{colorlinks=false,pdfborder={0 0 0},}
+\usepackage{booktabs}
 
 \newcommand{\truncateit}[1]{\truncate{0.8\textwidth}{#1}}
 \newcommand{\scititle}[1]{\title[\truncateit{#1}]{#1}}
@@ -331,17 +332,23 @@ through SAMP, the Simple Application Messaging
 Protocol~\citep{2011arXiv1110.0528T}.
 \end{sloppypar}
 
+%\input{file-format-table.tex}
+%\input{units.tex}
+
 But more importantly, Iris provides standardized views of the integrated
 datasets to its clients, whether they are built-in components, third party
 plug-ins, or external applications.
 
-In the following section, we present a brief, illustrative use-case
-of Iris to showcase its main features. We outline the analysis of the broadband SED
-of the flat spectrum radio quasar (FSRQ) object PKS 1127-14, and save the
-results to file. Details on the individual Iris components introduced in the next section 
-are discussed throughout the remainder of the paper.
-
 \subsection{A Use Case} \label{subsec:usecase}
+
+In this section, we present a brief, illustrative use-case
+of Iris to showcase its main features. We outline the analysis of the broadband SED
+of flat spectrum radio quasar (FSRQ) object PKS 1127-14 (see ANETA's paper), and save the
+results to file.
+%Details on the Iris features introduced here 
+%are discussed throughout the remainder of the paper.
+
+For details on the Iris features introduced in this use-case, see Section~\ref{sec:components}.
 
 \begin{figure*} \centering
 \includegraphics[height=2.95in,width=5.3in]{built-in-visuals-loading.pdf}
@@ -396,11 +403,14 @@ Browser --- an interactive table of the SED data --- allows the user to
 interactively inspect and filter out data points by hand or with Boolean
 expressions.
 
+\begin{sloppypar}
 The user also employs the Science Tools, an Iris built-in component that
-provides operations to redshift, interpolate, and calculate integrated fluxes
+lets the user cosmologically redshift SEDs, interpolate SED data, and calculate 
+integrated fluxes of SEDs
 through photometric filters or user-defined passbands. In particular, the user
 shifts PKS 1127-14 from its observed redshift at $z=1.18$ to rest frame using
 the Redshift tool before fitting the SED.
+\end{sloppypar}
 
 The user then filters out all the points devoid of errors using the metadata browser
 filtering features.
@@ -427,6 +437,8 @@ When the user is satisfied with the fitting results, the user saves an XML-style
 of the model that can be re-read into Iris and fit to other SED data. The user also
 saves the fit results to a text file, that shows the parameters of the fit and
 the details about each model component, with the best-fit parameter values.
+
+%The Iris features introduced here are discussed in detail in Section~\ref{sec:components}.
 
 \section{User Models and Templates} \label{sec:usermodels}
 
