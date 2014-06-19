@@ -1,0 +1,19 @@
+\begin{table}[h]
+\caption{Supported file formats.}
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+          & Format      & Description \\
+\cmidrule{2-3}
+Native    & VOTable     & XML-style table, text or binary following IVOA\footnote{lalala} Spectrum Data Model v1.0, 1.1 \& 1.2 \\
+          & FITS        & IVOA Spectrum Data Model v1.0, 1.1 \& 1.2 \\
+\cmidrule{2-3}
+Supported & VOTable     & XML-style table, text or binary \\
+          & FITS        & Series of HDUs\footnote{lalala} with text header and text or binary data extensions \\
+          & ASCII Table & Text file with columns separated by spaces and/or tabs \\
+          & CSV         & Text file with columns separated by commas (the first row may contain the name of the columns) \\
+          & IPAC        & A custom bar-separated text format by IPAC \\
+          & TST         & Tab Separated Table (comments are ignored, metadata is in key, value pairs) \\
+\bottomrule                                                                         
+\end{tabular}
+\end{table}
