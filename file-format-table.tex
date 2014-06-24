@@ -1,19 +1,29 @@
-\begin{table}[h]
-\caption{Supported file formats.}
+\begin{table*}[t]
+\begin{threeparttable}
+\caption{\textbf{Supported file formats.} Native formats are automatically loaded into
+Iris. Supported formats require some user input to map the file data to the spectral
+and flux information.}
 \centering
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{llm{14cm}}
 \toprule
           & Format      & Description \\
 \cmidrule{2-3}
-Native    & VOTable     & XML-style table, text or binary following IVOA\footnote{lalala} Spectrum Data Model v1.0, 1.1 \& 1.2 \\
-          & FITS        & IVOA Spectrum Data Model v1.0, 1.1 \& 1.2 \\
+          & VOTable     & XML-style table, text or binary following IVOA Spectrum Data Model v1.x. \\
+\rotatebox{90}{\rlap{Native~}}
+          & FITS        & Series of HDUs\tnote{a} ~with text header and text or binary data extensions following IVOA Spectrum Data Model v1.x. \\
 \cmidrule{2-3}
-Supported & VOTable     & XML-style table, text or binary \\
-          & FITS        & Series of HDUs\footnote{lalala} with text header and text or binary data extensions \\
-          & ASCII Table & Text file with columns separated by spaces and/or tabs \\
-          & CSV         & Text file with columns separated by commas (the first row may contain the name of the columns) \\
-          & IPAC        & A custom bar-separated text format by IPAC \\
-          & TST         & Tab Separated Table (comments are ignored, metadata is in key, value pairs) \\
+          & VOTable     & XML-style table, text or binary. \\
+          & FITS        & Series of HDUs\tnote{a} ~with text header and text or binary data extensions. \\
+          & ASCII Table & Text file with columns separated by spaces and/or tabs. \\
+          & CSV         & Text file with columns separated by commas (first row may contain column names). \\
+\rotatebox{90}{\rlap{~Supported}}
+          & IPAC        & A custom bar-separated text format by IPAC. \\
+          & TST         & Tab Separated Table (comments are ignored, metadata is in key, value pairs). \\
 \bottomrule                                                                         
 \end{tabular}
-\end{table}
+\begin{tablenotes}
+\item [a] Header Data Units.
+\end{tablenotes}
+\end{threeparttable}
+\label{tab:file-formats}
+\end{table*}
