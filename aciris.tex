@@ -90,6 +90,8 @@
 %\usepackage{float}
 \hypersetup{colorlinks=false,pdfborder={0 0 0},}
 \usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{array}
 
 \newcommand{\truncateit}[1]{\truncate{0.8\textwidth}{#1}}
 \newcommand{\scititle}[1]{\title[\truncateit{#1}]{#1}}
@@ -203,46 +205,121 @@ data abstraction \sep method: data analysis \sep object-oriented programming \se
 
 
 \label{sec:introduction} \section{Introduction} 
+%\begin{sloppypar}
+%The International Virtual
+%Observatory Alliance \citep[IVOA;][]{2004SPIE.5493..137Q} provides a set of
+%standards and protocols that enable interoperability among astronomy-center\-ed
+%services and applications. In order to design effective applications, one wants
+%to leverage IVOA standards and protocols without exposing the complexity and
+%technicality of their specifications to the users. Also, while application
+%developers implement many desired features, they must keep the door open
+%for plugging in user's analysis code, and allow third party developers to extend
+%the application's functionality without being aware of the standards themselves.
+%Designing such general purpose applications thus becomes an exercise in
+%designing a framework that implements some basic, effective functionality for a
+%wide set of use cases, while being highly extensible.
+%\end{sloppypar}
+
+% Add an intro to SEDs.
+
+%EDIT THIS PARA!
+The emission processes of astronomical objects (e.g., stars, galaxies, quasars)
+are reflected in the spectral energy distribution (SED) of the radiation detected
+by astronomers with a variety of telescopes and instruments. Astronomers use this
+information to infer the physical properties of the source by comparing the
+detected SED with different emission models. Methods for these studies have
+been developed by several communities in astronomy, focused on either a particular
+type of source, or quite often on a particular region of the emission spectrum
+(e.g., radio, optical-IR, X-ray). These focused tools typically require different
+input formats and imply the use of wavelength specific units, as well as being
+optimized for particular models to compare the SED with. However, the most
+complete picture of any emission phenomena requires the use of the most complete
+information base. Modern wide-field ground and space telescopes, and the
+availability of data from multi-wavelenth archives, allow in principle to build
+and study broadband SEDs for any kind of astronomical object. However, a tool that can
+efficiently and powerfully make use of this information requires a 
+non-wavelength-specific approach.
+
 \begin{sloppypar}
 The International Virtual
 Observatory Alliance \citep[IVOA;][]{2004SPIE.5493..137Q} provides a set of
-standards and protocols that enable interoperability among astronomy-center\-ed
-services and applications. In order to design effective applications, one wants
-to leverage IVOA standards and protocols without exposing the complexity and
+standards and protocols that facilitate interoperability among astronomy-related
+services and tools. These IVOA specifications can be implemented to enable
+generalized SED analysis, regardless of the spectral regime
+and objects being studied.
+In order to design effective applications, one wants
+to leverage IVOA standards without exposing the complexity and
 technicality of their specifications to the users. Also, while application
-developers implement many desired features, they must keep the door open
-for plugging in user's analysis code, and allow third party developers to extend
-the application's functionality without being aware of the standards themselves.
-Designing such general purpose applications thus becomes an exercise in
-designing a framework that implements some basic, effective functionality for a
-wide set of use cases, while being highly extensible.
+developers implement many desired features, they must provide hooks for users
+and third party developers to extend
+the application's functionality without requiring knowledge of standards themselves.
+Designing such an application, like a general SED analysis tool, thus becomes an
+exercise in designing a framework that implements some basic,
+effective functionality for a wide set of use cases, while being highly extensible.
 \end{sloppypar}
 
-Iris, the Virtual Astronomical Observatory~\citep[VAO;][]{2012SPIE.8449E..0HB}
-spectral energy distribution (SED) an\-alysis tool, is such an IVOA-enabled
-desktop application for building, viewing and modeling broadband
-spectrophotometric SEDs. While implementing IVOA standards and protocols, the
-Iris development team took advantage of existing astronomy
-software~\citep{2012ASPC..461..893D,2013AAS...22124038L}, namely
-Specview~\citep{2002ASPC..281..120B} for the visualization and fitting user
-interfaces, the NASA/IPAC Extragalactic Database (NED) SED Service\footnote{\url{http://vo.ned.ipac.caltech.edu/SED_Service/}} for data
-acquisition, and Sherpa~\citep{2001SPIE.4477...76F} for the modeling and fitting
-engine. Along with these components, new ones, like the SED Builder, were
-developed specifically for Iris.
-
-With Iris users may populate SEDs with data from files, built-in portals to data
+\textit{Iris}, the Virtual Astronomical Observatory \citep[VAO;][]{2012SPIE.8449E..0HB}
+SED analysis tool, is such an IVOA-enabled desktop application. 
+With Iris, users may populate SEDs with data from files, built-in portals to data
 archives, and other Virtual Observatory (VO) applications. Users can
 interactively visualize and edit SEDs, and fit SEDs with fine-tuned modeling
-features. For SED fitting, users may choose from a suite of provided astrophysical models, or
-load their own Python functions and template libraries. All front-end features
-of Iris completely hide the underlying technical VO standards and protocols from
+features. Iris provides a suite of astrophysical models, but also lets users
+import custom models and template libraries. All front-end features
+of Iris completely hide the underlying technical IVOA specifications from
 the user.
+
+While implementing IVOA standards and protocols, 
+we took advantage of existing astronomy
+software, namely
+Specview~\citep{2002ASPC..281..120B} for the visualization and fitting user
+interfaces, the NASA/IPAC Extragalactic Database (NED) SED 
+Service\footnote{\url{http://vo.ned.ipac.caltech.edu/SED_Service/}} for data
+acquisition, and Sherpa~\citep{2001SPIE.4477...76F,2009pysc.conf...51R} for the 
+modeling and fitting engine. Along with these components, new ones, like the SED 
+Builder, were developed specifically for Iris
+\citep{2012ASPC..461..893D,2013AAS...22124038L}.
+
+%The IVOA standards allow this approach, as we have demonstrated in developing Iris.
+
+%\textit{Iris}, the Virtual Astronomical Observatory~\citep[VAO;][]{2012SPIE.8449E..0HB}
+%spectral energy distribution an\-alysis tool, is such an IVOA-enabled desktop 
+%application for building, viewing and modeling broadband
+%spectrophotometric SEDs. 
+%The IVOA standards allow a wavelength-general approach to SED analysis.
+%While implementing IVOA standards and protocols, 
+%we took advantage of existing astronomy
+%software~\citep{2012ASPC..461..893D,2013AAS...22124038L}, namely
+%Specview~\citep{2002ASPC..281..120B} for the visualization and fitting user
+%interfaces, the NASA/IPAC Extragalactic Database (NED) SED 
+%Service\footnote{\url{http://vo.ned.ipac.caltech.edu/SED_Service/}} for data
+%acquisition, and Sherpa~\citep{2001SPIE.4477...76F,2009pysc.conf...51R} for the 
+%modeling and fitting engine. Along with these components, new ones, like the SED 
+%Builder, were developed specifically for Iris.
+
+%With Iris users may populate SEDs with data from files, built-in portals to data
+%archives, and other Virtual Observatory (VO) applications. Users can
+%interactively visualize and edit SEDs, and fit SEDs with fine-tuned modeling
+%features. For SED fitting, users may choose from a suite of provided astrophysical
+%models, or
+%load their own Python functions and template libraries. All front-end features
+%of Iris completely hide the underlying technical VO standards and protocols from
+%the user.
 
 Iris was developed inside the framework of the VAO science applications: the
 different components were contributed by developers from the Smithsonian
 Astrophysical Observatory, the Space Telescope Science Institute (STScI), and the NASA
 Infrared Processing and Analysis Center (IPAC). Quality assurance and testing were led
 by team members at the National Optical Astronomy Observatory and STScI.
+
+%Designing an effective IVOA application requires proper leveraging of the standards
+%and protocols without exposing the complexity and
+%technicality of their specifications to the users. While application
+%developers implement many desired features, they must keep the door open
+%for plugging in user's analysis code, and allow third party developers to extend
+%the application's functionality without being aware of the standards themselves.
+%Designing such general purpose applications thus becomes an exercise in
+%designing a framework that implements some basic, effective functionality for a
+%wide set of use cases, while being highly extensible.
 
 In this paper we present the Iris application, design, and extensible architecture. In Section
 \ref{sec:overview} we briefly explore the landscape of SED applications and
@@ -266,10 +343,16 @@ repository\footnote{\url{https://github.com/ChandraCXC/iris}}.
 \section{SED Analysis with Iris} \label{sec:overview}
 
 Fitting spectral energy distributions enables astron\-omers to estimate fundamental
-physical properties like stellar mass, star formation rates, dust content, and
-overall environments of astronomical objects (e.g., \citet{1998AJ....115.1329S},
-\citet{2001ApJS..137..139S}, \citet{2007ApJS..169..328R}, and many others). With
-deeper wide-field surveys and increasing numbers of datasets over the years,
+physical properties of various astronomical objects. Stellar mass, star formation rates, 
+dust content, and redshift
+are just a few of the properties often derived from galaxy SEDs (e.g.\citet{1998AJ....115.1329S},
+\citet{2001ApJS..137..139S}, \citet{2007ApJS..169..328R}, and many others). 
+Accretion disks surrounding black holes and young stellar objects can be studied by
+fitting models to the host objects' SEDs, extracting information like 
+accretion rates, disk geometry and temperature, and electron energy distributions
+(CITATIONS!!!). 
+
+With deeper wide-field surveys and increasing numbers of datasets over the years,
 astronomers have been able to use multi-wavelength SEDs more frequently for
 their research. As such, many robust SED analysis codes have been created to
 help astronomers mod\-el, fit, and derive physical quantities from SEDs
@@ -305,7 +388,7 @@ VO data discovery application, they are all serializations of the same, global,
 abstract, scientific model of spectral and photometric measurements for
 astronomical sources.
 
-By employing a standardized definition of such models, Iris can streamline
+By employing a standardized definition of such models, Iris streamlines
 the process of building SEDs for analysis. In other terms, one of the goals of
 Iris is to make SED building a painless and straightforward process, letting the
 scientist focus on the sophisticated and original parts of the scientific
@@ -315,7 +398,6 @@ Following VO efforts to combine data services and applications seamlessly, Iris
 offers an interface for building large broadband SEDs from different sources in
 various data formats, while providing robust fitting methods and interactive
 visualization capabilities using existing astronomical software.
-
 It is important to stress that this is not only a matter of ingesting
 non-standard files, but also to allow scientists to create standardized versions
 of their datasets: the improved interoperability enables more tools, inside or
@@ -343,7 +425,7 @@ plug-ins, or external applications.
 
 In this section, we present a brief, illustrative use-case
 of Iris to showcase its main features. We outline the analysis of the broadband SED
-of flat spectrum radio quasar (FSRQ) object PKS 1127-14 (see ANETA's paper), and save the
+of flat spectrum radio quasar (FSRQ) object PKS 1127-14~\citep[see][]{2004ApJ...600L..27B}, and save the
 results to file.
 %Details on the Iris features introduced here 
 %are discussed throughout the remainder of the paper.
@@ -417,8 +499,8 @@ filtering features.
 
 When the user is done building and editing the SED, the user begins the fitting
 session. With the fitting tool, the user can build a model expression as an
-arbitrary combination of model components. Choosing from a list of astrophysical
-and mathematical models built-in in Iris, the user fits PKS 1127-14 with a linear
+arbitrary combination of model components. Choosing from a list of built-in astrophysical
+and mathematical models, the user fits PKS 1127-14 with a linear
 combination of four models: two logarithmic parabolas to model the radio
 synchrotron and inverse Compton radiation~\citep{2006A&A...448..861M,2009A&A...501..879T}, 
 and two blackbodies to approximate the models for the hot dust component and 
@@ -1414,7 +1496,7 @@ or source distribution for Linux and OS X.
 
 \section*{Acknowledgments}
 The Authors would like to acknowledge Giuseppina Fabbiano, Ian Evans,
-and Jonathan McDowell
+Jonathan McDowell, and Aneta Siemiginowska
 for their support and feedback in all the phases of the work.
 
 We also thank the Italian Space Agency Science Data Center for the contribution
@@ -1434,337 +1516,9 @@ Extragalactic Database (NED) which is operated by the Jet Propulsion Laboratory,
 California Institute of Technology, under contract with the National Aeronautics
 and Space Administration.
 
-%\bibliography{aciris.bib}
-\begin{thebibliography}{35}
-\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
-\providecommand{\url}[1]{\texttt{#1}}
-\providecommand{\href}[2]{#2}
-\providecommand{\path}[1]{#1}
-\providecommand{\DOIprefix}{doi:}
-\providecommand{\ArXivprefix}{arXiv:}
-\providecommand{\URLprefix}{URL: }
-\providecommand{\Pubmedprefix}{pmid:}
-\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
-\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
-\providecommand{\bibinfo}[2]{#2}
-\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
-%Type = Article
-\bibitem[{{Acquaviva} et~al.(2011){Acquaviva}, {Gawiser} and
-  {Guaita}}]{2011ApJ...737...47A}
-\bibinfo{author}{{Acquaviva}, V.}, \bibinfo{author}{{Gawiser}, E.},
-  \bibinfo{author}{{Guaita}, L.}, \bibinfo{year}{2011}.
-\newblock \bibinfo{title}{{Spectral Energy Distribution Fitting with Markov
-  Chain Monte Carlo: Methodology and Application to z = 3.1
-  Ly{$\alpha$}-emitting Galaxies}}.
-\newblock \bibinfo{journal}{\apj} \bibinfo{volume}{737}, \bibinfo{pages}{47}.
-\newblock \DOIprefix\doi{10.1088/0004-637X/737/2/47}.
-%Type = Article
-\bibitem[{{Arnouts} et~al.(1999){Arnouts}, {Cristiani}, {Moscardini},
-  {Matarrese}, {Lucchin}, {Fontana} and {Giallongo}}]{1999MNRAS.310..540A}
-\bibinfo{author}{{Arnouts}, S.}, \bibinfo{author}{{Cristiani}, S.},
-  \bibinfo{author}{{Moscardini}, L.}, \bibinfo{author}{{Matarrese}, S.},
-  \bibinfo{author}{{Lucchin}, F.}, \bibinfo{author}{{Fontana}, A.},
-  \bibinfo{author}{{Giallongo}, E.}, \bibinfo{year}{1999}.
-\newblock \bibinfo{title}{{Measuring and modelling the redshift evolution of
-  clustering: the Hubble Deep Field North}}.
-\newblock \bibinfo{journal}{\mnras} \bibinfo{volume}{310},
-  \bibinfo{pages}{540--556}.
-\newblock \DOIprefix\doi{10.1046/j.1365-8711.1999.02978.x}.
-%Type = Article
-\bibitem[{{Bayo} et~al.(2008){Bayo}, {Rodrigo}, {Barrado Y Navascu{\'e}s},
-  {Solano}, {Guti{\'e}rrez}, {Morales-Calder{\'o}n} and
-  {Allard}}]{2008A&A...492..277B}
-\bibinfo{author}{{Bayo}, A.}, \bibinfo{author}{{Rodrigo}, C.},
-  \bibinfo{author}{{Barrado Y Navascu{\'e}s}, D.}, \bibinfo{author}{{Solano},
-  E.}, \bibinfo{author}{{Guti{\'e}rrez}, R.},
-  \bibinfo{author}{{Morales-Calder{\'o}n}, M.}, \bibinfo{author}{{Allard}, F.},
-  \bibinfo{year}{2008}.
-\newblock \bibinfo{title}{{VOSA: virtual observatory SED analyzer. An
-  application to the Collinder 69 open cluster}}.
-\newblock \bibinfo{journal}{\aap} \bibinfo{volume}{492},
-  \bibinfo{pages}{277--287}.
-\newblock \DOIprefix\doi{10.1051/0004-6361:200810395}.
-%Type = Article
-\bibitem[{{Ben{\'{\i}}tez}(2000)}]{2000ApJ...536..571B}
-\bibinfo{author}{{Ben{\'{\i}}tez}, N.}, \bibinfo{year}{2000}.
-\newblock \bibinfo{title}{{Bayesian Photometric Redshift Estimation}}.
-\newblock \bibinfo{journal}{\apj} \bibinfo{volume}{536},
-  \bibinfo{pages}{571--583}.
-\newblock \DOIprefix\doi{10.1086/308947}.
-%Type = Inproceedings
-\bibitem[{{Berriman} et~al.(2012){Berriman}, {Hanisch}, {Lazio}, {Szalay} and
-  {Fabbiano}}]{2012SPIE.8449E..0HB}
-\bibinfo{author}{{Berriman}, G.B.}, \bibinfo{author}{{Hanisch}, R.J.},
-  \bibinfo{author}{{Lazio}, T.J.W.}, \bibinfo{author}{{Szalay}, A.},
-  \bibinfo{author}{{Fabbiano}, G.}, \bibinfo{year}{2012}.
-\newblock \bibinfo{title}{{The organization and management of the Virtual
-  Astronomical Observatory}}, in: \bibinfo{booktitle}{Modeling, Systems
-  Engineering, and Project Management for Astronomy V}.
-\newblock \DOIprefix\doi{10.1117/12.926605}.
-%Type = Article
-\bibitem[{{Bolzonella} et~al.(2000){Bolzonella}, {Miralles} and
-  {Pell{\'o}}}]{2000A&A...363..476B}
-\bibinfo{author}{{Bolzonella}, M.}, \bibinfo{author}{{Miralles}, J.M.},
-  \bibinfo{author}{{Pell{\'o}}, R.}, \bibinfo{year}{2000}.
-\newblock \bibinfo{title}{{Photometric redshifts based on standard SED fitting
-  procedures}}.
-\newblock \bibinfo{journal}{\aap} \bibinfo{volume}{363},
-  \bibinfo{pages}{476--492}.
-\newblock \href{http://arxiv.org/abs/astro-ph/0003380}{\tt
-  arXiv:astro-ph/0003380}.
-%Type = Article
-\bibitem[{{Budav{\'a}ri} et~al.(2009){Budav{\'a}ri}, {Wild}, {Szalay}, {Dobos}
-  and {Yip}}]{2009MNRAS.394.1496B}
-\bibinfo{author}{{Budav{\'a}ri}, T.}, \bibinfo{author}{{Wild}, V.},
-  \bibinfo{author}{{Szalay}, A.S.}, \bibinfo{author}{{Dobos}, L.},
-  \bibinfo{author}{{Yip}, C.W.}, \bibinfo{year}{2009}.
-\newblock \bibinfo{title}{{Reliable eigenspectra for new generation surveys}}.
-\newblock \bibinfo{journal}{\mnras} \bibinfo{volume}{394},
-  \bibinfo{pages}{1496--1502}.
-\newblock \DOIprefix\doi{10.1111/j.1365-2966.2009.14415.x}.
-%Type = Inproceedings
-\bibitem[{{Busko}(2000)}]{2000ASPC..216...79B}
-\bibinfo{author}{{Busko}, I.}, \bibinfo{year}{2000}.
-\newblock \bibinfo{title}{{SPECVIEW: An Interactive Java Tool for Visualization
-  and Analysis of Spectral Data}}, in: \bibinfo{booktitle}{Astronomical Data
-  Analysis Software and Systems IX}, p.~\bibinfo{pages}{79}.
-%Type = Inproceedings
-\bibitem[{{Busko}(2002)}]{2002ASPC..281..120B}
-\bibinfo{author}{{Busko}, I.}, \bibinfo{year}{2002}.
-\newblock \bibinfo{title}{{Specview: a Java Tool for Spectral Visualization and
-  Model Fitting}}, in: \bibinfo{booktitle}{Astronomical Data Analysis Software
-  and Systems XI}, p. \bibinfo{pages}{120}.
-%Type = Article
-\bibitem[{{Cid Fernandes} et~al.(2004){Cid Fernandes}, {Gu}, {Melnick},
-  {Terlevich}, {Terlevich}, {Kunth}, {Rodrigues Lacerda} and
-  {Joguet}}]{2004MNRAS.355..273C}
-\bibinfo{author}{{Cid Fernandes}, R.}, \bibinfo{author}{{Gu}, Q.},
-  \bibinfo{author}{{Melnick}, J.}, \bibinfo{author}{{Terlevich}, E.},
-  \bibinfo{author}{{Terlevich}, R.}, \bibinfo{author}{{Kunth}, D.},
-  \bibinfo{author}{{Rodrigues Lacerda}, R.}, \bibinfo{author}{{Joguet}, B.},
-  \bibinfo{year}{2004}.
-\newblock \bibinfo{title}{{The star formation history of Seyfert 2 nuclei}}.
-\newblock \bibinfo{journal}{\mnras} \bibinfo{volume}{355},
-  \bibinfo{pages}{273--296}.
-\newblock \DOIprefix\doi{10.1111/j.1365-2966.2004.08321.x}.
-%Type = Article
-\bibitem[{{Conroy}(2013)}]{2013ARA&A..51..393C}
-\bibinfo{author}{{Conroy}, C.}, \bibinfo{year}{2013}.
-\newblock \bibinfo{title}{{Modeling the Panchromatic Spectral Energy
-  Distributions of Galaxies}}.
-\newblock \bibinfo{journal}{\araa} \bibinfo{volume}{51},
-  \bibinfo{pages}{393--455}.
-\newblock \DOIprefix\doi{10.1146/annurev-astro-082812-141017}.
-%Type = Article
-\bibitem[{{Dermer} and {Schlickeiser}(2002)}]{2002ApJ...575..667D}
-\bibinfo{author}{{Dermer}, C.D.}, \bibinfo{author}{{Schlickeiser}, R.},
-  \bibinfo{year}{2002}.
-\newblock \bibinfo{title}{{Transformation Properties of External Radiation
-  Fields, Energy-Loss Rates and Scattered Spectra, and a Model for Blazar
-  Variability}}.
-\newblock \bibinfo{journal}{\apj} \bibinfo{volume}{575},
-  \bibinfo{pages}{667--686}.
-\newblock \DOIprefix\doi{10.1086/341431}.
-%Type = Inproceedings
-\bibitem[{{Doe} et~al.(2012)}]{2012ASPC..461..893D}
-\bibinfo{author}{{Doe}, S.}, et~al., \bibinfo{year}{2012}.
-\newblock \bibinfo{title}{{Iris: The VAO SED Application}}, in:
-  \bibinfo{booktitle}{Astronomical Data Analysis Software and Systems XXI}, p.
-  \bibinfo{pages}{893}.
-\newblock \href{http://arxiv.org/abs/1205.2419}{\tt arXiv:1205.2419}.
-%Type = Inproceedings
-\bibitem[{{Evans} et~al.(2012)}]{2012SPIE.8449E..0IE}
-\bibinfo{author}{{Evans}, J.D.}, et~al., \bibinfo{year}{2012}.
-\newblock \bibinfo{title}{{Managing distributed software development in the
-  Virtual Astronomical Observatory}}, in: \bibinfo{booktitle}{Modeling, Systems
-  Engineering, and Project Management for Astronomy V}.
-\newblock \DOIprefix\doi{10.1117/12.927371}.
-%Type = Inproceedings
-\bibitem[{{Freeman} et~al.(2001){Freeman}, {Doe} and
-  {Siemiginowska}}]{2001SPIE.4477...76F}
-\bibinfo{author}{{Freeman}, P.}, \bibinfo{author}{{Doe}, S.},
-  \bibinfo{author}{{Siemiginowska}, A.}, \bibinfo{year}{2001}.
-\newblock \bibinfo{title}{{Sherpa: a mission-independent data analysis
-  application}}, in: \bibinfo{booktitle}{Astronomical Data Analysis}, pp.
-  \bibinfo{pages}{76--87}.
-\newblock \DOIprefix\doi{10.1117/12.447161}.
-%Type = Inproceedings
-\bibitem[{{Fruscione} et~al.(2006)}]{2006SPIE.6270E..60F}
-\bibinfo{author}{{Fruscione}, A.}, et~al., \bibinfo{year}{2006}.
-\newblock \bibinfo{title}{{CIAO: Chandra's data analysis system}}, in:
-  \bibinfo{booktitle}{Observatory Operations: Strategies, Processes, and
-  Systems}.
-\newblock \DOIprefix\doi{10.1117/12.671760}.
-%Type = Article
-\bibitem[{{Ilbert} et~al.(2006)}]{2006A&A...457..841I}
-\bibinfo{author}{{Ilbert}, O.}, et~al., \bibinfo{year}{2006}.
-\newblock \bibinfo{title}{{Accurate photometric redshifts for the CFHT legacy
-  survey calibrated using the VIMOS VLT deep survey}}.
-\newblock \bibinfo{journal}{\aap} \bibinfo{volume}{457},
-  \bibinfo{pages}{841--856}.
-\newblock \DOIprefix\doi{10.1051/0004-6361:20065138}.
-%Type = Article
-\bibitem[{{Johnson} and {Foote}(1988)}]{ioc}
-\bibinfo{author}{{Johnson}, R.E.}, \bibinfo{author}{{Foote}, B.},
-  \bibinfo{year}{1988}.
-\newblock \bibinfo{title}{{Designing Reusable Classes}}.
-\newblock \bibinfo{journal}{{Journal of Object-Oriented Programming}}
-  \bibinfo{volume}{1}, \bibinfo{pages}{22--35}.
-\newblock \bibinfo{note}{\url{http://www.laputan.org/drc.html}}.
-%Type = Inproceedings
-\bibitem[{{Laurino} et~al.(2013){Laurino}, {Busko}, {Cresitello-Dittmar},
-  {D'Abrusco}, {Doe}, {Evans}, {Pevunova} and {Norris}}]{2013AAS...22124038L}
-\bibinfo{author}{{Laurino}, O.}, \bibinfo{author}{{Busko}, I.},
-  \bibinfo{author}{{Cresitello-Dittmar}, M.}, \bibinfo{author}{{D'Abrusco},
-  R.}, \bibinfo{author}{{Doe}, S.}, \bibinfo{author}{{Evans}, J.},
-  \bibinfo{author}{{Pevunova}, O.}, \bibinfo{author}{{Norris}, P.},
-  \bibinfo{year}{2013}.
-\newblock \bibinfo{title}{{Constructing and Analyzing Spectral Energy
-  Distributions with the Virtual Observatory}}, in:
-  \bibinfo{booktitle}{American Astronomical Society Meeting Abstracts}, p.
-  \bibinfo{pages}{240.38}.
-%Type = Article
-\bibitem[{{Massaro} et~al.(2006){Massaro}, {Tramacere}, {Perri}, {Giommi} and
-  {Tosti}}]{2006A&A...448..861M}
-\bibinfo{author}{{Massaro}, E.}, \bibinfo{author}{{Tramacere}, A.},
-  \bibinfo{author}{{Perri}, M.}, \bibinfo{author}{{Giommi}, P.},
-  \bibinfo{author}{{Tosti}, G.}, \bibinfo{year}{2006}.
-\newblock \bibinfo{title}{{Log-parabolic spectra and particle acceleration in
-  blazars. III. SSC emission in the TeV band from Mkn501}}.
-\newblock \bibinfo{journal}{\aap} \bibinfo{volume}{448},
-  \bibinfo{pages}{861--871}.
-\newblock \DOIprefix\doi{10.1051/0004-6361:20053644}.
-%Type = Inproceedings
-\bibitem[{{Mazzarella} and {NED Team}(2007)}]{2007ASPC..376..153M}
-\bibinfo{author}{{Mazzarella}, J.M.}, \bibinfo{author}{{NED Team}},
-  \bibinfo{year}{2007}.
-\newblock \bibinfo{title}{{NED for a New Era}}, in:
-  \bibinfo{booktitle}{Astronomical Data Analysis Software and Systems XVI}, p.
-  \bibinfo{pages}{153}.
-%Type = Article
-\bibitem[{{McDowell} et~al.(2012)}]{2012arXiv1204.3055M}
-\bibinfo{author}{{McDowell}, J.}, et~al., \bibinfo{year}{2012}.
-\newblock \bibinfo{title}{{IVOA Recommendation: Spectrum Data Model 1.1}}.
-\newblock \bibinfo{journal}{ArXiv e-prints}
-  \href{http://arxiv.org/abs/1204.3055}{\tt arXiv:1204.3055}.
-%Type = Article
-\bibitem[{{Ochsenbein} et~al.(2011)}]{2011arXiv1110.0524O}
-\bibinfo{author}{{Ochsenbein}, F.}, et~al., \bibinfo{year}{2011}.
-\newblock \bibinfo{title}{{IVOA Recommendation: VOTable Format Definition
-  Version 1.2}}.
-\newblock \bibinfo{journal}{ArXiv e-prints}
-  \href{http://arxiv.org/abs/1110.0524}{\tt arXiv:1110.0524}.
-%Type = Inproceedings
-\bibitem[{{Quinn} et~al.(2004)}]{2004SPIE.5493..137Q}
-\bibinfo{author}{{Quinn}, P.J.}, et~al., \bibinfo{year}{2004}.
-\newblock \bibinfo{title}{{The International Virtual Observatory Alliance:
-  recent technical developments and the road ahead}}, in:
-  \bibinfo{booktitle}{Optimizing Scientific Return for Astronomy through
-  Information Technologies}, pp. \bibinfo{pages}{137--145}.
-\newblock \DOIprefix\doi{10.1117/12.551247}.
-%Type = Article
-\bibitem[{{Robitaille} et~al.(2007){Robitaille}, {Whitney}, {Indebetouw} and
-  {Wood}}]{2007ApJS..169..328R}
-\bibinfo{author}{{Robitaille}, T.P.}, \bibinfo{author}{{Whitney}, B.A.},
-  \bibinfo{author}{{Indebetouw}, R.}, \bibinfo{author}{{Wood}, K.},
-  \bibinfo{year}{2007}.
-\newblock \bibinfo{title}{{Interpreting Spectral Energy Distributions from
-  Young Stellar Objects. II. Fitting Observed SEDs Using a Large Grid of
-  Precomputed Models}}.
-\newblock \bibinfo{journal}{\apjs} \bibinfo{volume}{169},
-  \bibinfo{pages}{328--352}.
-\newblock \DOIprefix\doi{10.1086/512039}.
-%Type = Article
-\bibitem[{{Sawicki} and {Yee}(1998)}]{1998AJ....115.1329S}
-\bibinfo{author}{{Sawicki}, M.}, \bibinfo{author}{{Yee}, H.K.C.},
-  \bibinfo{year}{1998}.
-\newblock \bibinfo{title}{{Optical-Infrared Spectral Energy Distributions of Z
-  > 2 Lyman Break Galaxies}}.
-\newblock \bibinfo{journal}{\aj} \bibinfo{volume}{115},
-  \bibinfo{pages}{1329--1339}.
-\newblock \DOIprefix\doi{10.1086/300291}.
-%Type = Article
-\bibitem[{{Shapley} et~al.(2001){Shapley}, {Fabbiano} and
-  {Eskridge}}]{2001ApJS..137..139S}
-\bibinfo{author}{{Shapley}, A.}, \bibinfo{author}{{Fabbiano}, G.},
-  \bibinfo{author}{{Eskridge}, P.B.}, \bibinfo{year}{2001}.
-\newblock \bibinfo{title}{{A Multivariate Statistical Analysis of Spiral Galaxy
-  Luminosities. I. Data and Results}}.
-\newblock \bibinfo{journal}{\apjs} \bibinfo{volume}{137},
-  \bibinfo{pages}{139--199}.
-\newblock \DOIprefix\doi{10.1086/322998}.
-%Type = Article
-\bibitem[{{Smith} et~al.(2007)}]{2007ApJ...656..770S}
-\bibinfo{author}{{Smith}, J.D.T.}, et~al., \bibinfo{year}{2007}.
-\newblock \bibinfo{title}{{The Mid-Infrared Spectrum of Star-forming Galaxies:
-  Global Properties of Polycyclic Aromatic Hydrocarbon Emission}}.
-\newblock \bibinfo{journal}{\apj} \bibinfo{volume}{656},
-  \bibinfo{pages}{770--791}.
-\newblock \DOIprefix\doi{10.1086/510549}.
-%Type = Article
-\bibitem[{{Solano}(2013)}]{2013arXiv1312.3249S}
-\bibinfo{author}{{Solano}, E.}, \bibinfo{year}{2013}.
-\newblock \bibinfo{title}{{Spectral stellar libraries and the Virtual
-  Observatory}}.
-\newblock \bibinfo{journal}{ArXiv e-prints}
-  \href{http://arxiv.org/abs/1312.3249}{\tt arXiv:1312.3249}.
-%Type = Article
-\bibitem[{Storn and Price(1997)}]{Storn:1997:DEN:596061.596146}
-\bibinfo{author}{Storn, R.}, \bibinfo{author}{Price, K.}, \bibinfo{year}{1997}.
-\newblock \bibinfo{title}{Differential evolution \&ndash; a simple and
-  efficient heuristic for global optimization over continuous spaces}.
-\newblock \bibinfo{journal}{J. of Global Optimization} \bibinfo{volume}{11},
-  \bibinfo{pages}{341--359}.
-\newblock \DOIprefix\doi{10.1023/A:1008202821328}.
-%Type = Article
-\bibitem[{{Taylor} et~al.(2011){Taylor}, {Boch}, {Fitzpatrick}, {Allan},
-  {Paioro}, {Taylor} and {Tody}}]{2011arXiv1110.0528T}
-\bibinfo{author}{{Taylor}, M.}, \bibinfo{author}{{Boch}, T.},
-  \bibinfo{author}{{Fitzpatrick}, M.}, \bibinfo{author}{{Allan}, A.},
-  \bibinfo{author}{{Paioro}, L.}, \bibinfo{author}{{Taylor}, J.},
-  \bibinfo{author}{{Tody}, D.}, \bibinfo{year}{2011}.
-\newblock \bibinfo{title}{{IVOA Recommendation: SAMP - Simple Application
-  Messaging Protocol Version 1.3}}.
-\newblock \bibinfo{journal}{ArXiv e-prints}
-  \href{http://arxiv.org/abs/1110.0528}{\tt arXiv:1110.0528}.
-%Type = Inproceedings
-\bibitem[{{Taylor}(2005)}]{2005ASPC..347...29T}
-\bibinfo{author}{{Taylor}, M.B.}, \bibinfo{year}{2005}.
-\newblock \bibinfo{title}{{TOPCAT {\&} STIL: Starlink Table/VOTable Processing
-  Software}}, in: \bibinfo{booktitle}{Astronomical Data Analysis Software and
-  Systems XIV}, p.~\bibinfo{pages}{29}.
-%Type = Article
-\bibitem[{{Tody} et~al.(2012)}]{2012arXiv1203.5725T}
-\bibinfo{author}{{Tody}, D.}, et~al., \bibinfo{year}{2012}.
-\newblock \bibinfo{title}{{IVOA Recommendation: Simple Spectral Access Protocol
-  Version 1.1}}.
-\newblock \bibinfo{journal}{ArXiv e-prints}
-  \href{http://arxiv.org/abs/1203.5725}{\tt arXiv:1203.5725}.
-%Type = Article
-\bibitem[{{Tramacere} et~al.(2009){Tramacere}, {Giommi}, {Perri}, {Verrecchia}
-  and {Tosti}}]{2009A&A...501..879T}
-\bibinfo{author}{{Tramacere}, A.}, \bibinfo{author}{{Giommi}, P.},
-  \bibinfo{author}{{Perri}, M.}, \bibinfo{author}{{Verrecchia}, F.},
-  \bibinfo{author}{{Tosti}, G.}, \bibinfo{year}{2009}.
-\newblock \bibinfo{title}{{Swift observations of the very intense flaring
-  activity of Mrk 421 during 2006. I. Phenomenological picture of electron
-  acceleration and predictions for MeV/GeV emission}}.
-\newblock \bibinfo{journal}{\aap} \bibinfo{volume}{501},
-  \bibinfo{pages}{879--898}.
-\newblock \DOIprefix\doi{10.1051/0004-6361/200810865}.
-%Type = Article
-\bibitem[{{Walcher} et~al.(2011){Walcher}, {Groves}, {Budav{\'a}ri} and
-  {Dale}}]{2011Ap&SS.331....1W}
-\bibinfo{author}{{Walcher}, J.}, \bibinfo{author}{{Groves}, B.},
-  \bibinfo{author}{{Budav{\'a}ri}, T.}, \bibinfo{author}{{Dale}, D.},
-  \bibinfo{year}{2011}.
-\newblock \bibinfo{title}{{Fitting the integrated spectral energy distributions
-  of galaxies}}.
-\newblock \bibinfo{journal}{\apss} \bibinfo{volume}{331},
-  \bibinfo{pages}{1--52}.
-\newblock \DOIprefix\doi{10.1007/s10509-010-0458-z}.
+\bibliography{aciris.bib}
 
-\end{thebibliography}
+
 
 \end{document}
 
