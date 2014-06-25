@@ -84,8 +84,8 @@
 \usepackage{url}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyref}
-%\usepackage{hyperref}
-%\hypersetup{colorlinks=false,pdfborder={0 0 0},}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},}
 \usepackage{caption}
 \usepackage{courier}
 \usepackage{float}
@@ -406,7 +406,7 @@ they effectively require the same information to run. Whether datasets are
 stored in a FITS file, a tab-separated ASCII table, or a 
 VOTable~\citep{2011arXiv1110.0524O} coming from a
 VO data discovery application, they are all serializations of the same, global,
-abstract, scientific model of spectral and photometric measurements for
+abstract, scientific model of photometric measurements for
 astronomical sources.
 
 By employing a standardized definition of such models, Iris streamlines
@@ -1512,7 +1512,7 @@ The Iris layered architecture takes advantage of the Virtual Observatory
 standards and protocols without exposing their complexity to the end users,
 who still benefit from the added interoperability. At the same time, developers
 can use a middle layer of abstraction that exposes the domain objects, i.e.,
-spectrophotometric SEDs, and the user's workspace, in a clean and consistent
+photometric SEDs, and the user's workspace, in a clean and consistent
 way through a Java software development kit.
 
 \begin{sloppypar}
