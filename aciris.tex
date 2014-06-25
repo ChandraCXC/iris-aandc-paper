@@ -334,7 +334,8 @@ A more detailed overview of the Iris extensible framework design (Section
 \ref{sec:architecture}) is followed by a detailed description of the more
 advanced Iris capabilities (Section \ref{sec:components}). Finally, we
 describe the Iris software development kit, including a ``How-to'' on extending
-Iris with plug-ins (Section \ref{sec:plugins}). Sections \ref{sec:architecture} and \ref{sec:plugins} are targeted to software
+Iris with plug-ins (Section \ref{sec:plugins}). Sections \ref{sec:architecture} and 
+\ref{sec:plugins} are targeted to software
 developers.
 
 The paper refers to version 2.0.1 of Iris. Iris can be downloaded as a binary
@@ -397,7 +398,7 @@ and flux information.}
 the spectral and flux units listed in this table. Italicized units are only available
 for plotting.}
 \label{table:units}
-\input{units2.tex}
+\input{units.tex}
 \end{table}
 
 While SED analysis tools often have different input formats from each other,
@@ -434,7 +435,7 @@ describes the file formats that can be read into Iris. Users may also
 seamlessly transfer data from other VO applications or data archive services
 through SAMP, the Simple Application Messaging
 Protocol~\citep{2011arXiv1110.0528T}. Moreover, Iris can read, write, and display SED data in
-a variety of commonly-used units, listed in Table~\ref{table:units}.
+a variety of commonly-used units, which are listed in Table~\ref{table:units}, with minimal user effort.
 
 \end{sloppypar}
 
@@ -1161,6 +1162,13 @@ implementations of the SAMP protocol, namely
 The \verb|sherpa-samp| layer grew to accommodate the new science requirements in
 the latest Iris releases, so to include some analysis code that is
 independent of Sherpa.
+
+%\begin{table}
+%\caption{\textbf{Sherpa Fitting Tool optimization and fit statistics options.} 
+%words and stuff}
+%\label{table:statistics}
+%\input{statistics.tex}
+%\end{table}
 
 \subsection{Science Tools} We provide built-in science tools that perform
 calculations commonly used in SED analysis: redshifting, interpolation, and
