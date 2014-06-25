@@ -84,11 +84,11 @@
 \usepackage{url}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyref}
-\usepackage{hyperref}
+%\usepackage{hyperref}
+%\hypersetup{colorlinks=false,pdfborder={0 0 0},}
 \usepackage{caption}
 \usepackage{courier}
-%\usepackage{float}
-\hypersetup{colorlinks=false,pdfborder={0 0 0},}
+\usepackage{float}
 \usepackage{booktabs}
 \usepackage{threeparttable}
 \usepackage{array}
@@ -247,11 +247,14 @@ standards and protocols that facilitate interoperability among astronomy-related
 services and tools. These IVOA specifications can be implemented to enable
 generalized SED analysis, regardless of the spectral regime
 and objects being studied.
+\end{sloppypar}
+
+\begin{sloppypar}
 In order to design effective applications, one wants
 to leverage IVOA standards without exposing the complexity and
 technicality of their specifications to the users. Also, while application
-developers implement many desired features, they must provide hooks for users
-and third party developers to extend
+developers implement many desired features, it is useful, and sometimes 
+required, to provide hooks for users and third party developers to extend
 the application's functionality without requiring knowledge of standards themselves.
 Designing such an application, like a general SED analysis tool, thus becomes an
 exercise in designing a framework that implements some basic,
@@ -350,7 +353,7 @@ are just a few of the properties often derived from galaxy SEDs (e.g.\citet{1998
 Accretion disks surrounding black holes and young stellar objects can be studied by
 fitting models to the host objects' SEDs, extracting information like 
 accretion rates, disk geometry and temperature, and electron energy distributions
-(CITATIONS!!!). 
+(CITATIONS!!!).
 
 With deeper wide-field surveys and increasing numbers of datasets over the years,
 astronomers have been able to use multi-wavelength SEDs more frequently for
@@ -381,9 +384,26 @@ file, homogenize the units, and output a file in the format supported by the
 tool; converting the data to a supported format may easily become a tedious task
 with each additional dataset.
 
+\begin{table*}[tp!]
+\caption{\textbf{Supported file formats.} Native formats are automatically loaded into
+Iris. Supported formats require some user input to map the file data to the spectral
+and flux information.}
+\label{table:file_formats}
+\input{file-format-table.tex}
+\end{table*}
+
+\begin{table}[h!]
+\caption{\textbf{Supported SED units.} Iris can read, write, and/or plot data in
+the spectral and flux units listed in this table. Italicized units are only available
+for plotting.}
+\label{table:units}
+\input{units2.tex}
+\end{table}
+
 While SED analysis tools often have different input formats from each other,
 they effectively require the same information to run. Whether datasets are
-stored in a FITS file, a tab-separated ASCII table, or a VOTable~\citep{2011arXiv1110.0524O} coming from a
+stored in a FITS file, a tab-separated ASCII table, or a 
+VOTable~\citep{2011arXiv1110.0524O} coming from a
 VO data discovery application, they are all serializations of the same, global,
 abstract, scientific model of spectral and photometric measurements for
 astronomical sources.
@@ -405,17 +425,18 @@ outside Iris, to load and interpret such datasets with minimal user
 intervention.
 
 \begin{sloppypar}
-Much effort has been put into making Iris lenient on the data format. Natively
+Much effort has been put into making Iris lenient on data format. While natively
 supporting VO-compliant files (properly annotated
 VOTable and FITS files), Iris can ingest ASCII, CSV,
-and other table-like formats with some extra user input. Users may also
+and other table-like formats as well with some extra user input.
+Table~\ref{table:file_formats}
+describes the file formats that can be read into Iris. Users may also
 seamlessly transfer data from other VO applications or data archive services
 through SAMP, the Simple Application Messaging
-Protocol~\citep{2011arXiv1110.0528T}.
-\end{sloppypar}
+Protocol~\citep{2011arXiv1110.0528T}. Moreover, Iris can read, write, and display SED data in
+a variety of commonly-used units, listed in Table~\ref{table:units}.
 
-%\input{file-format-table.tex}
-%\input{units.tex}
+\end{sloppypar}
 
 But more importantly, Iris provides standardized views of the integrated
 datasets to its clients, whether they are built-in components, third party
@@ -1150,7 +1171,9 @@ The open SEDs are listed in the Science Tools frame. The user selects the SED
 they wish to analyze, and inputs the required information for a calculation.
 
 \subsubsection{Redshifting} Redshifting SEDs in Iris refers to cosmological
-redshift. Because the apparent magnitude of a source is dimmer at high redshifts
+redshift. The spectral values are transformed into wavelength-space before 
+shifting the SED.
+Because the apparent magnitude of a source is dimmer at high redshifts
 than low redshift, we correct the flux so that the area under the shifted SED
 equals that of the un-shifted SED using
 \begin{equation} \label{eq:redshift} f_{z_{f}}(\lambda) = f_{z_{i}}(\lambda)
@@ -1159,8 +1182,8 @@ equals that of the un-shifted SED using
 (f_{z_{f}}(\lambda_{k+1})+f_{z_{f}}(\lambda_{k}))}, \end{equation}
 where $f_{z_i}$ is the observed flux at the initial (observed) redshift $z_i$,
 $f_{z_f}$ is the flux at the final (target) redshift $z_f$, ${\lambda}$ is the
-wavelength, $N$ is the number of points in the SED, and $\lambda_{k}$ is the $k^{th}$ 
-point in the SED. In \verb|sherpa-samp|, we extend the
+wavelength, $N$ is the number of points in the SED, and $\lambda_{k}$ is the wavelength
+of the $k^{th}$ point in the SED. In \verb|sherpa-samp|, we extend the
 astLib\footnote{\url{http://astlib.sourceforge.net/}} \texttt{astSED} class that
 implements Equation~\ref{eq:redshift}.
 
