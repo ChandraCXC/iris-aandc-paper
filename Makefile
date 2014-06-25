@@ -12,8 +12,11 @@ bib:
 pdf:
 	pdflatex $(NAME)
 
+#all:
+#	pdflatex $(NAME) && bibtex $(NAME) && pdflatex $(NAME) && pdflatex $(NAME) && pdflatex $(NAME)
+
 all:
-	pdflatex $(NAME) && bibtex $(NAME) && pdflatex $(NAME) && pdflatex $(NAME) && pdflatex $(NAME)
+	pdflatex $(NAME) && pdflatex $(NAME) && pdflatex $(NAME)
 
 read:
 	acroread $(NAME).pdf
