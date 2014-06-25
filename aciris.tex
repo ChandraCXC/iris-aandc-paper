@@ -539,18 +539,28 @@ specifications, should understand the labels used in the top layer of the
 diagram and their components (e.g., \textit{Fitting Tool} and \textit{Redshifting}), as long as they
 have some knowledge of astronomical SEDs. On the other hand, a developer would
 find words like framework, service, and manager quite familiar, while it takes a
-VO-savvy person to decode the acronyms at the bottom of the diagram.
+VO-savvy person to decode the acronyms at the bottom of the diagram.\footnote{SAMP,
+the Simple Application Messaging protocol was already introduced, DM stands for Data Model and the SpectrumDM
+is introduced later in the paper. UTYPEs are labels used in some file formats (like VOTable, introduced later)
+to tag data elements according to a Data Model. SSAP stands for Simple Spectral Access Protocol and
+is implemented by services that provide access to spectral datasets, including SEDs, and is also introduced later
+in the document.}
 
 \begin{figure}
 \begin{center}
 \includegraphics[width=1.0\columnwidth]{IrisStack.pdf} \caption{\textbf{The
 Iris Stack.}  With its architecture Iris allows developers to create components
 using higher and higher abstractions on top of web services, desktop
-applications, and Virtual Observatory standards and protocols. The technical
+applications, and Virtual Observatory standards and protocols.
+The technical
 specifications lie on the bottom, a middle layer provides abstractions useful to
-developers, and the user is only exposed to the science features. Users can also
+developers, and the user is only exposed to the science features represented by the top layer.
+Users can also
 plug their code in as Python functions. The result is aimed to be both user- and
-developer- friendly.}
+developer- friendly. Notice that custom services can be built on top of custom specifications,
+but also on top of IVOA standards. Similarly, plug-ins can use custom services, but they also
+probably use the Iris Common Framework. The top layer components
+(built-in Iris features and plug-ins) provide the user with scientific features within Iris.}
 \label{fig:stack}
 \end{center}
 \end{figure}
@@ -568,11 +578,17 @@ diagram and taps into a different characteristic of the Iris architecture:
 extensibility. In particular, scarlet letters denote extensible
 components of the architecture, i.e., components that offer hooks into the Iris
 architecture to users and developers. The orange boxes, on the other hand,
-express components that are not a part of the Iris design, but that can be
-loaded in Iris as plug-ins, possibly providing an interface to access
+express components that were not part of the Iris design, but that can be
+used in Iris as plug-ins, possibly providing interfaces to access
 non-standard services. Some of these plug-ins, along with a description of the
 design of the Iris Software Development Kit, will be introduced in Section
 \ref{sec:plugins}.
+
+The dark green box denotes IVOA sanctioned standards. Blue denotes components
+that are built-in in Iris and light green boxes denote components that were developed
+in or for Iris\footnote{While the NED SED service was developed independently of Iris,
+its IVOA-compliant interface was part of the Iris project, along with the development of a
+dedicated client in Iris itself.}
 
 The Iris development team also faced some extra challenges: our team is
 distributed in nature, with developers and managers working from different
