@@ -647,6 +647,7 @@ table models with parameters other than the amplitude. Like the
 file that lists the parameter values of the templates and the full path to the
 template those parameter values describe (see Listing \ref{lst:templateconfig}
 for an example). Sherpa uses a grid-search method to find the best-fit template.
+The parameters grid is created using the values provided in the index file.
 \end{sloppypar}
 
 \begin{lstlisting}[style=code,
@@ -724,16 +725,19 @@ design of the Iris Software Development Kit, will be introduced in Section
 
 The dark green box denotes IVOA sanctioned standards. Blue denotes components
 that are built-in in Iris and light green boxes denote components that were developed
-in or for Iris\footnote{While the NED SED service was developed independently of Iris,
+in or for Iris.\footnote{While the NED SED service was developed independently of Iris,
 its IVOA-compliant interface was part of the Iris project, along with the development of a
 dedicated client in Iris itself.}
 
-The Iris development team also faced some extra challenges: our team is
-distributed in nature, with developers and managers working from different
+This architecture was also driven by a more abstract requirement:
+our team was
+distributed, with developers and managers working from different
 institutions with different tools and practices \citep{2012SPIE.8449E..0IE}.
 Moreover, wanting to reuse existing software instead of reinventing the
 proverbial wheel, we had to integrate different existing software components in
-a seamless way.
+a seamless way. So, the Iris stack provided not only a clean and robust architecture
+for users and third party developers, but was also useful in enabling a distributed
+team of part-time developers to work in parallel, reducing the overall project risk.
 
 In summary, the Iris framework was designed to address several different
 requirements: (i) functional requirements gathered by the Iris team's lead
@@ -1232,8 +1236,13 @@ neighbor. Interpolation may be carried out on a linear or logarithmic scale.
 Users may choose the number of bins, the spectral range over which to
 interpolate, and may choose to smooth the resultant SED via a boxcar method.
 
-\subsubsection{Integration} The Integration tool was developed to make
-estimating integrated fluxes of a SED quick and painless. Iris provides two
+\subsubsection{Integration}
+The Integration tool was developed for
+estimating integrated fluxes of a SED. The tool acts as a wrapper of the
+\texttt{astLib} methods \texttt{calcFlux} and \texttt{integrate}, which in turn use
+the composite trapezoidal rule to integrate the SEDs.
+
+Iris provides two
 methods of integration: (i) through a user-defined passband, and (ii) through a
 photometric filter. The first option lets the user specify the spectral range in
 wavelength, frequency, or energy units (Angstroms, Hz, and keV, respectively) to
@@ -1251,9 +1260,13 @@ Both methods return the effective wavelength of the passband in Angstroms and
 the calculated flux in Jansky. The user can export the data to a new SED or
 save the results to a simple ASCII formatted file.
 
+Notice that Iris currently integrates the SED data points, possibly after an interpolation,
+and not the model. So, if the transmission curves or passbands do not completely overlap with the SED
+Iris will return a NaN (Not a Number).
+
 \section{Plug-ins: the Software Development Kit} \label{sec:plugins}
 
-Iris offers a Software Development Kit (SDK) that can be used to extend the Iris
+Iris offers a Java Software Development Kit (SDK) that can be used to extend the Iris
 capabilities through the use of dynamically pluggable add-ons, or plug-ins.  The
 use cases for this are listed below.
 \begin{description} \item[New
@@ -1270,7 +1283,10 @@ Custom-to-Standard adapters, like the \verb|sherpa-samp| layer described in Sect
 \ref{sec:components}, or the ASDC plug-in interface that queries a
 quasi-standard service, described in Section \ref{sec:asdc}.  \end{description}
 
-\subsection{Anatomy of a Plug-in} A single Jar file can archive several
+This section describes Java plug-ins, while section \ref{sec:usermodels} described how
+users can extend the models for fitting SEDs using Python functions.
+
+\subsection{Anatomy of a Plug-in} A single Java Archive (jar) file can contain several
 plug-ins, and each plug-in can bundle several Iris Components.
 
 Each Component can provide several additions to Iris, as described in some
@@ -1424,13 +1440,20 @@ entire application.  \end{description}
 \subsubsection{Vizier --- experimental} \label{sec:asdc} Experimental plug-ins
 are shipped with Iris but they can only be activated by turning on switches on
 the Iris command line. For instance, if one starts Iris with the command
-\verb|./Iris --vizier| an experimental plug-in for the CDS Vizier photometric
+\verb|./Iris --vizier| an experimental plug-in\footnote{While this client should work
+fine most of the time,
+users should not expect proper error handling, neither there is a way to
+change the search radius.} for the CDS Vizier photometric
 service gets loaded in the usual Iris desktop.
 
 \subsubsection{R --- experimental} A highly experimental proof-of-concept
 plug-in was developed to explore the possibility of interfacing Iris with rich
 analysis environments like R. The plug-in shows how one can \emph{beam} data
-from Iris to R and trigger some analysis on the dataset in R.
+from Iris to R and trigger some analysis on the dataset in R.\footnote{In order
+to make this plug-in work one needs to install R and the Java-R interface package, and then
+set up some environment variables and start Iris in a non-standard way.
+If interested in experimenting with this plug-in,
+please contact the corresponding author.}
 
 
 \subsection{Other Extensibility Points}
@@ -1449,7 +1472,7 @@ work sessions.
 
 
 \subsection{How to write an Iris plug-in} \label{sec:writeplugin} Iris uses Maven
-Archetypes to streamline the process of building and distributing Iris plug-ins.
+Archetypes to streamline the process of building and distributing Iris Java plug-ins.
 
 You might also write plug-ins without using Maven, but you would need to take
 care of many steps that the Maven-generated project automatically takes care of,
