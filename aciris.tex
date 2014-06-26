@@ -587,16 +587,19 @@ design of the Iris Software Development Kit, will be introduced in Section
 
 The dark green box denotes IVOA sanctioned standards. Blue denotes components
 that are built-in in Iris and light green boxes denote components that were developed
-in or for Iris\footnote{While the NED SED service was developed independently of Iris,
+in or for Iris.\footnote{While the NED SED service was developed independently of Iris,
 its IVOA-compliant interface was part of the Iris project, along with the development of a
 dedicated client in Iris itself.}
 
-The Iris development team also faced some extra challenges: our team is
-distributed in nature, with developers and managers working from different
+This architecture was also driven by a more abstract requirement:
+our team was
+distributed, with developers and managers working from different
 institutions with different tools and practices \citep{2012SPIE.8449E..0IE}.
 Moreover, wanting to reuse existing software instead of reinventing the
 proverbial wheel, we had to integrate different existing software components in
-a seamless way.
+a seamless way. So, the Iris stack provided not only a clean and robust architecture
+for users and third party developers, but was also useful in enabling a distributed
+team of part-time developers to work in parallel, reducing the overall project risk.
 
 In summary, the Iris framework was designed to address several different
 requirements: (i) functional requirements gathered by the Iris team's lead
