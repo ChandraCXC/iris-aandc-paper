@@ -84,8 +84,8 @@
 \usepackage{url}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyref}
-\usepackage{hyperref}
-\hypersetup{colorlinks=false,pdfborder={0 0 0},}
+%\usepackage{hyperref}
+%\hypersetup{colorlinks=false,pdfborder={0 0 0},}
 \usepackage{caption}
 \usepackage{courier}
 \usepackage{float}
@@ -347,14 +347,32 @@ repository\footnote{\url{https://github.com/ChandraCXC/iris}}.
 \section{SED Analysis with Iris} \label{sec:overview}
 
 Fitting spectral energy distributions enables astron\-omers to estimate fundamental
-physical properties of various astronomical objects. Stellar mass, star formation rates, 
-dust content, and redshift
-are just a few of the properties often derived from galaxy SEDs (e.g.\citet{1998AJ....115.1329S},
+physical properties of various astronomical objects on large and small scales. 
+%For example, researchers of galaxy evolution frequently model SEDs to derive stellar masses, 
+%star formation rates, dust temperature and mass, and redshifts of active, normal, and passive galaxies
+For example, stellar mass, star formation rates, dust content, and redshift
+are just a few of the properties often derived from galaxy SEDs for galaxy
+evolution studies (e.g.\citet{1998AJ....115.1329S},
 \citet{2001ApJS..137..139S}, \citet{2007ApJS..169..328R}, and many others). 
-Accretion disks surrounding black holes and young stellar objects can be studied by
+Accretion disks surrounding supermassive black holes, x-ray binary and young stellar objects (YSOs) can be studied by
 fitting models to the host objects' SEDs, extracting information like 
-accretion rates, disk geometry and temperature, and electron energy distributions
-(CITATIONS!!!).
+accretion rates, disk geometry, and disk temperature \citep{1990A&A...235..162V,1997ApJ...490..368C,2006ApJS..167..256R}; 
+excess of mid IR light in stellar SEDs is used to identify circumstellar 
+disks~\citep{2000prpl.conf..639L,2005ApJ...623..493C}.
+
+%Fitting spectral energy distributions enables astron\-omers to estimate fundamental
+%physical properties of galaxies (e.g., spiral, elliptical, starburst, AGN; and quasars) and smaller-scale
+%sources (stars, young stellar objects, binary systems, etc.).
+%Stellar mass, star formation rates, dust temperature and mass, and redshift
+%are just a few of the properties often derived from galaxy SEDs (e.g.\citet{1998AJ....115.1329S},
+%\citet{2001ApJS..137..139S}, \citet{2007ApJS..169..328R}, and many others).
+%SEDs have been used to shed light on accretion disk physics, modeling the SEDs of AGN, young stellar objects, and X-ray binary %systems
+
+%Fitting spectral energy distributions enables astron\-omers to estimate fundamental
+%physical properties of various objects. Commonly studied through SED analysis are
+%galaxies, from which stellar mass, star formation rates, dust temperature and mass, redshift,
+%and many other properties are be derived. 
+
 
 With deeper wide-field surveys and increasing numbers of datasets over the years,
 astronomers have been able to use multi-wavelength SEDs more frequently for
@@ -613,10 +631,14 @@ functions when using the Iris fitting tool.
 
 \subsection{Table Models} A table model is a single template, having just the
 $x$ and $y$ coordinates. Iris accepts two columned ASCII files as table models,
-following the convention where the first column is the spectral values (in
-Angstroms) and the second contains the fluxes (in
-$\mathrm{photons}/\mathrm{s}/\mathrm{cm}^{2}/\mbox{\AA}$). The fit returns the
-normalization constant (or amplitude) of the model.
+following the convention where the first column is the spectral values
+and the second contains the fluxes. The spectral and flux units must be in Angstroms
+and $\mathrm{photons}/\mathrm{s}/\mathrm{cm}^{2}/\mbox{\AA}$, respectively\footnote{
+While Iris ingests many other units (see Table~\ref{table:units}), the Custom Fit Model
+Manager is independent of Iris's units handler and only accepts files with spectral 
+values in Angstroms and the flux in 
+$\mathrm{photons}/\mathrm{s}/\mathrm{cm}^{2}/\mbox{\AA}$}.
+The fit returns the normalization constant (or amplitude) of the model.
 
 \begin{sloppypar}
 \subsection{Template Libraries} The template model is essentially a list of
@@ -1163,12 +1185,18 @@ The \verb|sherpa-samp| layer grew to accommodate the new science requirements in
 the latest Iris releases, so to include some analysis code that is
 independent of Sherpa.
 
-%\begin{table}
-%\caption{\textbf{Sherpa Fitting Tool optimization and fit statistics options.} 
-%words and stuff}
-%\label{table:statistics}
-%\input{statistics.tex}
-%\end{table}
+\subsubsection{Fitting Capabilities}
+\label{sherpa-fitting}
+
+We provide the same fitting optimization methods and fit statistics in Iris as Sherpa has.
+Table~\ref{table:statistics} lists the various options available.
+
+\begin{table}
+\caption{\textbf{Sherpa Fitting Tool optimization and fit statistics options.} 
+words and stuff}
+\label{table:statistics}
+\input{statistics.tex}
+\end{table}
 
 \subsection{Science Tools} We provide built-in science tools that perform
 calculations commonly used in SED analysis: redshifting, interpolation, and

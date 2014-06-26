@@ -1,10 +1,20 @@
+\begin{threeparttable}
 \centering
-\begin{tabular}{ll}
+\begin{tabular}{lll}
     \toprule
-    Optimization Methods                & Fit Statistics \\
+    Optimization Methods & Fit Statistics & Formula \\ %& Description \\
     \midrule
-    Nelder-Mead & $\chi^{2} = \sum_{i=1}^{N} \frac{(x_{i} - \overline{\mu})^{2}}{\sigma_{i}^{2}}$  \\
-    Levenberg-Marquardt & least squares\\
-    Monte-Carlo\tnote{a} & \\
+    Nelder-Mead & chi2datavar & $\chi^{2} = \sum_{i=1}^{N} \frac{(y_{i} - \overline{\mu})^{2}}{\sigma_{i}^{2}}$ \\ %& 
+%    	$\chi^{2}$ statistic, with variance $\sigma$ taken from the data \\
+    Levenberg-Marquardt & least squares & $\sum_{i=1}^{N} (y_{i} - \overline{\mu})^{2}$ \\ %&
+%    	Sum of the squares of the differences between data and model values \\
+    Monte-Carlo\tnote{a} & cash & $C = 2 \sum_{i} S_{i} - y_{i} \ln{S_{i}}$ \\ %& 
+%    	A maximum likelihood function based on Poisson statistics (for low counts data) \\
+    ~ & cstat & $C = 2 \sum_{i} S_{i} - y_{i} + y_{i} (\ln{y_{i}} - \ln{S_{i}})$ \\ %& 
+%    	A maximum likelihood function based on Poisson statistics, but with a  \\
     \bottomrule
 \end{tabular}
+\begin{tablenotes}
+\item [a] Uses a differential evolution algorithm (details in text).
+\end{tablenotes}
+\end{threeparttable}
