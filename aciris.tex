@@ -92,6 +92,7 @@
 \usepackage{booktabs}
 \usepackage{threeparttable}
 \usepackage{array}
+\usepackage{tabu}
 
 \newcommand{\truncateit}[1]{\truncate{0.8\textwidth}{#1}}
 \newcommand{\scititle}[1]{\title[\truncateit{#1}]{#1}}
@@ -1189,12 +1190,12 @@ The \verb|sherpa-samp| layer grew to accommodate the new science requirements in
 the latest Iris releases, so to include some analysis code that is
 independent of Sherpa.
 
-\subsubsection{Fitting Capabilities}
+\subsubsection{Fitting Options}
 \label{sherpa-fitting}
 
 We provide the following fitting optimization methods and fit statistics from Sherpa 
-in Iris.
-Table~\ref{table:statistics} lists the various options available.
+in Iris. \citet{2009pysc.conf...51R} discuss Sherpa's statistics in detail. Here, 
+we briefly present the options.
 
 The optimization methods available in Iris are variations of the Nelder-Mead simplex, 
 Levenberg-Marquardt, and Monte Carlo algorithms. The Nelder-Mead simplex method, which
@@ -1215,17 +1216,22 @@ There general $\chi^{2}$ statistic is
 \sum_i \frac{(D_{i} - M_{i})^{2}}{\sigma^{2}},
 \end{equation}
 
-where $D_{i}$ is the observed data, $M_{i}$ is the predicted model, and $\sigma_{i}^{2}$ 
-is the variance of $D_{i}$. Users wanted to use $\chi^{2}$ statistics choose  
-one of the $\sigma_{i}^{2}$ definitions in Table~\ref{table:statistics}.
+where $D_{i}$ is the $y$-data, $M_{i}$ is the predicted model, and $\sigma_{i}^{2}$ 
+is the variance of $D_{i}$ or the errors of $D_{i}$. In Iris, users wanting to use $\chi^{2}$
+statistics select one of the several $\sigma_{i}^{2}$ formula, 
+listed in Table~\ref{table:statistics}
+% in the Fitting Tool, including a least-squares
+%option and .
 
 Also included as fit statistics options are two maximum likelihood functions, Cash and 
-C-statistic, which are based on Poisson statistics. The statistic formula are listed 
-in Table~\ref{table:statistics}
+C-statistic, which are based on Poisson statistics \citep{1979ApJ...228..939C}. 
+The statistic formula are listed in Table~\ref{table:statistics}.
 
 \begin{table}
-\caption{\textbf{Sherpa Fitting Tool optimization and fit statistics options.} 
-words and stuff}
+\caption{\textbf{Sherpa fit statistics.} The fit statistic names as they appear in Iris 
+are under \textit{Statistic} and corresponding formulae are under \textit{Formula}. 
+$D_{i}$ is the $y$-data, $M_{i}$ is the predicted model value, and $\sigma_{i}^{2}$ 
+is the variance of $D_{i}$.}
 \label{table:statistics}
 \input{statistics.tex}
 \end{table}
