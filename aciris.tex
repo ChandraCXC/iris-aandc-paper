@@ -1192,8 +1192,36 @@ independent of Sherpa.
 \subsubsection{Fitting Capabilities}
 \label{sherpa-fitting}
 
-We provide the same fitting optimization methods and fit statistics in Iris as Sherpa has.
+We provide the following fitting optimization methods and fit statistics from Sherpa 
+in Iris.
 Table~\ref{table:statistics} lists the various options available.
+
+The optimization methods available in Iris are variations of the Nelder-Mead simplex, 
+Levenberg-Marquardt, and Monte Carlo algorithms. The Nelder-Mead simplex method, which
+finds the local minimum of a function in parameter space through a direct search method, is an
+adaptation of the algorithms described in 
+\citet{wright1996} and \citet{Lagarias:1998:CPN:588893.589108}. 
+Levenberg-Marquardt optimization 
+finds the local minimum of non-linear least squares functions of the model parameters
+\citep{jjmore1978}. Lastly, the Monte Carlo method uses a differential evolution
+algorithm outlined in \citet{Storn:1997:DEN:596061.596146} 
+to find the \textit{global} minimum in parameter space.
+
+Sherpa provides several $\chi^{2}$ statistics with different variance definitions. 
+There general $\chi^{2}$ statistic is
+
+\begin{equation}
+\label{eq:chi-squared}
+\sum_i \frac{(D_{i} - M_{i})^{2}}{\sigma^{2}},
+\end{equation}
+
+where $D_{i}$ is the observed data, $M_{i}$ is the predicted model, and $\sigma_{i}^{2}$ 
+is the variance of $D_{i}$. Users wanted to use $\chi^{2}$ statistics choose  
+one of the $\sigma_{i}^{2}$ definitions in Table~\ref{table:statistics}.
+
+Also included as fit statistics options are two maximum likelihood functions, Cash and 
+C-statistic, which are based on Poisson statistics. The statistic formula are listed 
+in Table~\ref{table:statistics}
 
 \begin{table}
 \caption{\textbf{Sherpa Fitting Tool optimization and fit statistics options.} 
@@ -1216,10 +1244,12 @@ shifting the SED.
 Because the apparent magnitude of a source is dimmer at high redshifts
 than low redshift, we correct the flux so that the area under the shifted SED
 equals that of the un-shifted SED using
-\begin{equation} \label{eq:redshift} f_{z_{f}}(\lambda) = f_{z_{i}}(\lambda)
-\frac{\sum_{k=1}^N
+\begin{equation}
+\label{eq:redshift} 
+f_{z_{f}}(\lambda) = f_{z_{i}}(\lambda) \frac{\sum_{k=1}^N
 (f_{z_{i}}(\lambda_{k+1})+f_{z_{i}}(\lambda_{k}))}{\sum_{k=1}^N
-(f_{z_{f}}(\lambda_{k+1})+f_{z_{f}}(\lambda_{k}))}, \end{equation}
+(f_{z_{f}}(\lambda_{k+1})+f_{z_{f}}(\lambda_{k}))}, 
+\end{equation}
 where $f_{z_i}$ is the observed flux at the initial (observed) redshift $z_i$,
 $f_{z_f}$ is the flux at the final (target) redshift $z_f$, ${\lambda}$ is the
 wavelength, $N$ is the number of points in the SED, and $\lambda_{k}$ is the wavelength
