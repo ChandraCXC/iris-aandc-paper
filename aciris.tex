@@ -1208,33 +1208,24 @@ finds the local minimum of non-linear least squares functions of the model param
 algorithm outlined in \citet{Storn:1997:DEN:596061.596146} 
 to find the \textit{global} minimum in parameter space.
 
-Sherpa provides several $\chi^{2}$ statistics with different variance definitions. 
-There general $\chi^{2}$ statistic is
+Sherpa provides several $\chi^{2}$ statistics with different variances. For example, 
+users can use the variance of the 
+$y$-uncertainties (or $y$-values if there are no uncertainties), 
+or they can set the variance to 1.
+Also included are two maximum likelihood functions based on Poisson statistics: Cash and 
+C-statistic \citep{1979ApJ...228..939C}. 
 
-\begin{equation}
-\label{eq:chi-squared}
-\sum_i \frac{(D_{i} - M_{i})^{2}}{\sigma^{2}},
-\end{equation}
+%There general $\chi^{2}$ statistic is
+%\begin{equation}
+%\label{eq:chi-squared}
+%\sum_i \frac{(D_{i} - M_{i})^{2}}{\sigma^{2}},
+%\end{equation}
 
-where $D_{i}$ is the $y$-data, $M_{i}$ is the predicted model, and $\sigma_{i}^{2}$ 
-is the variance of $D_{i}$ or the errors of $D_{i}$. In Iris, users wanting to use $\chi^{2}$
-statistics select one of the several $\sigma_{i}^{2}$ formula, 
-listed in Table~\ref{table:statistics}
-% in the Fitting Tool, including a least-squares
+%where $D_{i}$ is the $y$-data, $M_{i}$ is the predicted model, and $\sigma_{i}^{2}$ 
+%is the variance of $D_{i}$ or the errors of $D_{i}$. In Iris, users wanting to use $\chi^{2}$
+%statistics select one of the several $\sigma_{i}^{2}$ formulae 
+%in the Fitting Tool, including a least-squares method
 %option and .
-
-Also included as fit statistics options are two maximum likelihood functions, Cash and 
-C-statistic, which are based on Poisson statistics \citep{1979ApJ...228..939C}. 
-The statistic formula are listed in Table~\ref{table:statistics}.
-
-\begin{table}
-\caption{\textbf{Sherpa fit statistics.} The fit statistic names as they appear in Iris 
-are under \textit{Statistic} and corresponding formulae are under \textit{Formula}. 
-$D_{i}$ is the $y$-data, $M_{i}$ is the predicted model value, and $\sigma_{i}^{2}$ 
-is the variance of $D_{i}$.}
-\label{table:statistics}
-\input{statistics.tex}
-\end{table}
 
 \subsection{Science Tools} We provide built-in science tools that perform
 calculations commonly used in SED analysis: redshifting, interpolation, and
