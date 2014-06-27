@@ -84,8 +84,8 @@
 \usepackage{url}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyref}
-%\usepackage{hyperref}
-%\hypersetup{colorlinks=false,pdfborder={0 0 0},}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},}
 \usepackage{caption}
 \usepackage{courier}
 \usepackage{float}
@@ -221,9 +221,6 @@ data abstraction \sep method: data analysis \sep object-oriented programming \se
 %wide set of use cases, while being highly extensible.
 %\end{sloppypar}
 
-% Add an intro to SEDs.
-
-%EDIT THIS PARA!
 The emission processes of astronomical objects (e.g., stars, galaxies, quasars)
 are reflected in the spectral energy distribution (SED) of the radiation detected
 by astronomers with a variety of telescopes and instruments. Astronomers use this
@@ -260,7 +257,7 @@ the application's functionality without requiring knowledge of standards themsel
 Designing such an application, like a general SED analysis tool, thus becomes an
 exercise in designing a framework that implements some basic,
 effective functionality for a wide set of use cases, while being highly extensible.
-\end{sloppypar}
+\bigskip
 
 \textit{Iris}, the Virtual Astronomical Observatory \citep[VAO;][]{2012SPIE.8449E..0HB}
 SED analysis tool, is such an IVOA-enabled desktop application. 
@@ -282,6 +279,7 @@ acquisition, and Sherpa~\citep{2001SPIE.4477...76F,2009pysc.conf...51R} for the
 modeling and fitting engine. Along with these components, new ones, like the SED 
 Builder, were developed specifically for Iris
 \citep{2012ASPC..461..893D,2013AAS...22124038L}.
+\end{sloppypar}
 
 %The IVOA standards allow this approach, as we have demonstrated in developing Iris.
 
@@ -589,6 +587,9 @@ the spectral axis, $x$, in units of Angstroms. For example, a model file for a
 modified black body \(B_{\nu}(T) \left(\nu/\nu_{0}\right)^{\beta}\) could be
 defined as in Listing \ref{lst:user_model_example}.
 
+User models can be arbitrarily combined with other custom or preset model
+functions when using the Iris fitting tool.
+
 \begin{lstlisting}[style=python,
 	caption={Example of a user-defined model that
 can be dynamically loaded into Iris. The code, written as a Python function, 
@@ -626,9 +627,6 @@ def modified_blackbody(p, x):
 
   return B_lambda * powerlaw
 \end{lstlisting}
-
-User models can be arbitrarily combined with other custom or preset model
-functions when using the Iris fitting tool.
 
 \subsection{Table Models} A table model is a single template, having just the
 $x$ and $y$ coordinates. Iris accepts two columned ASCII files as table models,
@@ -843,7 +841,7 @@ being a special case of the second.}.
 
 Consider, for example, Iris Components: they are the main providers of Iris
 functionality, and they can correspond to buttons and menu items on the Iris
-desktop, loggers, data handlers, etc. They must implement the IrisComponent
+desktop, loggers, data handlers, etc. They must implement the \texttt{IrisComponent}
 interface, listed in Listing \ref{lst:component}.
 
 \begin{lstlisting}[style=java,
@@ -863,7 +861,6 @@ public interface IrisComponent {
    * services, this is the right method to do
    * so. Otherwise the component will be
    * called only if a callback is invoked.
-   * 
    * @param app A reference to the running application
    * @param workspace A reference to the application's workspace
    */
@@ -882,7 +879,6 @@ public interface IrisComponent {
    * description might be listed in a widget
    * along with the other * registered
    * components.
-   *
    * @return The component's description as a
    * String.
    */
@@ -908,7 +904,6 @@ public interface IrisComponent {
    * and desktop buttons to the enclosing GUI
    * applications by providing a list of
    * MenuItems.
-   *
    * @return A list of the menu items this
    * component will contribute to the
    * application. 
@@ -919,7 +914,6 @@ public interface IrisComponent {
    * The component can register any number of
    * SAMP message listeners by providing a
    * list of them.
-   *
    * @return A list of the SAMP message
    * listeners that have to be registered to
    * the SAMP hub. 
@@ -992,7 +986,7 @@ users can add, edit, remove, and save a subset of Segments selected from a SED.
 
 \subsubsection{Importing data}
 
-\begin{figure} \begin{center}
+\begin{figure}[h!] \begin{center}
 \includegraphics[width=\columnwidth]{IrisDiagrams.002.pdf}
 \caption{\textbf{\label{fig:data_sources} Available Data
 Sources.}  Users may import data from the built-in
@@ -1254,7 +1248,7 @@ astLib\footnote{\url{http://astlib.sourceforge.net/}} \texttt{astSED} class that
 implements Equation~\ref{eq:redshift}.
 
 From the the user's perspective, the user supplies the initial and final redshift of the
-SED and clicks ``Create New SED''.
+SED and clicks ``Create New SED.''
 
 \subsubsection{Interpolation} Iris provides 1D interpolation along the spectral
 axis. There are three interpolation options: linear, linear spline, and nearest
@@ -1286,9 +1280,11 @@ Both methods return the effective wavelength of the passband in Angstroms and
 the calculated flux in Jansky. The user can export the data to a new SED or
 save the results to a simple ASCII formatted file.
 
+\begin{sloppypar}
 Notice that Iris currently integrates the SED data points, possibly after an interpolation,
 and not the model. So, if the transmission curves or passbands do not completely overlap with the SED
 Iris will return a NaN (Not a Number).
+\end{sloppypar}
 
 \section{Plug-ins: the Software Development Kit} \label{sec:plugins}
 
@@ -1603,9 +1599,11 @@ or source distribution for Linux and OS X.
 
 
 \section*{Acknowledgments}
+\begin{sloppypar}
 The Authors would like to acknowledge Giuseppina Fabbiano, Ian Evans,
 Jonathan McDowell, and Aneta Siemiginowska
 for their support and feedback in all the phases of the work.
+\end{sloppypar}
 
 We also thank the Italian Space Agency Science Data Center for the contribution
 of the ASDC Data plug-in. In particular Paolo Giommi, Roberto Primavera, and
