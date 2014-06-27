@@ -347,19 +347,19 @@ repository\footnote{\url{https://github.com/ChandraCXC/iris}}.
 
 \section{SED Analysis with Iris} \label{sec:overview}
 
-Fitting spectral energy distributions enables astron\-omers to estimate fundamental
-physical properties of various astronomical objects on large and small scales. 
+Fitting spectral energy distributions enables astron\-omers to estimate fundamental 
+properties of various astronomical objects. 
 %For example, researchers of galaxy evolution frequently model SEDs to derive stellar masses, 
 %star formation rates, dust temperature and mass, and redshifts of active, normal, and passive galaxies
-For example, stellar mass, star formation rates, dust content, and redshift
-are just a few of the properties often derived from galaxy SEDs for galaxy
-evolution studies (e.g.\citet{1998AJ....115.1329S},
+In galaxy evolution studies, for example, stellar mass, star formation rates, dust content, and redshift
+are often derived from galaxy SEDs (e.g.\citet{1998AJ....115.1329S},
 \citet{2001ApJS..137..139S}, \citet{2007ApJS..169..328R}, and many others). 
-Accretion disks surrounding supermassive black holes, x-ray binary and young stellar objects (YSOs) can be studied by
+Accretion disks surrounding supermassive black holes, x-ray binary and young stellar objects can be studied by
 fitting models to the host objects' SEDs, extracting information like 
-accretion rates, disk geometry, and disk temperature \citep{1990A&A...235..162V,1997ApJ...490..368C,2006ApJS..167..256R}; 
-excess of mid IR light in stellar SEDs is used to identify circumstellar 
-disks~\citep{2000prpl.conf..639L,2005ApJ...623..493C}.
+accretion rates, disk geometry, and disk temperature \citep[e.g.,][]{1987ApJ...321..305C,1990A&A...235..162V,1997ApJ...490..368C,2006ApJS..167..256R}. 
+Stellar SED analysis can recognize mid IR excess, which may indicate circumstellar 
+disks~\citep{2000prpl.conf..639L,2005ApJ...623..493C}. As these examples show, SEDs 
+are widely used throughout astronomy.
 
 %Fitting spectral energy distributions enables astron\-omers to estimate fundamental
 %physical properties of galaxies (e.g., spiral, elliptical, starburst, AGN; and quasars) and smaller-scale
@@ -375,7 +375,7 @@ disks~\citep{2000prpl.conf..639L,2005ApJ...623..493C}.
 %and many other properties are be derived. 
 
 
-With deeper wide-field surveys and increasing numbers of datasets over the years,
+With ever increasing wide-field surveys and datasets over the years,
 astronomers have been able to use multi-wavelength SEDs more frequently for
 their research. As such, many robust SED analysis codes have been created to
 help astronomers mod\-el, fit, and derive physical quantities from SEDs
@@ -1050,11 +1050,11 @@ shared by Iris and by the user's scripts.
 
 Iris is packaged with a portal to the NED SED
 Service that, given a target name,
-retrieves all photometric data in NED associated to the source with that target
-name, adding it to an existing SED.
+retrieves all photometric data in NED associated with the source with that target
+name, and adds it to an existing SED.
 
 In the context of the VAO development of Iris, we adapted the NED long standing photometry and spectral energy
-distribution service to conform as closely as practicable to the relevant
+distribution service to conform as closely as practical to the relevant
 IVOA recommendations in order to deliver photometric data from the
 collection into Iris seamlessly. The objective for NED was to provide a working reference
 service for the development of Iris as well as to serve as a working prototype
@@ -1071,8 +1071,7 @@ of queries:
 available photometry (SED) given a sky position (RA and Dec) and angular size.
 Also called a \emph{data discovery} query. 
 \item[Information Availability] For
-a given named object, return the number of photometric data points 
-a\-vail\-a\-ble, if any.
+a given named object, return the number of photometric data points. 
 \item[Data Retrieval] For a given named object, return the
 available photometric data in an IVOA Spectrum Data Model compatible VOTable.
 \end{description}
