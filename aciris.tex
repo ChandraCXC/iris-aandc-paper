@@ -508,7 +508,7 @@ components are linearly combined. Note that components are referenced by the
 \begin{sloppypar}
 An Iris session begins with populating a SED by clicking on the SED Builder icon on the
 Iris desktop. A user loads a local ASCII file of
-PLANCK data, a WISE dataset from TOPCAT ascl:1101.010\footnote{ascl: Astronomy Source Code Library} \citep{2005ASPC..347...29T} 
+PLANCK data, a WISE dataset from TOPCAT \citep[ascl:1101.010\footnote{ascl: Astronomy Source Code Library}]{2005ASPC..347...29T} 
 through a SAMP message, and all data associated with PKS 1127-14 in NED with the NED SED
 Service portal. The user also uses the built-in Italian Space Agency Science Data
 Center\footnote{\url{http://www.asdc.asi.it/}} (ASDC) query tool to find
@@ -1089,7 +1089,7 @@ user interactive feedback to spectral plots in Iris.
 The Viewer also provides most of the low-level GUI
 components used by the Fitting Tool component. The reason for this is that most,
 if not all of the GUI code used by both the Viewer and the Fitting Tool, were
-developed on top of the Specview ascl:1210.016 \citep{2002ASPC..281..120B} code base.
+developed on top of the Specview \citep[][ascl:1210.016]{2002ASPC..281..120B} code base.
 
 Specview was developed in the late 1990's, initially as an experiment to evaluate
 Java graphics capabilities in the context of interactive spectral plotting. Over
@@ -1130,11 +1130,16 @@ interacted with in the GUI itself. The expression uses Python-like syntax, and
 Python operators are available throughout. That way, SEDs can be modified after
 being read by the SED Builder, and before being further processed or measured.
 
-\subsection{Sherpa: Model Fitting} \label{subsec:sherpa} Sherpa ascl:1107.005 is the
-Chandra Interactive Analysis of Observations (CIAO) ascl:1311.006 \citep{2006SPIE.6270E..60F}
+\subsection{Sherpa: Model Fitting}
+\label{subsec:sherpa} 
+
+\begin{sloppypar}
+Sherpa (ascl:1107.005) is the Chandra Interactive Analysis of Observations
+\citep[CIAO;][ascl:1311.006]{2006SPIE.6270E..60F}
 modeling and fitting application. Sherpa enables the user to construct complex
 models from simple definitions and fit those models to 1D (spectra) and 2D
 (images) data using a variety of statistics and optimization methods.
+\end{sloppypar}
 
 Written in Python, with C/\Cpp/Fortran extensions, Sherpa was a robust choice
 for providing Iris with a curve fitting engine.
